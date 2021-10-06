@@ -1,0 +1,18 @@
+- title: Home
+  url: /
+- title: Tags
+  url: /tags
+# - title: DevCS
+#   url: /cs
+# - title: Study
+#   url: /study
+# - title: Categories
+#   url: /categories/
+- title: About
+  url: /about
+# - title: All
+#   sublinks:
+#     - title: Study
+#       url: /study/
+#     - title: Docs
+#       url: /docs/
