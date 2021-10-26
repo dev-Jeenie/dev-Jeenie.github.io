@@ -1,6 +1,6 @@
 ---
 title: "HTTP method"
-permalink: /cs/goodcode
+permalink: /cs/httpmethod
 tags:
   - [CS]
 
