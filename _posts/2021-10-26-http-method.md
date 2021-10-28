@@ -65,24 +65,24 @@ http만 가지고 하면 보안이 취약한 사이트. https가 있어야 안�
 
 <hr />
 
-HTTP 네트워크 프로토콜은, REQUEST를 하든 RESPONSE를 하든
-서버와 클라이언트 간에는 HTTP HEADER와 HTTP BODY를 전송함
-GET같이 요청할 때에는 HTTP HEADER에 요청을 적어서 보내고, (BODY는 비어있음)
-POST같이 데이터를 보낼 때에는 HTTP BODY에 데이터를 담아서 보낸다
+HTTP 네트워크 프로토콜은, REQUEST를 하든 RESPONSE를 하든<br/>
+서버와 클라이언트 간에는 HTTP HEADER와 HTTP BODY를 전송함<br/>
+GET같이 요청할 때에는 HTTP HEADER에 요청을 적어서 보내고, (BODY는 비어있음)<br/>
+POST같이 데이터를 보낼 때에는 HTTP BODY에 데이터를 담아서 보낸다<br/>
 
 서버에서 처리를 한 뒤에 결과를 RESPONSE 해줄 건데, 그 RESPONSE의 모양도 동일하게
-RESPONSE HEADER와 RESPONSE BODY로 이루어져있다
-RESPONSE HEADER에는 응답코드(201, 404, 500 등)과 브라우저에 응답해 줄 추가적인 코드가 들어가고
+RESPONSE HEADER와 RESPONSE BODY로 이루어져있다<br/>
+RESPONSE HEADER에는 응답코드(201, 404, 500 등)과 브라우저에 응답해 줄 추가적인 코드가 들어가고<br/>
 RESPONSE BODY에는 브라우저에 보여질 데이터들(html tag, 텍스트 등)이 들어간다
 
 =>
 HEADER에는?
-요청 시 : 요청에 관련된 정보
-응답 시 : 응답에 관련된 정보
+- 요청 시 : 요청에 관련된 정보
+- 응답 시 : 응답에 관련된 정보
 
 BODY에는?
-요청 시 : 요청시 줘야하는 것들 (method 방식에 따라서 body를 쓸지말지 결정)
-응답 시 : 응답할 내용이 있으면 주고 없으면 안줄 수도 있음
+- 요청 시 : 요청시 줘야하는 것들 (method 방식에 따라서 body를 쓸지말지 결정)
+- 응답 시 : 응답할 내용이 있으면 주고 없으면 안줄 수도 있음
 
 ## GET과 POST의 차이
 
@@ -91,29 +91,29 @@ BODY에는?
 
 1. GET의 경우
 
-<img src="/assets/images/GET_example_result.png" />
-요청하는 method 방식과 어디로 요청하는지 정보, 서버에 전달해주고자 하는 값이 들어간다
-이 때에 HTTP REQUEST <b>HEADER에 정보들이 들어간다.</b> HTTP REQUEST BODY에는 표시할 데이터가 없다
+<img src="/assets/images/GET_example_result.png" /><br/>
+요청하는 method 방식과 어디로 요청하는지 정보, 서버에 전달해주고자 하는 값이 들어간다<br/>
+이 때에 HTTP REQUEST <b>HEADER에 정보들이 들어간다.</b> HTTP REQUEST BODY에는 표시할 데이터가 없다<br/>
 => 전송버튼을 누르는 것은, BODY와 HEADER라는 HTTP 프로토콜 형식에 맞춰서 데이터를 만들고 서버로 보내는 것이다.
 
 2. POST의 경우
 
-<img src="/assets/images/GET_example_result.png" />
-이 때에 HTTP REQUEST <b>HEADER에 정보들이 들어가지 않는다.</b> 대신 HTTP REQUEST BODY에 정보들이 들어간다
+<img src="/assets/images/GET_example_result.png" /><br/>
+이 때에 HTTP REQUEST <b>HEADER에 정보들이 들어가지 않는다.</b> 대신 HTTP REQUEST BODY에 정보들이 들어간다<br/>
 => 전송버튼을 누르는 것은, BODY와 HEADER라는 HTTP 프로토콜 형식에 맞춰서 데이터를 만들고 서버로 보내는 것이다.
 
 
 
 
 ### REST API
- "요청에 명확한 의미를 주자"
-REST API가 나오면서 GET, POST, PUT, DELETE로 사용
+ "요청에 명확한 의미를 주자"<br/>
+REST API가 나오면서 GET, POST, PUT, DELETE로 사용<br/>
 
 
-정리!
-클라이언트에서 서버로 요청 시 (REQUEST) 데이터 전달 개념
+정리!<br/>
+클라이언트에서 서버로 요청 시 (REQUEST) 데이터 전달 개념<br/>
 - GET
 - POST
-이때, 요청과 함께 전달하는 값을 파라미터라고 부른다
+이때, 요청과 함께 전달하는 값을 파라미터라고 부른다<br/>
 
 서버에서는 클라이언트 요청으로 전달된 parameter를 꺼내서 사용함.
