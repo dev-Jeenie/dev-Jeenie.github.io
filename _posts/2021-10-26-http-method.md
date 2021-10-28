@@ -113,9 +113,14 @@ BODY에는?
 - POST
 이때, 요청과 함께 전달하는 값을 파라미터라고 부른다<br/>
 
-서버에서는 클라이언트 요청으로 전달된 parameter를 꺼내서 사용함.
+서버에서는 클라이언트 요청으로 전달된 parameter를 꺼내서 사용함.<br/>
+강의 참조 https://www.youtube.com/watch?v=aCSryu_emlA&t=263s
+
 
 # 그럼 REST API는 뭔데?
+https://www.youtube.com/watch?v=PmY3dWcCxXI
+
+웹의 통신규약인 HTTP를 이용하는 API(컴퓨터의 기능을 실행시키는 방법)
 
 <strong>"요청에 명확한 의미를 주자"<strong><br/>
 REST API가 나오면서 GET, POST, PUT, DELETE로 사용<br/>
