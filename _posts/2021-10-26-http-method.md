@@ -38,6 +38,7 @@ ex) 네이버의 검색
 
 링크를 클릭할 때, 입력상자에 데이터를 입력하거 나 체크박스를 체크할 때 전송되는 값들이 URL 뒤에 값을 붙여서 보내는 방식이다
 
+
   ## POST 방식
 RUCD 중 CREATE 에 해당
 HTTP body에 데이터를 담아서 전송(보내기위함)
@@ -47,8 +48,22 @@ HTTP body에 데이터를 담아서 전송(보내기위함)
 
 - 데이터 전송 길이에 대한 제한이 없음 (body에 데이터를 담아 전송하기 때문에 길이 제한이 없다)
 - HTTP REQUEST BODY에 데이터를 담으므로 노출 안됨
-★ 보안성과는 전혀 상관없음! 이걸 보안이 좋다고 생각하면 안됨. BODY에 들어간 정보들은 공유기나 PC
 
+<hr />
+<strong>★ 보안성과는 전혀 상관없음! </strong>
+GET은 주소 뒤에 붙으니까 안전하지 않고, POST는 BODY에 들어가니까 안전하구나 (X)
+이걸 보안이 좋다고 생각하면 안됨. BODY에 들어간 정보들은 공유기나 PC에 연결해서 중간에 가로채면 다 보인다
+
+그래서 암호화를 할 수 있는 프로토콜이 추가되어야 안전함.
+
+<b>암호화를 위해 사용하는 것이 https://</b>
+http만 가지고 하면 보안이 취약한 사이트. https가 있어야 안전한 사이트다
+톰캣 서버에 secure socket layer(ssl)라는 프로토콜을 연동해야 함.
+
+=> 
+<strong>http 프로토콜 + secure socket layer = https 프로토콜</strong>
+
+<hr />
 
 HTTP 네트워크 프로토콜은, REQUEST를 하든 RESPONSE를 하든
 서버와 클라이언트 간에는 HTTP HEADER와 HTTP BODY를 전송함
@@ -69,8 +84,36 @@ BODY에는?
 요청 시 : 요청시 줘야하는 것들 (method 방식에 따라서 body를 쓸지말지 결정)
 응답 시 : 응답할 내용이 있으면 주고 없으면 안줄 수도 있음
 
+## GET과 POST의 차이
+
+<img src="/assets/images/GET_example.png" />
+이름과 나이를 입력해서 전송 버튼을 누르는 것이 클라이언트에서 서버로 request를 하는 것.
+
+1. GET의 경우
+
+<img src="/assets/images/GET_example_result.png" />
+요청하는 method 방식과 어디로 요청하는지 정보, 서버에 전달해주고자 하는 값이 들어간다
+이 때에 HTTP REQUEST <b>HEADER에 정보들이 들어간다.</b> HTTP REQUEST BODY에는 표시할 데이터가 없다
+=> 전송버튼을 누르는 것은, BODY와 HEADER라는 HTTP 프로토콜 형식에 맞춰서 데이터를 만들고 서버로 보내는 것이다.
+
+2. POST의 경우
+
+<img src="/assets/images/GET_example_result.png" />
+이 때에 HTTP REQUEST <b>HEADER에 정보들이 들어가지 않는다.</b> 대신 HTTP REQUEST BODY에 정보들이 들어간다
+=> 전송버튼을 누르는 것은, BODY와 HEADER라는 HTTP 프로토콜 형식에 맞춰서 데이터를 만들고 서버로 보내는 것이다.
+
+
 
 
 ### REST API
  "요청에 명확한 의미를 주자"
 REST API가 나오면서 GET, POST, PUT, DELETE로 사용
+
+
+정리!
+클라이언트에서 서버로 요청 시 (REQUEST) 데이터 전달 개념
+- GET
+- POST
+이때, 요청과 함께 전달하는 값을 파라미터라고 부른다
+
+서버에서는 클라이언트 요청으로 전달된 parameter를 꺼내서 사용함.
