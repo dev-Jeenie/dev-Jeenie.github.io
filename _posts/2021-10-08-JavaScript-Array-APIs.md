@@ -33,44 +33,70 @@ last_modified_at: 2021-11-07
 
 ## join
 
+// Q1. make a string out of an array
+// join(separator?: string): string;
 
+<img src="/assets/images/JS_array_api_join.jpeg" /><br/>
+
+
+
+```JS
+
+{
+  const fruits = ["apple", "banana", "orange"];
+  const result2 = fruits.join("/");
+  console.log(result2);
+}
+
+```
 
 ## split
+<img src="/assets/images/JS_array_api_split.jpeg" /><br/>
 
 
 
 ## reverse
 
+<img src="/assets/images/JS_array_api_reverse.jpeg" /><br/>
 
 
 ## splice
+<img src="/assets/images/JS_array_api_splicejpeg" /><br/>
 
 
 
 ## slice
 
+<img src="/assets/images/JS_array_api_slice.jpeg" /><br/>
 
 
 ## find
+<img src="/assets/images/JS_array_api_find.jpeg" /><br/>
 
 
 
 ## filter
 
 
+<img src="/assets/images/JS_array_api_filter.jpeg" /><br/>
 
 ## map
 
 
+<img src="/assets/images/JS_array_api_map.jpeg" /><br/>
 
 ## some
-
-
-
 ## every
+
+<img src="/assets/images/JS_array_api_some_every.jpeg" /><br/>
+
+
 
 
 
 ## reduce
 
+
+<img src="/assets/images/JS_array_api_reduce.jpeg" /><br/>
+<img src="/assets/images/JS_array_api_reduce_2.jpeg" /><br/>
 
