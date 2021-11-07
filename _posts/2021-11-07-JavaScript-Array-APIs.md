@@ -76,7 +76,7 @@ last_modified_at: 2021-11-07
 }
 ```
 ## splice
-<img src="/assets/images/JS_array_api_splicejpeg" /><br/>
+<img src="/assets/images/JS_array_api_splice.jpeg" /><br/>
 
 
 - Q4. make new array without the first two elements
