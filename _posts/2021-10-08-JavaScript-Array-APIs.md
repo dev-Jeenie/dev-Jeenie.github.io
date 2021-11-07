@@ -1,5 +1,5 @@
 ---
-title: "#09. Array APIs ♨️"
+title: "#09. Array APIs 🍋"
 permalink: /cs/JavaScriptArrayAPIs
 tags:
   - [CS]
