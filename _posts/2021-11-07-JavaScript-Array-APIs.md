@@ -238,6 +238,9 @@ callBack함수를 전달해서, callBack함수가 true인 것들만 모아서 �
 
 ## sort
 
+<img src="/assets/images/JS_array_api_sort.jpeg" /><br/>
+
+
 Bonus! do Q10 sorted in ascending order
 
 ```JS
