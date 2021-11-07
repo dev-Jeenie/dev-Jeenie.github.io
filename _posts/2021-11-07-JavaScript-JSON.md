@@ -17,13 +17,13 @@ last_modified_at: 2021-11-08
 브라우저에서 서버와 통신을 할 때는, fetch API를 사용하거나 XMLHttpRequest 오브젝트를 이용.<br/>
 
 JSON(JavaScript Object Notation)<br/>
-: JavaScript와 동일하게 key와 object로 이루어져있음.<br/></br>
+: JavaScript와 동일하게 key와 object로 이루어져있음.<br/><br/>
 
-<strong>independent programming language and platform</strong></br></br>
+<strong>independent programming language and platform</strong><br/><br/>
 
-프로그래밍 언어나 플랫폼에 상관없이 사용 가능.</br>
-JSON으로 serialization된 Object를 다시 그 언어의 특징에 맞게 Object로 변환하고,</br>
-Object를 다시 JSON으로 serialization 해주거나,외부 라이브러리를 통해서 가능하게 됨.</br></br>
+프로그래밍 언어나 플랫폼에 상관없이 사용 가능.<br/>
+JSON으로 serialization된 Object를 다시 그 언어의 특징에 맞게 Object로 변환하고,<br/>
+Object를 다시 JSON으로 serialization 해주거나,외부 라이브러리를 통해서 가능하게 됨.<br/><br/>
 
 ⭐️ 공부 포인트 ⭐️
 
