@@ -96,7 +96,7 @@ console.log(json);
 
 JSON으로 변환되는 것을 조금 더 통제하고 싶다면? replacer!
 
-#### replacer
+- replacer
 
 a. replacer에 배열로 전달하기
 
@@ -157,7 +157,7 @@ const obj = JSON.parse(json); //JSON을 객체화 한다
 
 객체로 변환되는 것을 조금 더 통제하고 싶다면? reviver!
 
-### reviver
+- reviver
 
 
 ```JS
