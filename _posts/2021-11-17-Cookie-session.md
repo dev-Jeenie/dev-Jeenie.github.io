@@ -13,13 +13,12 @@ last_modified_at: 2021-11-18
 ---
 
 ![]()
-"지속적 통합, 지속적 제공(배포)"
 
 # cookie 
 
 서버는 쿠키를 이용 브라우저에 `내 정보를 기억`하기 위한 데이터를 넣을 수 있다.
 
-<img src="/assets/images/what_is_cookie.jpeg" /><br/>
+<img src="/assets/images/Cookie_what_is_cookie.jpeg" /><br/>
 
 1. 사이트에 방문하면 브라우저는 서버에 request를 보냄
 2. 서버는 모든 데이터와 내가 찾던 페이지 정보를 가지고 response함
