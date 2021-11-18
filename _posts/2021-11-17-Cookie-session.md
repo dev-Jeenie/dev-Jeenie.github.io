@@ -1,6 +1,6 @@
 ---
-title: "CI/CD란? 🪄"
-permalink: /cs/CICD
+title: "cookie, session, token 🍪 "
+permalink: /cs/CookieSession
 tags:
   - [CS]
 
