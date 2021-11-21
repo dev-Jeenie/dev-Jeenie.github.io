@@ -1,5 +1,5 @@
 ---
-title: "# 05.Arrow Function 🔜📈"
+title: "# 05.Arrow Function 🍿"
 permalink: /cs/JavascriptArrowFunction
 tags:
   - [CS]
@@ -8,8 +8,8 @@ navigation: true
 toc: true
 toc_sticky: true
 
-date: 2021-10-18
-last_modified_at: 2021-10-18
+date: 2021-10-17
+last_modified_at: 2021-10-17
 ---
 
 ![]()
