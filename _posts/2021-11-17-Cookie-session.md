@@ -14,7 +14,7 @@ last_modified_at: 2021-11-18
 
 ![]()
 
-# cookie 
+## cookie 
 
 서버는 쿠키를 이용 브라우저에 `내 정보를 기억`하기 위한 데이터를 넣을 수 있다.
 
@@ -36,7 +36,7 @@ last_modified_at: 2021-11-18
 
 <br/>
 
-# session
+## session
 
 > HTTP 프로토콜은 `stateless`!
 
@@ -71,7 +71,7 @@ last_modified_at: 2021-11-18
 
 > => 해당 요청이 끝나고 다른 페이지로 이동하면?
 
-<img src="/assets/images/Cookie_login.jpeg" /><br/>
+<img src="/assets/images/Cookie_login_2.jpeg" /><br/>
 
 
 **유저는 오직 `세션ID`만** 가지고 있다!<br/>
@@ -85,4 +85,4 @@ last_modified_at: 2021-11-18
 => 세션ID를 전달해주는 매개체로 쿠키 대신 <strong>**토큰**<strong>을 사용!
 
 
-# token  
+## token  
