@@ -100,9 +100,11 @@ last_modified_at: 2021-11-18
 유저가 `늘어남에 따라 DB 리소스가 더 필요한 것`!<br/>
 이때 사용하는 것이 **JWT**
 
-### JWT
+### 2.JWT
 
-JWT는 토큰형식이다
+
+
+JWT는 쿠키가 아닌 토큰형식이다 <br/>
 JWT로 유저 인증을 처리하면, 세션 DB를 가질 필요가 없음.
 서버는 유저 인증을 위해서 많은 일을 하지 않아도 된다
 
@@ -110,13 +112,30 @@ JWT로 유저 인증을 처리하면, 세션 DB를 가질 필요가 없음.
 
 이러한 세션 방식 대신 JWT
 
+
 > 로그인 예제
+<img src="/assets/images/Cookie_JWT.jpeg" /><br/>
+
 
 1. 유저가 로그인을 하려고 ID password를 서버에 전송
 2. ID password가 맞다면,  세션 방식처럼 세션DB에 해당 유저정보를 `생성하지 않는다`.
 대신 유저의 ID 등을 가져다가 signature algolythm을 이용해 사인함.
 3. 해당 사인된 정보를 string 형태로 보내줌.
 
+쿠키보다 훨씬 길다. 쿠키는 공간 제약이 있지만, JWT는 제약이 없기 때문에!
 
 
+## session과 JWT의 `차이점` 정리! ✨
 
+### session
+<img src="/assets/images/Cookie_session_vs_JWT.jpeg" /><br/>
+
+session 방식은,<br/>
+`session ID`를 가진 request가 오면 **`세션 DB`**에서 `세션 ID`를 찾는 것!
+
+
+### JWT
+<img src="/assets/images/Cookie_session_vs_JWT_2.jpeg" /><br/>
+
+JWT 방식은,<br/>
+`token`를 가진 request가 오면 그 `token`의 **`유효성 검사`**를 하는 것!
