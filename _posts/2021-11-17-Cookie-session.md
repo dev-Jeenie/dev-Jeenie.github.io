@@ -49,6 +49,9 @@ last_modified_at: 2021-11-18
 
 > login 예제
 
+<img src="/assets/images/Cookie_login.jpeg" /><br/>
+
+
 - Nico라는 유저가 로그인을 하고싶다면,
 
 1. 유저명과 비밀번호를 서버에 보낸다
@@ -65,7 +68,11 @@ last_modified_at: 2021-11-18
 - **세션DB**는 이 `세션ID`가 유저명 Nico의 것이라는 걸 알려줌
 - 서버는 이제야 누구인지 알고, 환영Nico 메시지를 띄운다
 
-> => 해당 요청이 끝나고 다른 페이지로 이동하면 이 프로세스를 반복함
+
+> => 해당 요청이 끝나고 다른 페이지로 이동하면?
+
+<img src="/assets/images/Cookie_login.jpeg" /><br/>
+
 
 **유저는 오직 `세션ID`만** 가지고 있다!<br/>
 **서버가 유저에 대한 모든 정보**를 가지고 있음
@@ -78,4 +85,4 @@ last_modified_at: 2021-11-18
 => 세션ID를 전달해주는 매개체로 쿠키 대신 <strong>**토큰**<strong>을 사용!
 
 
-# token
+# token  
