@@ -1,6 +1,6 @@
 ---
-title: "앱 만들기 끝판왕! 스토어에 등록하기 🧡"
-permalink: /cs/AppStoreGoogleStore
+title: "앱 만들기 끝판왕! 스토어 등록 🧡 1. Android(1)"
+permalink: /cs/StoreForAndroid
 tags:
   - [CS]
 
@@ -147,11 +147,15 @@ https://appiconmaker.co/ <br/>
 나처럼 320X3840에 맞추겠다고 끙끙대지말자. (어떻게 맞춰도 등록이 안된다)<br/>
 사이즈를 딱 맞추려고 하지 않고, 그냥 대략 핸드폰 사이즈로는 이정도겠거니~하고 캡처해서 올렸다.<br/>
 
+스토어 등록 정보 설정을 완료하고 다시 대시보드로 돌아온다.<br/>
 
+<img src="/assets/images/5-production-app-apply.png" /><br/>
 
-<img src="/assets/images/4-screenshot.png" /><br/>
+스크롤을 내려 **Google Play에 앱 게시**에서 할일 보기를 누르면, 아까와 마찬가지로 할일 목록이 나온다.<br/>
 
+이제부터 본격적으로 개발자같은 일(?)을 한다!<br/>
 
+2편에서 계속
 
 
 
