@@ -32,7 +32,12 @@ App에는 release 버전과 debug 버전이 있다.
 
 
 
-# 1. `Android` 버전 - google play store
+# 2. `ios` 버전 - App store
+
+
+
+
+
 
 
 android App을 google play store에 등록하기 위해서는,<br/>
@@ -156,4 +161,26 @@ https://appiconmaker.co/ <br/>
 이제부터 본격적으로 개발자같은 일(?)을 한다!<br/>
 
 2편에서 계속
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 2. `ios` 버전 - App store
+
+
 

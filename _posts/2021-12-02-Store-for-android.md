@@ -152,33 +152,9 @@ https://appiconmaker.co/ <br/>
 <img src="/assets/images/5-production-app-apply.png" /><br/>
 
 스크롤을 내려 **Google Play에 앱 게시**에서 할일 보기를 누르면, 아까와 마찬가지로 할일 목록이 나온다.<br/>
-
+국가 및 지역을 모두 선택으로 하고, 완료한다.
+<img src="/assets/images/5-app-apply-release.png" /><br/>
+출시 탭으로 오면 새 버전 만들기 버튼이 있다.<br/>
 이제부터 본격적으로 개발자같은 일(?)을 한다!<br/>
 
 2편에서 계속
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# 2. `ios` 버전 - App store
