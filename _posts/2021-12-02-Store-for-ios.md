@@ -119,6 +119,14 @@ https://developer.apple.com/enroll/duns-lookup/#!/search 에서 회사의 D-U-N-
 
 <img src="/assets/images/apple-developer-site-select-info.png" /><br/>
 정보를 입력한다.
+<img src="/assets/images/apple-developer-site-developer-pay.png" /><br/>
+1년 등록비를 결제하면 개발자 등록 완료.
+
+* 주의!
+
+결제가 완료되면 개발자 계정 등록이 완료되지만 바로 승인이 되는 것이 아님
+일주일 ~ 3주까지 걸리기 때문에 실제 개발자 계정으로 승인되기까지는 시간이 걸림.
+등록을 완료하더라도 승인되어 활성화됐다는 메일을 받기 전까지는 이용이 불가.
 
 
 ## App store에 등록하기 ✨
