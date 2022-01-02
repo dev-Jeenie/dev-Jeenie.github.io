@@ -1,6 +1,6 @@
 ---
-title: "React란? #1 리액트 프로젝트 시작하기 ⭐️"
-permalink: /cs/ReactProgramming
+title: "React란? #2 리액트 개발환경, 바벨, 웹팩의 이해 ⭐️"
+permalink: /cs/ReactProgrammingBabelWebpack
 tags:
   - [CS]
 
@@ -8,36 +8,16 @@ navigation: true
 toc: true
 toc_sticky: true
 
-date: 2021-12-02
-last_modified_at: 2021-12-02
+date: 2021-12-03
+last_modified_at: 2021-12-03
 ---
 
 ![]()
 
-# 리액트란 무엇인가?
-
-
-UI 기능만 제공
-
-앵귤러와는 달리 개발환경 직접 구축해야함!
-
-
-- 자동으로 업데이트 되는 UI
-- UI = render(state)
-- render함수는 `순수함수`로 작성(입력값이 같으면 출력값이 똑같아야 하는 것)
-  - 랜덤함수사용 x
-  - 외부상태변경 x
-- state는 `불변변수`로 관리! (새로운 객체를 만들어서 값을 할당하는 것)
-- 가상돔(virtual DOM) : 이전 UI상태를 메모리에 유지해서 변경된 부분만 업데이트하는 것!
-
-=> 순수함수와 불변변수를 적극사용하면 버그발생 낮아지고 복잡도가 낮아짐
-그리고 랜더링 속도도 빨라짐
-
-
-(객체지향 프로그래밍과 반대되는 개념이 함수형 프로그래밍)
 
 # 리액트 개발환경 직접 구축하기
 
+리액트 프로젝트를 시작할 때엔 
 React.useState는 이 파일이 실행될 때 전역변수로 실행이 된다!
 
 createElement
