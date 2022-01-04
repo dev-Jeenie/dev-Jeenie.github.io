@@ -51,7 +51,7 @@ CRUD
 그렇기 때문에, 모든 정보는 그것이 존재하고 있다면<br/>
 **`생성이라는 수단`**과, 그것을 **`읽기 위한 목적`**으로 이루어져있다.
 
-=> 이것을 다른 말로 **origin**. 즉 <strong style="color:white;background-color:black">**원본**</strong>이라고 부른다.<br/>
+=> 이것을 다른 말로 **origin**. 즉 <strong style="background-color:aliceblue">**원본**</strong>이라고 부른다.<br/>
 
 
 그렇기 때문에 어떤 정보 시스템을 만났을 때 가장 먼저 해야할 것은 Create / Read 의 방법을 알아내는 것.
