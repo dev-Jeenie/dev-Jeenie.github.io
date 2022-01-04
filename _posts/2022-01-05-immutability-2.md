@@ -42,7 +42,7 @@ console.log('v :', v);
 
 => **결과** : 에러조차 발생하지 않는 🚨 <strong style="color:black;background-color:aliceblue">심각한 버그</strong>가 발생 🚨 <br/>
 
-🤦‍♀️ v를 만든 사람: 그 누구도 내 `변수를 바꾸지 못하게` 하고싶다...
+> 🤦‍♀️ v를 만든 사람: 그 누구도 내 `변수를 바꾸지 못하게` 하고싶다...
 
 2. `const`로 작성했을 경우
 

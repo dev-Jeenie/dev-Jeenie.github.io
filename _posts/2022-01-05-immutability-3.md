@@ -108,3 +108,52 @@ o1 === o2의 결과는 <strong style="color:red;">false</strong>
 
 
 # 변수 할당에 대한 불변함 - (3) 객체의 가변성
+
+## 1. 값 변경 시 동작 과정
+### 1-1. Primitive Type인 값 변경
+<img src="/assets/images/primitive-value-change.jpeg" /><br/>
+
+- 1) p3을 생성하고 값을 p1으로 지정
+=> 변수 p3과 p1은 **`같은 위치를 가리킴`**
+
+<img src="/assets/images/primitive-value-change-2.jpeg" /><br/>
+
+- 2) 이때 p3의 값을 2로 변경
+현재 메모리에 없는 값. 메모리 어딘가에 2라는 값을 저장하고, p3는 그 값을 가리킨다.
+=> 변수 p3과 p1은 **`다른 위치를 가리킴`**
+
+**결론 :** <br/>
+primitive 값을 가진 `변수의 값`을 또다른 primitive 값을 가진 `변수`로 지정하면?<br/>
+=> 값이 **같을 땐 같은 값**을 가리키다가, **값이 달라지면 다른 값**을 가리킨다
+
+### 1-2. Object Type인 값 변경
+<img src="/assets/images/object-value-change.jpeg" /><br/>
+
+- 1) o3을 생성하고 값을 o1으로 지정
+=> 변수 o3과 o1은 **`같은 위치를 가리킴`**
+
+<img src="/assets/images/object-value-change-2.jpeg" /><br/>
+
+- 2) 이때 o3의 property name의 값을 변경
+o3가 가리키고 있던 `값이 변경`. 그런데 이 값은 **o1도 참조하는 중**이었음.<br/>
+그래서 o3가 바뀌니까, `같은 위치의 값을 참조하던` o1의 값도 **`변경`**!<br/>
+
+=> 변수 p3의 property 값 변경으로 인해 p1의 값도 **`변경되어버림`**
+의도한거라면 좋겠지만, 의도하지 않았다면 🚨 <strong style="color:black;background-color:aliceblue">심각한 버그</strong>가 발생 🚨 <br/>
+
+> 🤦‍♀️ 의도하지 않은 사람: `원본 데이터 건들지않고` o3에 대해서만 수정하게 하고싶다....
+
+**결론 :** <br/>
+Object 값을 가진 `변수의 값`을 또다른 Object 값을 가진 `변수`로 지정하면?<br/>
+=> **같은 값**을 가리키다가, 값을 변경하면 `그 위치를 참조하고 있던 다른 변수의 값도 변경`되는 문제가 발생.
+
+## 2. 차이점
+
+**차이점**
+
+- **Object**
+  - 생성시마다 `새로운 객체`를 만든다
+  - property를 통해 **값을 바꿀 수 `있다`** => 여기서 문제 발생
+- **Primitive**
+  - 필요시까지 `새로 만들지 않는다`
+  - **값을 바꿀 수 `없다`**
