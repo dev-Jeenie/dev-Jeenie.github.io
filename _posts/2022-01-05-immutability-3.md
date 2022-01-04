@@ -113,12 +113,12 @@ o1 === o2의 결과는 <strong style="color:red;">false</strong>
 ### 1-1. Primitive Type인 값 변경
 <img src="/assets/images/primitive-value-change.jpeg" /><br/>
 
-- 1) p3을 생성하고 값을 p1으로 지정
+- 1) p3을 생성하고 값을 p1으로 지정<br/>
 => 변수 p3과 p1은 **`같은 위치를 가리킴`**
 
 <img src="/assets/images/primitive-value-change-2.jpeg" /><br/>
 
-- 2) 이때 p3의 값을 2로 변경
+- 2) 이때 p3의 값을 2로 변경<br/>
 현재 메모리에 없는 값. 메모리 어딘가에 2라는 값을 저장하고, p3는 그 값을 가리킨다.
 => 변수 p3과 p1은 **`다른 위치를 가리킴`**
 
@@ -129,13 +129,13 @@ primitive 값을 가진 `변수의 값`을 또다른 primitive 값을 가진 `�
 ### 1-2. Object Type인 값 변경
 <img src="/assets/images/object-value-change.jpeg" /><br/>
 
-- 1) o3을 생성하고 값을 o1으로 지정
+- 1) o3을 생성하고 값을 o1으로 지정<br/>
 => 변수 o3과 o1은 **`같은 위치를 가리킴`**
 
 <img src="/assets/images/object-value-change-2.jpeg" /><br/>
 
-- 2) 이때 o3의 property name의 값을 변경
-o3가 가리키고 있던 `값이 변경`. 그런데 이 값은 **o1도 참조하는 중**이었음.<br/>
+- 2) 이때 o3의 property name의 값을 변경<br/>
+o3가 가리키고 있던 `값이 변경`, 그런데 이 값은 **o1도 참조하는 중**이었음.<br/>
 그래서 o3가 바뀌니까, `같은 위치의 값을 참조하던` o1의 값도 **`변경`**!<br/>
 
 => 변수 p3의 property 값 변경으로 인해 p1의 값도 **`변경되어버림`**
