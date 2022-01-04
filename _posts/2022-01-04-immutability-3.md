@@ -57,7 +57,7 @@ last_modified_at: 2022-01-05
 
 ## 1. Primitive 타입의 경우
 
-<img src="/assets/images/primitive-type.png" /><br/>
+<img src="/assets/images/primitive-type.jpeg" /><br/>
 
 - 1) 변수에 Primitive 타입인 값을 할당
 - 2) 그 값이 메모리 어딘가에 저장
@@ -80,7 +80,7 @@ p1 === p2의 결과는 <strong style="color:red;">true</strong>
 
 ## 2. Object 타입의 경우
 
-<img src="/assets/images/object-type.png" /><br/>
+<img src="/assets/images/object-type.jpeg" /><br/>
 
 - 1) 변수에 Object 타입인 값을 할당
 - 2) 그 값이 메모리 어딘가에 저장
