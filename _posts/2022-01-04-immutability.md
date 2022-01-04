@@ -31,7 +31,7 @@ last_modified_at: 2022-01-04
 
 - 그럼 `immutability`는?
   - 정보의 **원본이** **`변경 불가능`**하다 ✂️❌
-  - <strong style="color:black;background-color:aliceblue">데이터의 `원본이 훼손되는 것을 막는 것`<strong>
+  - <strong style="color:black;background-color:aliceblue">데이터의 원본이 훼손되는 것을 막는 것<strong>
 
 ## 2. 원본 훼손을 왜 막아야할까?
 사실 컴퓨터는 수정 삭제의 불편함을 개선하기 위해서 출발함.<br/>
