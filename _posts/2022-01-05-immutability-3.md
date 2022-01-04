@@ -104,27 +104,7 @@ o1 === o2의 결과는 <strong style="color:red;">false</strong>
 
 => **결론** : `mutable(가변)하다`
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <img src="/assets/images/primitive-object.png" /><br/>
+
+
+# 변수 할당에 대한 불변함 - (3) 객체의 가변성
