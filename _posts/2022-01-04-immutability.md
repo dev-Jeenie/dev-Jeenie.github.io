@@ -1,5 +1,5 @@
 ---
-title: "Immutability 불변성 ✂️❌ - (1) 불변성이란?"
+title: "✨Immutability 불변성 ✂️❌ - (1) 불변성이란?"
 permalink: /cs/immutability
 tags:
   - [CS]
@@ -23,7 +23,7 @@ last_modified_at: 2022-01-04
 
 > https://react.vlpt.us/basic/23-immer.html velopert님 게시글 참조
 
-## 단어의 사전적인 의미
+## 1. 단어의 사전적인 의미
 - mutate : 변화
 - mutable : 변화 가능한
 - mutability
@@ -33,12 +33,12 @@ last_modified_at: 2022-01-04
   - 정보의 **원본이** **`변경 불가능`**하다 ✂️❌
   - <strong style="color:black;background-color:aliceblue">데이터의 `원본이 훼손되는 것을 막는 것`<strong>
 
-## 원본 훼손을 왜 막아야할까?
+## 2. 원본 훼손을 왜 막아야할까?
 사실 컴퓨터는 수정 삭제의 불편함을 개선하기 위해서 출발함.<br/>
 그런데 이것이 너무 자유롭다보니 사건 사고가 생김<br/>
 => immutability에 대한 요구⬆️⬆️
 
-## 정보처리의 가장 기본적인 단위
+## 3. 정보처리의 가장 기본적인 단위
 
 CRUD
 
@@ -47,7 +47,7 @@ CRUD
 - **U**pdate 수정
 - **D**elete 삭제
 
-### Create와 Read
+### 3-1. Create와 Read
 
 가장 중요한 두가지, **Create**와 **Read** !<br/>
 
@@ -64,10 +64,10 @@ CRUD
 이것이 이 분야의 **핵심** <br/>
 
 
-### Update와 Delete
+### 3-2. Update와 Delete
 
 그 후로 중요한 작업은 **Update**와 **Delete** <br/>
-#### 수정과 삭제가 안되는 정보 시스템이 있긴 한가?
+#### 3-2-1. 수정과 삭제가 안되는 정보 시스템이 있긴 한가?
 - 📚 한번 인쇄되어서 배포까지 된 종이책 => 불가능
 - 🏛 역사에서의 수정과 삭제 => 도덕적 지탄
 - 💵 회계에서의 수정과 삭제 => 법적인 제제
@@ -82,13 +82,13 @@ CRUD
 원본에 가해지는 변화를 막는 방법을 찾는다면
 사고 방지 가능.
 
-### 그럼 가변성은 나쁜건가?
+## 4. 그럼 가변성은 나쁜건가?
 ❌ 가변성은 디지털의 특권! 좋은 것.<br/>
 단 어플리케이션에서 <strong style="color:black;background-color:aliceblue">움직일 필요가 없는 부분을<br/>
 🧊냉동🧊 시켜둔다면</strong> <br/>
 
 훨씬 안전하게 `변화`에 도전할 수 있다.
 
-## 결과적으로 추구하는 것
+## 5. 결과적으로 추구하는 것
 **불변성과 가변성**을 이상적으로 ➕`합성`해서
 <strong style="color:black;background-color:aliceblue">견고하면서도 유연한 어플리케이션</strong>을 만들어내는 것!
