@@ -184,4 +184,4 @@ Object 값을 가진 `변수의 값`을 또다른 Object 값을 가진 `변수`�
 
 
 
-<img src="/assets/images/object-assign.jpeg" /><br/>
+<img src="/assets/images/object-assign.png" /><br/>
