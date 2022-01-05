@@ -153,7 +153,35 @@ Object 값을 가진 `변수의 값`을 또다른 Object 값을 가진 `변수`�
 
 - **Object**
   - 생성시마다 `새로운 객체`를 만든다
-  - property를 통해 **값을 바꿀 수 `있다`** => 여기서 문제 발생
+  - property를 통해 **값을 바꿀 수 `있다`** => 여기서 <strong style="color:black;background-color:aliceblue">문제점</strong> 발생
 - **Primitive**
   - 필요시까지 `새로 만들지 않는다`
   - **값을 바꿀 수 `없다`**
+
+  그럼 이 문제점을 어떻게 해결할 수 있을까?
+
+
+# 변수 할당에 대한 불변함 - (4) 객체의 복사
+
+## 1. 객체를 불변하게 다루는 방법
+
+**문제점**
+<img src="/assets/images/object-copy-1.jpeg" /><br/>
+
+**해결방법**
+<img src="/assets/images/object-copy-2.jpeg" /><br/>
+
+- 1) Object.assign( {} , 복사할 원본 객체)
+
+<img src="/assets/images/object-copy-3.jpeg" /><br/>
+- 2) 값을 변경해도 자기 자신만 변경되고, 원본은 변경되지 않음
+
+=> `불변성` 유지, `가변성` 유지
+
+
+
+
+
+
+
+<img src="/assets/images/object-assign.jpeg" /><br/>
