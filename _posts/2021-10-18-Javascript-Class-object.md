@@ -38,7 +38,7 @@ function declaration / function expression
 function expression은 할당된 다음부터 호출이 가능함.
 
 
-```JS
+```js
 // const print = function print () { // named function 
 const print = function () { // anonymous function
   console.log('print');
@@ -54,7 +54,7 @@ console.log(sumAgain(1,3));
 2. Callback function using function expression
 
 
-```JS
+```js
 
 function randomQuiz(answer, printYes, printNo) {
   if(answer === 'love you') {
@@ -98,7 +98,7 @@ printYes에는 anonymous function을, printNo에는 named function을, 쓴 이�
 3. Arrow function
 : always anonymous
 
-```JS
+```js
 
 const simplePrint = function () {
   console.log('simplePrint!');
@@ -118,14 +118,14 @@ const simpleMultiply = (a,b) => {
 
 : 선언과 동시에 호출
 
-```JS
+```js
 function hello() {
   console.log('IFFE')
 hello();
 ```
 이렇게 함수를 따로 호출하지 않고
 
-```JS
+```js
 (function hello() {
   console.log('IFFE');
 })();
@@ -134,7 +134,7 @@ hello();
 
 * Quiz!
 
-```JS
+```js
 // function calculate(command, a, b)
 // command: add, substract, divide, multiply, remainder
 function calculate(command, a, b) {
@@ -184,7 +184,7 @@ switch (browser) {
 ## class란?
 : 연관있는 데이터를 한데 묶어놓은, 컨테이너 같은 개념
 
-```JS
+```js
 class person {
   name; // property
   age; // property
@@ -207,7 +207,7 @@ class 안에서도 내부적으로 보여지는 변수와, 밖에서 보이는 �
 1. Class declarations
 
 
-```JS
+```js
 
 class Person {
     // constructor 생성자
@@ -229,7 +229,7 @@ class Person {
 
 * 이 class를 이용해서 object 만들기!
 
-```JS
+```js
 
 const ellie = new Person('ellie', 20);
 
@@ -246,7 +246,7 @@ ellie.speak();
 
 <img src="/assets/images/JS_static.jpeg" /><br/>
 
-```JS
+```js
 class Article {
 
   static publisher = 'Dream Coding';
@@ -281,7 +281,7 @@ static과 static method를 이용해서 작성하는 것이 메모리 사용을 
 3. Inhrritance
 a way for one class to extend another class.
 
-```JS
+```js
 
 class Shape {
   constructor(width, height,color) {
@@ -337,7 +337,7 @@ triangle.getArea();
 
 4. Class checking: instanceOf
 
-```JS
+```js
 console.log(rectangle instanceOf Rectangle); //true
 console.log(triangle instanceOf Rectangle); // false
 console.log(triangle instanceOf Triangle); //true
@@ -349,7 +349,7 @@ console.log(triangle.toString()); // [Object Object]
 
 어떤 object든지, 공통적으로 존재하는 method를 쓸 수가 있다!
 
-```JS
+```js
 class Triangle extends Shape {
   draw() {
    super.draw();

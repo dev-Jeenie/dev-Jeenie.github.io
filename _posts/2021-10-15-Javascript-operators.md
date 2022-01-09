@@ -17,7 +17,7 @@ last_modified_at: 2021-10-15
 # operator
 1. string concatenation
 
-```JS
+```js
 console.log('my'+' cat');
 console.log('1'+2);  //12
 console.log(`string literals : 1 + 2 = ${1 + 2}`);
@@ -34,7 +34,7 @@ console.log(`string literals : 1 + 2 = ${1 + 2}`);
 (싱글쿼트 ' ' 의 사이에 '를 넣을 때는 \' 백슬러시를 넣어야만 한다)
 
 2. Numeric operators
-```JS
+```js
 console.log(1 + 1); //add
 console.log(1 - 1); //substract
 console.log(1 / 1); //divide
@@ -46,7 +46,7 @@ console.log(2 ** 3); //exponentiation 2의 3승
 
 3. Increment and decrement operators
 
-```JS
+```js
 let counter = 2;
 
 const preIncrement = ++counter;
@@ -71,7 +71,7 @@ console.log(postIncrement, counter);
 
 
 4. Assignment operators
-```JS
+```js
 let x = 3;
 let y = 6;
 x += y; // x = x + y;
@@ -81,7 +81,7 @@ x /= y;
 ```
 
 5. Comparison operators
-```JS
+```js
 console.log(10 < 6);
 console.log(10 <= 6);
 console.log(10 > 6);
@@ -90,7 +90,7 @@ console.log(10 >= 6);
 
 6. logical operators : ㅣㅣ(or) , &&(and) , !(not)
 
-```JS
+```js
 
 const value1 = false;
 const value2 = 4 < 2;
@@ -125,7 +125,7 @@ or과 마찬가지로 앞의 value가 false라면 거기서 멈춘다. 뒤가 �
 <strong style="color:blue"> offen used to compress long if-statement </strong>
 <strong style="color:blue"> 이러한 속성 때문에, null 체크문으로 사용된다 </strong>
 
-```JS
+```js
 nullableObject && nullableObject.something
 ```
 
@@ -134,14 +134,14 @@ nullableObject && nullableObject.something
 
 - not : !
 
-```JS
+```js
 console.log(!value1);
 ```
 값을 반대로 바꿔준다
 
 7. Equality
 
-```JS
+```js
 const stringFive = '5';
 const numberFive = 5;
 
@@ -161,7 +161,7 @@ console.log(stringFive !== numberFive); // true
 
 * object equality by reference
 
-```JS
+```js
 const ellie1 = { name : 'ellie' };
 const ellie2 = { name : 'ellie' };
 const ellie3 = ellie1;
@@ -184,7 +184,7 @@ ellie3는 ellie1과 동일한 레퍼런스를 가리키고 있음.<br/><br/>
 
 * equality puzzler *
 
-```JS
+```js
 console.log(0 == false); // true
 console.log(0 === false); // false 0은 boolean이 아니다
 console.log('' == false); // true empty문자열은 false이다
@@ -196,7 +196,7 @@ console.log(null === undefined); //false null과 undefined는 다른 타입이�
 8. Conditional operator: if
 //if,else,lf,else
 
-```JS
+```js
 const name = 'ellie';
 if(name === 'ellie') {
   console.log('Welcome, Ellie!');
@@ -212,7 +212,7 @@ if statement가 true라면, 그 안에 있는 block을 실행하게 된다<br/>
 9. Ternary operator: ?
 //condition ? value1 : value2;
 
-```JS
+```js
 console.log(name === 'ellie' ? 'yes' : 'no');
 ```
 길어지면 가독성이 떨어지기 때문에, 조건문이 간단할 때에만 사용하는 것이 좋다.
@@ -222,7 +222,7 @@ use for multiple if checks
 use for enum-like value check
 use for multiple type checks in TS
 
-```JS
+```js
 const browser = 'IE';
 
 switch (browser) {
@@ -255,7 +255,7 @@ TS에서 정해져있는 타입을 검사할 때에 switch를 쓰는 것이 가�
 while loop, while the condition is truthy,
 body code is executed.
 
-```JS
+```js
 let i = 3;
 while (i > 0) {
   console.log(`while: ${i}`);
@@ -269,7 +269,7 @@ while의 statement가 false로 나오기 전까지는 무한대로 반복해서 
 do while loop, body code is excuted first,
 then check the condition.
 
-```JS
+```js
 do {
   console.log(`do while: ${i}`);
   i--;
@@ -284,7 +284,7 @@ do {
 - for
 for loop, for(begin; condition; step)
 
-```JS
+```js
 for (i = 3; i > 0; i--) {
   console.log(`for: ${i}`);
 }
@@ -299,7 +299,7 @@ for은 시작하는 문장, 컨디션, 어떤 스텝을 밟을 것인지를 명�
 
 이 for문처럼 기존에 존재하는 변수의 값을 할당하는 경우도 있고<br/>
 
-```JS
+```js
 for (let i = 3; i > 0; i = i - 2) {
   // inline variable declaration
   console.log(`inline variable for: ${i}`);
@@ -312,7 +312,7 @@ for (let i = 3; i > 0; i = i - 2) {
 
 * while과 for은 nested loops이 가능하다 <br/>
 
-```JS
+```js
 for (let i = 0; i < 10; i++) {
   for (let j = 0; i < 10; i++) {
     console.log(`i: ${i}, j: ${j}`);
@@ -337,7 +337,7 @@ loop 안에서는 break와 continue를 이용해 루프를 끝낼 수 있다!<br
 
 Q1. iterate from 0 to 10 and print only even numbers (use continue)<br/>
 
-```JS
+```js
 
 for(let i = 0; i < 11; i++) {
   if(i % 2 !== 0) {
@@ -358,7 +358,7 @@ for(let i = 0; i < 11; i++) {
 
 Q2. iterate from 0 to 10 and print numbers until reaching 8 (use break)<br/>
 
-```JS
+```js
 
 for(let i = 0; i < 11; i++) {
   if(i == 8){

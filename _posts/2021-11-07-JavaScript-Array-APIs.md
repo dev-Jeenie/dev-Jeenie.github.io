@@ -39,7 +39,7 @@ last_modified_at: 2021-11-07
 
 
 
-```JS
+```js
 
 {
   const fruits = ["apple", "banana", "orange"];
@@ -54,7 +54,7 @@ last_modified_at: 2021-11-07
 
 - Q2. make an array out of a string
 
-```JS
+```js
 {
   const fruits = "🍎, 🥝, 🍌, 🍒";
   const result = fruits.split(",", 2);
@@ -68,7 +68,7 @@ last_modified_at: 2021-11-07
 - Q3. make this array look like this: [5, 4, 3, 2, 1]
 기존의 배열 자체와, 리턴값도 변화시킨다
 
-```JS
+```js
 {
   const array = [1, 2, 3, 4, 5];
   const result = array.reverse();
@@ -85,7 +85,7 @@ splice<br/>
 : 기존 배열 자체에서 데이터를 잘라내서 새로운 배열을 리턴
 
 
-```JS
+```js
 {
   const array = [1, 2, 3, 4, 5];
   const result = array.splice(0, 2);
@@ -104,7 +104,7 @@ splice<br/>
 slice<br/>
 : 기존 배열은 유지, 원하는 부분만 새로운 배열로 리턴한다
 
-```JS
+```js
 {
   //정답 :
   const array = [1, 2, 3, 4, 5];
@@ -116,7 +116,7 @@ slice<br/>
 ## find
 <img src="/assets/images/JS_array_api_find.jpeg" /><br/>
 
-```JS
+```js
 class Student {
   constructor(name, age, enrolled, score) {
     this.name = name;
@@ -139,7 +139,7 @@ const students = [
 predicate 콜백함수. this,value,index,obj => value에는 boolean으로 정의되는 함수를 전달해주면 되는구나<br/>
 전달된 predicate가 true이면, 첫번째로 찾아진 요소를 리턴한다. 찾지 못하면 undefined를 리턴한다<br/>
 호출되어지는 콜백 함수가, true를 리턴하면, 함수를 멈추고 true가 된 그 요소를 return한다<br/>
-```JS
+```js
 {
   const result = students.find(function (student, index) {
     return student.score === 90;
@@ -158,7 +158,7 @@ predicate 콜백함수. this,value,index,obj => value에는 boolean으로 정의
 
 callBack함수를 전달해서, callBack함수가 true인 것들만 모아서 새로운 배열을 전달
 
-```JS
+```js
 {
   const result = students.filter((student) => student.enrolled);
   console.log(result);
@@ -174,7 +174,7 @@ callBack함수를 전달해서, callBack함수가 true인 것들만 모아서 �
 
 배열안에 들어있는 요소 한가지 한가지를 다른 것으로 변환해주는 API
 
-```JS
+```js
 {
   const result = students.map((student) => student.score);
   console.log(result);
@@ -189,7 +189,7 @@ callBack함수를 전달해서, callBack함수가 true인 것들만 모아서 �
 
 - Q8. check if there is a student with the score lower than 50
 
-```JS
+```js
 {
 
   const result = students.some((student) => student.score < 50);
@@ -212,7 +212,7 @@ callBack함수를 전달해서, callBack함수가 true인 것들만 모아서 �
 
 - Q9. compute students' average score
 
-```JS
+```js
 {
   const result = students.reduce((prev, curr) => prev + curr.score, 0);
   console.log(result / students.length);
@@ -225,7 +225,7 @@ callBack함수를 전달해서, callBack함수가 true인 것들만 모아서 �
 
  Q10. make a string containing all the scores
 
-```JS
+```js
 {
   const result2 = students
     .map((student) => student.score)
@@ -243,7 +243,7 @@ callBack함수를 전달해서, callBack함수가 true인 것들만 모아서 �
 
 Bonus! do Q10 sorted in ascending order
 
-```JS
+```js
 {
   const result = students.map((student) => student.score).sort((a, b) => a - b);
   console.log(result);

@@ -85,7 +85,7 @@ B의 경우
 : when new promise is created, the excutor runs automatically.
 - promise를 만드는 순간,전달한 콜백함수 excutor가 바로 실행된다!
 
-```JS
+```js
 const promise = new Promise((resolve, reject) => {
   // doing some heavy work(network, read files)
   console.log("doing something...");
@@ -113,7 +113,7 @@ const promise = new Promise((resolve, reject) => {
 - finally : 성공하든 실패하든 상관없이 무조건 마지막에 호출
 
 
-```JS
+```js
 promise
   .then((value) => {
     console.log(value);
@@ -134,7 +134,7 @@ promise
 
 ## 3. Promise chaining promise 연결하기
 
-```JS
+```js
 const fetchNumber = new Promise((resolve, reject) => {
   setTimeout(() => resolve(1), 1000);
 });
@@ -155,7 +155,7 @@ fetchNumber
 
 ## 4. Error Handling
 
-```JS
+```js
 const getHen = () =>
   new Promise((resolve, reject) => {
     setTimeout(() => resolve("🐓"), 1000);
@@ -178,7 +178,7 @@ getHen()
 
 콜백함수를 전달할 때, 받아오는 value를 다른함수로 바로 호출하는 경우에는, 아래처럼 축약할 수 있다
 
-```JS
+```js
 getHen() //
   .then(getEgg)
   .then(cook)
@@ -188,7 +188,7 @@ getHen() //
 - then에서 받아오는 value를 바로 getEgg함수에 넣어서 호출<br/>
 - then에서 받아오는 value를 바로 cook함수에 넣어서 호출
 
-```JS
+```js
 getHen() //
   .then(getEgg)
   .catch((error) => {
@@ -207,7 +207,7 @@ getHen() //
 
 ### (before) callback으로만 작성한 코드 💩
 
-```JS
+```js
 class UserStorage {
   loginUser(id, password, onSuccess, onError) {
     setTimeout(() => {
@@ -259,7 +259,7 @@ userStorage.loginUser(
 
 ### (after) promise로 변경한 코드! ✨
 
-```JS
+```js
 class UserStorage {
   loginUser(id, password) {
     return new Promise((resolve, reject) => {

@@ -83,7 +83,7 @@ number, boolean, null, undefined, simbol
 c언어와 java는 number에 얼마나 큰 데이터를 저장하는지 선언해야하지만 JS는 그럴필요 없음
 JS에서는 integer와 decimal number 상관없이 타입은 number
 
-```JS
+```js
 const infinity = 1 / 0;
 // positive한 value의 값을 0으로 나누면 무한대
 const negativeinfinity = -1 / 0;
@@ -98,7 +98,7 @@ const nAn = 'not a number' / 2;
 한가지의 글자든 여러개의 글자든 다 string 타입.
 다른 string과 붙이는 것도 가능
 ##### template literals
-```JS
+```js
 `hi ${brendan}!`
 ```
 이렇게 붙여서 쓸 수 있음
@@ -110,13 +110,13 @@ const nAn = 'not a number' / 2;
 any other type
 
 #### null
-```JS
+```js
 let nothing = 'null';
 ```
 명확하게 empty 값을 지정 = null로 값이 할당됨
 
 #### undefined
-```JS
+```js
 let x = 'undefined';
 let x; // 위와 동일
 ```
@@ -124,7 +124,7 @@ let x; // 위와 동일
 선언은 되었지만 값이 아무것도 들어가지 않음
 
 #### symbol
-```JS
+```js
 const symbol1 = Symbol('id');
 const symbol2 = Symbol('id');
 ```
@@ -133,13 +133,13 @@ map이나 다른 자료구조에서 고유한 식별자가 필요하거나, 아�
 식별자를 string으로 두면 다른 코드에서 동일한 string을 만날때 같은 식별자로 간주함
 반면 symbol은 동일한 string을 줘도 완전히 다른 식별자로 간주한다
 
-```JS
+```js
 const gsymbol1 = Symbol.for('id');
 const gsymbol2 = Symbol.for('id');
 ```
 만약 동일한 식별자를 주고싶다면 이렇게
 
-```JS
+```js
 console.log(`value: ${symbol1.decription}, type: ${tyopof(symbol2)}`)
 ```
 출력하려면 이렇게 description으로 변환해야함
@@ -152,13 +152,13 @@ console.log(`value: ${symbol1.decription}, type: ${tyopof(symbol2)}`)
 real-life object, data structure
 싱글 아이템들을 묶어서 한 단위, 한 박스로 관리할 수 있게 해줌
 물건과 물체 형태를 대표할 수 있는 박스 형태를 뜻함
-```JS
+```js
 const ellie ={ name : 'ellie', age : 20 };
 ```
 
 객체 ellie는 const로 선언되었기때문에 객체ellie가 가리키고있는 메모리의 포인터는 잠겨있어서 다른 object로 할당이 불가능
 하지만 객체 ellie 안에는 name과 age라는 변수가 존재함. 그것들을 가리키고있는 포인터는 잠겨있지 않아서 다른 값으로 변경가능!
-```JS
+```js
 ellie.age = 21;
 ```
 
@@ -172,7 +172,7 @@ function도 다른 데이터 타입처럼 변수에 할당이 가능
 C나 JAVA는 statically type이라 변수 선언 시에 어떤 타입인지 결정해서 선언했지만
 JS는 선언할때 타입을 선언하지않고 런타임 시 할당된 값에 따라 타입이 변경될 수 있다
 그래서 프로토타입 시에는 정말 유연하지만 규모있는 프로젝트에서는 좋지않다
-```JS
+```js
 let text = 'hello';
 console.log(`value:${text}, type: ${typeof  text}`) // value:Hello, type:string
 

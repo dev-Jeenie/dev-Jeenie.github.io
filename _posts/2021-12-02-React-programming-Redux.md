@@ -52,7 +52,7 @@ Redux에서는, 하나의 객체로 감싸진 상태값 두개 중 하나만 변
 데이터는 리듀서에서 바아서 처리
 리듀서는 순수함수
 
-```JS
+```js
 
 export const ADD = 'todo/ADD';
 //리듀서에서도 쓸테니까 상수변수로 만드는게좋음
@@ -206,7 +206,7 @@ put call all 부수효과(effects)
 
 redux-saga
 
-```JS
+```js
 function* f1() {
   yield 10;
   yield 20;

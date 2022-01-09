@@ -32,7 +32,7 @@ async / await은 새로운게 추가된 게 아닌, promise 위에 API를 제공
 
 ### 1-1. 비동기처리 안했을 경우
 
-```JS
+```js
 function fetchUser() {
 do network request in 10 secs ...
   return "ellie";
@@ -46,7 +46,7 @@ console.log(user);
 
 ### 1-2. promise로 비동기처리 했을 경우
 
-```JS
+```js
 function fetchUser() {
   return new Promise((resolve, reject) => {
     resolve("ellie");
@@ -66,7 +66,7 @@ resolve, reject를 호출하지 않고 return하면 Promise가 계속 진행중�
 ### 1-3. promise에 async까지 붙인 경우
 
 
-```JS
+```js
 async function fetchUser() {
   return "ellie";
 }
@@ -83,7 +83,7 @@ async는 promise를 감싸고있는, promise를 조금 더 간편하게 쓸 수 
 
 ## 2. await
 
-```JS
+```js
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -107,7 +107,7 @@ await을 쓰면, delay 끝날 때까지 기다려준다<br/>
 동기적인 코드를 짜는 것처럼<br/><br/>
 
 getBanana를 async가 아닌 promise만으로 쓴다면? 체이닝을 해야한다.<br/>
-```JS
+```js
 function getBanana() {
   return delay(3000).then(() => "🍌");
 }
@@ -115,7 +115,7 @@ function getBanana() {
 
 * 두개의 promise를 한번에 써야한다면? <br/>
 
-```JS
+```js
 function pickFruits() {
   return getApple().then((apple) => {
     return getBanana().then((banana) => `${apple} + ${banana}`);
@@ -126,7 +126,7 @@ pickFruits().then(console.log);
 
 promise도 너무 이렇게 중첩적으로 chaining을 하게되면 콜백지옥과 비슷한 문제가 발생.
 
-```JS
+```js
 async function pickFruits() {
   const apple = await getApple();
   const banana = await getBanana();
@@ -138,7 +138,7 @@ pickFruits().then(console.log);
 
 async로 하니까 짱편하다!
 
-```JS
+```js
 async function pickFruits() {
   try {
     const apple = await getApple();
@@ -157,7 +157,7 @@ pickFruits().then(console.log);
 사과에 1초, 바나나에 1초... 순차적으로 진행하는건 비효율적!<br/>
 서로 연관이 되어있지 않기 때문에, 서로 기다릴 필요가 전혀 없다<br/>
 
-```JS
+```js
 async function pickFruits() {
   const applePromise = getApple();
   const bananaPromise = getBanana();
@@ -182,7 +182,7 @@ promise는 만드는 순간, 그 안에 들어있는 코드블럭이 실행된�
 : promise 배열을 전달하게 되면, 모든 promise들이 병렬화됨. 다 받을 때까지 모아준다<br/>
 ⭐️⭐️⭐️ 사과를 가져오는데에 바나나가 필요없고, 바나나를 가져오는데 사과가 필요없는 이러한 병렬적인 구조에서 사용이 가능한 API.<br/>
 
-```JS
+```js
 function pickAllFruits() {
   return (
     Promise.all([getApple(), getBanana()])
@@ -199,7 +199,7 @@ pickAllFruits().then(console.log);
 ### 5-2. Promise.race
 : promise 배열을 전달하게 되면, 딱 하나만 먼저 수행되는 것이 전달되면 걔를 출력한다
 
-```JS
+```js
 function pickOnlyOne() {
   return Promise.race([getApple(), getBanana()]);
 }
@@ -208,7 +208,7 @@ pickOnlyOne().then(console.log);
 
 ## 6. 숙제!
 
-```JS
+```js
 const userStorage = new UserStorage();
 const id = prompt("enter your id");
 const password = prompt("enter your password");

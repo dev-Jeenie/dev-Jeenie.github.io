@@ -20,7 +20,7 @@ last_modified_at: 2021-10-22
 - a collection of related date and/or functionality.
 - Nearly all objects in JavaScript are instances of Object.
 
-```JS
+```js
 
 function print(name,age) {
   console.log(name);
@@ -35,7 +35,7 @@ function print(name,age) {
 이걸 개선하고자 쓰는 것이 Object ⭐️
 
 
-```JS
+```js
 
 function print(person) {
   console.log(person.name);
@@ -49,7 +49,7 @@ print(ellie);
 
 1. Literals and Properties
 
-```JS
+```js
 
 const obj1 = {}; // 'object literal' syntax
 const obj2 = new Object(); // 'object constructor' syntax
@@ -58,7 +58,7 @@ const obj2 = new Object(); // 'object constructor' syntax
 new command를 넣어서 객체를 만들면, Object에서 정의된 constructor가 호출된다!
 
 
-```JS
+```js
 
 const ellie = { name: 'ellie', age: 4 };
 print(ellie);
@@ -76,7 +76,7 @@ JS는 타입이 runtime(프로그램이 동작하고 있을 때)에 결정되는
 정확하게 어떤 key가 필요한지 모를때, 즉 runTime에서 결정될 때 사용하는 문법 <br/>
 코딩할 때에는 . 문법으로 불러오는 게 맞음!
 
-```JS
+```js
 console.log(ellie.name); // ellie
 console.log(ellie['name']); // ellie
 ellie['hasJob'] = true;
@@ -97,7 +97,7 @@ object 안에있는 변수의 이름을 string 형태로 받아올 수 있다
 
 key와 value의 이름이 동일하다면 생략할 수 있다.
 
-```JS
+```js
 
 const Person1 = { name : 'bob', age: 2 };
 const Person2 = { name : 'steve', age: 3 };
@@ -123,7 +123,7 @@ class template과 동일한 구조. class가 없었을 때는 이렇게 작성�
 
 4. Constructor function
 
-```JS
+```js
 function Person(name, age) {
   // this = {};
   this.name = name,
@@ -142,7 +142,7 @@ return도 하지 않고 이렇게 class처럼 this를 사용한다.<br/>
 
 : 간단하게 key의 유무를 확인할 수 있는 키워드, 있다면 true, 없다면 false
 
-```JS
+```js
 console.log('name' in ellie); // true
 console.log('age' in ellie); // true
 console.log('random' in ellie); // false
@@ -153,7 +153,7 @@ console.log(ellie.random); // undefined
 
 - for (key in obj)
 
-```JS
+```js
 for (key in ellie) {
   console.log(key); 
 }
@@ -166,7 +166,7 @@ ellie가 가지고있는 key들이, 블럭을 돌 때마다 <strong style="color
 - for (value of iterable)
 : 배열과 같은 리스트, 순차적으로 Iterable한 것들을 쓴다.
 
-```JS
+```js
 
 const array = [1,2,3,4,5];
 for(let i = 0; i < array.lenth; i++) {
@@ -177,7 +177,7 @@ for(let i = 0; i < array.lenth; i++) {
 
 이것 보다는 훨씬 간단한 for of
 
-```JS
+```js
 
 for(value of array) {
   console.log(value);
@@ -188,7 +188,7 @@ for(value of array) {
 7. Fun Cloning
 : Object.assign(dest, [obj1,obj2,obj3...])
 
-```JS
+```js
 
 const user = {name: 'ellie', age:'20'};
 const user2 = user;
@@ -199,7 +199,7 @@ const user2 = user;
 
 1. old way
 
-```JS
+```js
 const user3 = {};
 for(let i = 0; i < user.length; i++) {
   user3[key] = user[key];
@@ -211,7 +211,7 @@ console.log(user3);
 
 2. Object.assign
 
-```JS
+```js
 
 // const user4 = {};
 // user4 = Object.assign(user); 빈 객체이기 때문에, 아래처럼 줄일 수 있음
@@ -223,7 +223,7 @@ console.log( user4 );
 
 * 다른 예시
 
-```JS
+```js
 
 const fruit1 = {color : 'red'};
 const fruit2 = {color : 'blue', size:'big'};
@@ -248,7 +248,7 @@ console.log(mixed.size); // big
 
 1. Declaration
 
-```JS
+```js
 
 const arr1 = new Array();
 const arr2 = [1,2];
@@ -256,7 +256,7 @@ const arr2 = [1,2];
 
 2. Index position
 
-```JS
+```js
 const fruits = ['🍓','🍌'];
 console.log(fruits);
 console.log(fruits.length);
@@ -271,7 +271,7 @@ console.log(fruits[fruits.length - 1]); //배열의 마지막 개체를 찾을 �
 
 a. for loop
 
-```JS
+```js
   for(let i = 0; i < fruits.length; i ++){
     console.log(fruits[i]);
   }
@@ -279,7 +279,7 @@ a. for loop
 
 b. for of loop
 
-```JS
+```js
 for (fruit in fruits) {
   console.log(fruits[fruit])
 }
@@ -288,7 +288,7 @@ for (fruit in fruits) {
 
 c. for Each loop 
 
-```JS
+```js
 
 fruits.forEach(function(fruit, index, array) {
   console.log(fruit,index,array);
@@ -313,26 +313,26 @@ array에 들어있는 각각의 엘리멘트에 정해진 액션을 수행하는
 
 a. push : add an item to the end 끝에 추가
 
-```JS
+```js
 fruits.push('🍓','🍋');
 ```
 
 b. pop : remove an item from the end 맨 끝의 아이템을 삭제
 
-```JS
+```js
 fruits.pop();
 fruits.pop();
 ```
 
 c. unshift : add an item to the beginning
 
-```JS
+```js
 fruits.unshift('🍓','🍋'); // 배열의 앞에 아이템 추가
 ```
 
 d. shift : remove an item from the beginning
 
-```JS
+```js
 fruits.shift(); // 배열의 앞에서부터 아이템을 삭제
 ```
 
@@ -345,7 +345,7 @@ shift, unshift are slower than pop, push!
 e. splice : remove an item by index position
 splice(index, count)
 
-```JS
+```js
 fruits.push('🍓','🍑','🍋');
 console.log(fruits);
 fruits.splice(1,1); // 1번 인덱스에서 1개만.
@@ -363,7 +363,7 @@ f. concat
 combine two arrays
 새로 묶여진 배열이 합쳐져서 새로 리턴됨.
 
-```JS
+```js
 const fruits2 = ['🍐','🥑'];
 const newFruits = fruits.concat(fruits2);
 
@@ -375,7 +375,7 @@ console.log(newFruits);
 
 a. indexOf : find the index
 
-```JS
+```js
 console.log(fruits);
 console.log(fruits.indexOf('🍎')); // 0
 console.log(fruits.indexOf('🍉')); // 3
@@ -384,7 +384,7 @@ console.log(fruits.indexOf('🥐')); // -1 해당 인덱스가 없으면 -1을 �
 
 b. includes
 
-```JS
+```js
 console.log(fruits.includes('🍉')); //true
 console.log(fruits.includes('🥐')); //false
 ``` 
@@ -393,7 +393,7 @@ c. lastIndexOf
 lastIndexOf : 뒤에서부터 검색
 indexOf : 앞에서부터 검색
 
-```JS
+```js
 fruits.push('🍎');
 console.log(fruits); //['🍎','🍏','🍉','🍑','🍋','🍎'];
 

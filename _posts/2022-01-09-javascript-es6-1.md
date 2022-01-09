@@ -29,7 +29,7 @@ last_modified_at: 2022-01-09
 
 **예제**
 
-```JS
+```js
 {
 	let a = 10
 	{
@@ -50,7 +50,7 @@ last_modified_at: 2022-01-09
 
 ### 2-1. `let`으로 선언했을 경우
 
-```JS
+```js
 function hasValue(p) {
 	console.log(v) // error! v is not undefined
 	if (p) {
@@ -69,7 +69,7 @@ hasValue(10) // error! v is not undefined
 
 ### 2-2. `var`로 선언했을 경우
 
-```JS
+```js
 function hasValue(p) {
 	console.log(v) // undefined
 	if (p) {
@@ -124,7 +124,7 @@ while문과 switch-case도 이 안에 있는 내용을 실행하고 끝.
 1. 함수 스코프
 2. block 스코프
 
-```JS
+```js
 // 아이패드에 정리한 부분 붙이기
 ```
 
@@ -140,7 +140,7 @@ let이나 const에 대해서,
 - 가장 주의해야했던 점
 	- `Hoisting`
 
-```JS
+```js
 console.log(a) // 이쪽에서 많은 일을 처리함
 
 var a = 10; // 그런데 선언은 여기서 함
@@ -176,7 +176,7 @@ block scope가 아닌 함수 scope로 봐도 마찬가지.
 **기존 `var`**
 -  변수명만 위로 끌어올리고 / undefined 할당(값이 없으니 그냥 undefined로 인식하게끔 구성되어있음)
 
-```JS
+```js
 if (true) {
 	vqr a = 10
 	if (true) {
@@ -198,7 +198,7 @@ console.log(a)
 그럼 여기서 reference error가 왜 나오느냐!
 => 바로 hoisting이 됐기 때문!
 
-```JS
+```js
 if (true) {
 	let a = 10
 	if (true) {
@@ -232,7 +232,7 @@ let과 const로 선언한 변수를 hoisting할 경우, 그 변수명과 어떤 
 
 ## 4. this
 
-```JS
+```js
 var value = 0;
 var obj = {
 	value: 1,
@@ -250,7 +250,7 @@ var obj = {
 - (4) 다시 함수 내부에서 this.value에서는 3을 넣고 있다.
 
 
-```JS
+```js
 var value = 0;
 var obj = {
 	value: 1,
@@ -292,7 +292,7 @@ method로 호출한 this와 함수로 호출한 this를 통일하고 싶다...
 
 - 1) **this를 변수에** 담는 방법
 
-```JS
+```js
 var value = 0;
 var obj = {
 	value: 1,
@@ -313,7 +313,7 @@ console.log(obj.value); // 3
 
 - 2) **call**, 또는 **apply**로 함수 안에 this를 넘겨주는 방법
 
-```JS
+```js
 var value = 0;
 var obj = {
 	value: 1,
@@ -343,7 +343,7 @@ console.log(obj.value);
 그래서 세번째 방법
 - 3) `block scope`로 감싸는 방법
 
-```JS
+```js
 var value = 0;
 var obj = {
 	value: 1,

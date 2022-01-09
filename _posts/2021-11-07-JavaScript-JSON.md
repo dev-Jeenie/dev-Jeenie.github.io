@@ -53,7 +53,7 @@ stringify()
 - 어떤 타입의 object를 받아와서, string으로 변환
 - string으로 만드는 과정에서 좀 더 세밀하게 통제하고 싶다면 replacer callback 함수를 전달하면 됨
 
-```JS
+```js
 
 let json = JSON.stringify(true);
 // boolean 타입의 primitive 타입도 JSON으로 변환이 가능
@@ -63,7 +63,7 @@ console.log(json); // true
 
 ### 배열을 JSON화
 
-```JS
+```js
 
 json = JSON.stringify(["apple", "banana"]);
 console.log(json); //["apple","banana"]
@@ -71,7 +71,7 @@ console.log(json); //["apple","banana"]
 ```
 ### object를 JSON화
 
-```JS
+```js
 
 const rabbit = {
   name: "tori",
@@ -100,7 +100,7 @@ JSON으로 변환되는 것을 조금 더 통제하고 싶다면? replacer!
 
 a. replacer에 배열로 전달하기
 
-```JS
+```js
 json = JSON.stringify(rabbit, ["name", "color"]);
 console.log(json);
 // {"name":"tori"} 출력
@@ -110,7 +110,7 @@ console.log(json);
 
 b. replacer에 callback 함수로 전달하기
 
-```JS
+```js
 
 json = JSON.stringify(rabbit, (key, value) => {
   console.log(`key: ${key}, value:${value}`);
@@ -145,7 +145,7 @@ key: jump, value:() => {
 - parse(json)
 : JSOND을 object로 변환할 수 있다
 
-```JS
+```js
 
 console.clear();
 json = JSON.stringify(rabbit); //객체를 JSON화 하고
@@ -160,7 +160,7 @@ const obj = JSON.parse(json); //JSON을 객체화 한다
 - reviver
 
 
-```JS
+```js
 const obj = JSON.parse(json, (key, value) => {
   console.log(`key: ${key}, value:${value}`);
   return key === "birthDate" ? new Date(value) : value;
@@ -174,7 +174,7 @@ rabbit.jump();
 <img src="/assets/images/JS_JSON_jump.jpeg" /><br/>
 
 
-```JS
+```js
 
 
 console.log(rabbit.birthDate.getDate());

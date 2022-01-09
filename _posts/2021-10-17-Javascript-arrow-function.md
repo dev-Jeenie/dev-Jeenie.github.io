@@ -38,7 +38,7 @@ sub program이라고도 불리며, 여러번 재사용이 가능하다<br/>
  ## 1. function declaration
 함수를 정의하는 방법!<br/>
 
-```JS
+```js
 
 function name (param1,param2) { body... return; }
 
@@ -89,7 +89,7 @@ function에 전달되는 이 parameters는
 - object parameters: passed by reference
 : reference가 저장되기 때문에 reference가 전달된다
 
-```JS
+```js
 
  function changeName(obj) {
    obj.name = 'coder';
@@ -113,7 +113,7 @@ default 값을 미리 지정할 수 있는 default parameters
 
 * 기존의 방식
 
-```JS
+```js
 function showMessage(message, from) {
   if(from == undefined) {
     from = 'unknown';
@@ -126,7 +126,7 @@ showMessage('Hi!');
 
 * ES6의 방식
 
-```JS
+```js
 function showMessage(message, from = 'unknown') {
   console.log(`${message} by ${from}`);
 }
@@ -137,7 +137,7 @@ showMessage('Hi!');
 
 4. Rest parameters (added in ES6)
 
-```JS
+```js
 function printAll(...args) {
   for(let i = 0; i < args.length; i++) {
     console.log(arg[i]);
@@ -148,7 +148,7 @@ printAll('dream','coding','ellie'); //인자로 세개의 값을 전달
 ... 이렇게 전달하면 배열 형태로 전달이 된다!<br/>
 'dream','coding','ellie' 이렇게 전달받은 값은 세개의 값이 담긴 배열이 된다<br/>
 
-```JS
+```js
 function printAll(...args) {
     for(const arg of args) {
     console.log(arg);
@@ -159,7 +159,7 @@ printAll('dream','coding','ellie'); //인자로 세개의 값을 전달
 for문보다 간단한 for of문으로 작성할 수도 있음 <br/>
 arg에 있는 모든 값들이, 차례대로 하나씩 arg로 지정이 되면서 출력하게 된다
 
-```JS
+```js
 function printAll(...args) {
     args.forEach((arg) => console.log(arg));
   }
@@ -176,7 +176,7 @@ printAll('dream','coding','ellie'); //인자로 세개의 값을 전달
 
 이것이 scope의 개념
 
-```JS
+```js
 let globalMessage = 'global'; // global variable 전역변수
 function printMessage() {
   let message = 'hello';
@@ -200,7 +200,7 @@ printMessage();
 
 ## 6. Return a value
 
-```JS
+```js
 function sum(a, b) {
   return a + b;
   }
@@ -210,7 +210,7 @@ function sum(a, b) {
 
 parameters로 값을 전달 받아서, 계산된 값을 return할 수 있다
 
-```JS
+```js
 let globalMessage = 'global';
 function printMessage() {
   let message = 'hello';
@@ -233,7 +233,7 @@ printMessage();
 
 * 나쁜 예!
 
-```JS
+```js
 Function upgraderUser(user) {
   if(user.point > 10) {
     //long upgrade logic
@@ -244,7 +244,7 @@ Function upgraderUser(user) {
 
 * 좋은 예!
 
-```JS
+```js
 Function upgraderUser(user) {
   if(user.point <= 10) {
     return;

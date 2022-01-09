@@ -29,7 +29,7 @@ var,function declaration이 제일 위로 올라가는 것<br/>
 호이스팅이 된 이후부터, 코드가 나타나는 대로, 자동적으로 실행된다<br/>
 
 ## asynchronous 비동기적으로 언제 코드가 실행될지 예측할 수 없는 것
-```JS
+```js
 console.log(1);
 setTimeout(() => console.log(2), 1000);
 console.log(3);
@@ -47,7 +47,7 @@ function setTimeout(handler: TimerHandler, timeout?: number, ...arguments: any[]
 : 즉각적, 동기적으로 실행
 <br/>
 
-```JS
+```js
 function printImmediately(print) {
   print();
 }
@@ -64,7 +64,7 @@ printImmediately(() => console.log("hello"));
 ## 1-2. Asynchronous callback
 : 나중에,언제될지 알 수 없는 비동기적으로 실행
 
-```JS
+```js
 function printWithDelay(print, timeout) {
   setTimeout(print, timeout);
 }
@@ -76,7 +76,7 @@ printWithDelay(() => console.log("async callback"), 2000);
 <img src="/assets/images/JS_Asynchronous.jpeg" /><br/>
 
 ## callback hell example
-```JS
+```js
 class UserStorage {
   loginUser(id, password, onSuccess, onError) {
     // callback함수를 넣기 위한 자리를 만들어둠.
@@ -112,7 +112,7 @@ class UserStorage {
 <img src="/assets/images/JS_callback_todo.jpeg" /><br/>
 
 
-```JS
+```js
 const userStorage = new UserStorage();
 const id = prompt("enter your id");
 const password = prompt("enter your password");
