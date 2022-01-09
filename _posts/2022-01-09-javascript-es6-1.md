@@ -212,8 +212,7 @@ console.log(a)
 
 ```
 
-- (1) 변수명을 위로 끌어올리고
-- (2) undefined를 할당
+- (1) 변수명을 위로 끌어올리고 끝.
 
 <strong style="color:black;background-color:yellow">⭐️hoisting을 하지 않는다고 생각하면 안됨!⭐️</strong>
 
@@ -425,3 +424,66 @@ console.log(a, b)
 - 1) a에 0 ~ 1 사이의 숫자를 넣은 다음 3을 곱함.
 - 2) 그럼 0 ~ 2.999999의 숫자
 - 3) 올림을 해서 나올 수 있는 숫자는 1, 2, 3
+
+그럼 console의 결과는?<br/>
+**🚨에러🚨 reference error: b is not defined.**
+> 왜? <br/>
+
+a는 밖에 선언됐으니 찾을 수 있음.<br/>
+<strong style="color:black;background-color:yellow">
+하지만 b는 block scope안에 갇혀있음!
+</strong>
+⭐️ 너무 당연하게 잘 나올 것 같지만 그렇지 않으니 주의할 것⭐️
+
+**조금 다른 for문**
+
+```js
+var sum = 0
+for (let i = 1 ; i <= 10 ; i++) {
+  sum += i
+}
+console.log(sum)
+console.log(i) // reference error: i is not defined
+```
+여기서의 i 또한 내부에서만 사용 가능.<br/>
+여기서의 i는 인덱싱을 순차증가시키기 위한 목적일 뿐, 밖에서 써야할 필요성 전혀 없음.<br/>
+
+그런데 여기서 만약 i를 var로 선언했다면?
+```js
+var sum = 0
+
+for (var i = 1 ; i <= 10 ; i++) {
+  sum += i
+}
+
+for (var i = 1 ; i <= 10 ; i++) {
+  sum += i
+}
+
+for (var i = 1 ; i <= 10 ; i++) {
+  sum += i
+}
+
+console.log(sum)
+console.log(i)
+```
+var이기 때문에 밖으로 빠져나간다.<br/>
+이미 선언한 변수를 다시 선언해서 중복성을 얻음.<br/>
+같은 변수에 다시 할당하고, 다시 할당하고.....<br/>
+
+변수가 for문 밖으로 빠져나가는 것 자체가 for문의 원리 취지와 벗어나게 된다.<br/>
+
+여기까진 동일하지만,
+
+```js
+var sum = 0
+for (let i = 1 ; i <= 10 ; i++) {
+  sum += i
+}
+console.log(sum)
+console.log(i)
+```
+
+for문에 있는 { }이 block scope 말고도, 앞에 있는 **( )의 안에서 선언한 변수까지도** `for문 전체의 block scope`에 갇힌다. 
+
+> while도 switch도 ( )는 있지만 선언할 일 없음.
