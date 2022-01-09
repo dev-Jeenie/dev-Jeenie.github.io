@@ -374,7 +374,7 @@ block scope 안에서는 this바인딩을 하지 않음! </strong>
 - 함수 scope에서의 this
 	- 전역객체를 바라봄
 - block scope에서의 this
-	- this바인딩을 아예 하지 않음
+	- this바인딩을 아예 하지 않기 때문에 밖에 있는 this를 가져와서 그대로 사용함.
 
 ## 5. 모든 문 형태에 적용되는 block scope
 
