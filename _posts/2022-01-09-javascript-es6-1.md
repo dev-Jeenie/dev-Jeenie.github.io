@@ -171,7 +171,7 @@ hoisting해서 undefined가 할당됐기 때문에.
 block scope가 아닌 함수 scope로 봐도 마찬가지.
 
 
-## 3-1. 기존과 es6의 호이스팅 비교
+### 3-1. 기존과 es6의 호이스팅 비교
 
 **기존 `var`**
 -  변수명만 위로 끌어올리고 / undefined 할당(값이 없으니 그냥 undefined로 인식하게끔 구성되어있음)
@@ -286,7 +286,7 @@ console.log(obj.value)
 `method`로 호출했을 때의 this는 `.앞의 객체`를 가리킴<br/>
 `함수`로 호출했을 때의 this는 `window`를 가리킴<br/>
 
-## 4-1. 헷갈리는 this를 통일하는 방법
+### 4-1. 헷갈리는 this를 통일하는 방법
 
 method로 호출한 this와 함수로 호출한 this를 통일하고 싶다...
 
