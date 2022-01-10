@@ -21,12 +21,12 @@ last_modified_at: 2022-01-05
 
 그렇다면 `값`을 어떻게 불변하게 할 것인가?
 
-# 변수 할당에 대한 불변함 - (1) 변수 할당 방식 비교
-## 1. 값을 불변하게 유지하는 방법
+## 1. 변수 할당에 대한 불변함 - (1) 변수 할당 방식 비교
+### 1-1. 값을 불변하게 유지하는 방법
 
 자바스크립트에서 변수가 어떤 값을 가리킬 때, 어떤 값으로 가리키는지 구체적인 동작 방법을 알아야 불변성을 이해할 수 있다.
 
-### 1-1. 자바스크립트의 데이터 타입
+#### 1-1-1. 자바스크립트의 데이터 타입
 
 | **Primitive** | **Object** |
 | -- | -- |
@@ -53,9 +53,9 @@ last_modified_at: 2022-01-05
 그 값이 `Primitive`인지 `Object`인지에 따라서 동작방법이 완전히 다름.
 
 
-# 변수 할당에 대한 불변함 - (2) 초기값의 비교
+## 2. 변수 할당에 대한 불변함 - (2) 초기값의 비교
 
-## 1. Primitive 타입의 경우
+### 2-1. Primitive 타입의 경우
 
 <img src="/assets/images/primitive-type.jpeg" /><br/>
 
@@ -78,7 +78,7 @@ p1 === p2의 결과는 <strong style="color:red;">true</strong>
 
 
 
-## 2. Object 타입의 경우
+### 2-2. Object 타입의 경우
 
 <img src="/assets/images/object-type.jpeg" /><br/>
 
@@ -93,7 +93,7 @@ p1 === p2의 결과는 <strong style="color:red;">true</strong>
 o1 === o2의 결과는 <strong style="color:red;">false</strong>
 </strong><br/>
 
-### 2-1. 객체는 왜?
+#### 2-2-1. 객체는 왜?
 객체 안에 여러 `property`가 있고,
 이 `property`가 가리키는 값은 계속 바뀐다.<br/>
 그래서 **바뀔 수 있는 가능성**이 있음!
@@ -107,10 +107,10 @@ o1 === o2의 결과는 <strong style="color:red;">false</strong>
 <img src="/assets/images/primitive-object.png" /><br/>
 
 
-# 변수 할당에 대한 불변함 - (3) 객체의 가변성
+## 3. 변수 할당에 대한 불변함 - (3) 객체의 가변성
 
-## 1. 값 변경 시 동작 과정
-### 1-1. Primitive Type인 값 변경
+### 3-1. 값 변경 시 동작 과정
+#### 3-1-1. Primitive Type인 값 변경
 <img src="/assets/images/primitive-value-change.jpeg" /><br/>
 
 - 1) p3을 생성하고 값을 p1으로 지정<br/>
@@ -126,7 +126,7 @@ o1 === o2의 결과는 <strong style="color:red;">false</strong>
 primitive 값을 가진 `변수의 값`을 또다른 primitive 값을 가진 `변수`로 지정하면?<br/>
 => 값이 **같을 땐 같은 값**을 가리키다가, **값이 달라지면 다른 값**을 가리킨다
 
-### 1-2. Object Type인 값 변경
+#### 3-1-2. Object Type인 값 변경
 <img src="/assets/images/object-value-change.jpeg" /><br/>
 
 - 1) o3을 생성하고 값을 o1으로 지정<br/>
@@ -147,7 +147,7 @@ o3가 가리키고 있던 `값이 변경`, 그런데 이 값은 **o1도 참조�
 Object 값을 가진 `변수의 값`을 또다른 Object 값을 가진 `변수`로 지정하면?<br/>
 => **같은 값**을 가리키다가, 값을 변경하면 `그 위치를 참조하고 있던 다른 변수의 값도 변경`되는 문제가 발생.
 
-## 2. 차이점
+### 3-2. 차이점
 
 **차이점**
 
@@ -161,9 +161,9 @@ Object 값을 가진 `변수의 값`을 또다른 Object 값을 가진 `변수`�
   그럼 이 문제점을 어떻게 해결할 수 있을까?
 
 
-# 변수 할당에 대한 불변함 - (4) 객체의 복사
+## 4. 변수 할당에 대한 불변함 - (4) 객체의 복사
 
-## 1. 객체를 불변하게 다루는 방법
+### 4-1. 객체를 불변하게 다루는 방법
 
 **문제점**
 <img src="/assets/images/object-copy-1.jpeg" /><br/>
@@ -194,6 +194,63 @@ o2가 o1을 값으로 가진다면, **o1이 가지는 값을 `복사`**해서 o2
 자기 자신만 변경되고, **원본의 데이터는 변경되지 않음**
 
 
-# 변수 할당에 대한 불변함 - (4) 중첩된 객체의 복사
+## 5. 변수 할당에 대한 불변함 - (5) 중첩된 객체의 복사
+복잡한 일은, 객체가 **중첩될 때** 생긴다.
+### 5-1. 중첩된 객체를 복사할 경우
 
-## 
+<img src="/assets/images/nested-obejct-1.jpeg" /><br/>
+
+**Object.assign()**을 통해서 복제하면,<br/>
+그 객체의 property만 일단 복제가 된다.
+
+그 property 중에 `value`가 `object형인 경우`,<br/>
+그 값까지 복제하지 않고 <strong style="color:black;background-color:aliceblue">그 위치만 복제</strong>함!<br/>
+
+**=> 이것이 바로 🚨문제점🚨**
+
+>👩🏻‍💻 복제한 사람 : 객체 복사했으니깐 수정해도 원본에는 아무 영향 안가겠지??
+
+<img src="/assets/images/nested-obejct-2.jpeg" /><br/>
+
+o2의 score값을 변경하면,<br/>
+`같은 곳을 참조`하고 있던 `o1의 score값도 변경`되어 버린다.<br/>
+
+그럼 어떻게 해야 원본을 변경되지 않게 수정할 수 있을까?
+### 5-2. 중첩된 객체를 복사하고도 원본에 영향을 주지 않으려면?
+
+그 전에 push와 concat을 비교해보자. <br/>
+두가지 모두 **배열에 새로운 요소를 추가할 때 사용**되지만, 결정적인 **차이점**이 있다.
+
+- **push**
+  - `기존 배열`에 인자로 들어온 `원소를 추가`하고  <strong style="color:black;background-color:aliceblue">배열의 총 길이를 리턴</strong>한다.
+- **concat**
+  - `기존 배열을 복사`한 뒤 인자로 들어온 `원소를 추가`해서  <strong style="color:black;background-color:aliceblue">새로운 배열을 리턴</strong>한다.
+
+=> **요약**
+**push** : `원본변경`<br/>
+**concat** : `원본유지`<br/>
+
+따라서 중첩된 객체를 복사하고도 원본에 영향을 주지 않으려면,<br/>
+`push`가 아닌 `concat`으로 복사를 해야한다.<br/>
+
+- **push**의 경우
+<img src="/assets/images/nested-obejct-2.jpeg" /><br/>
+
+
+
+- **concat**의 경우
+<img src="/assets/images/nested-obejct-3.jpeg" /><br/>
+
+- 1) 인자로 들어온 값이 없기 때문에 <br/>
+    o1.score와 같은 곳을 가리키고 있던 <br/>
+    o2.score의 값이 `그대로 복제`가 되어서 **다른 곳에 저장됨**
+
+> score 배열도 객체인데, Object.assign을 안 쓴 이유?<br/>
+  배열이 가지고 있는 특수한 기능이 사라지기 때문에!<br/>
+  배열은 `arrayfrom`, `slice`, `concat` 등 복제하는 명령을 사용한다.
+
+<img src="/assets/images/nested-obejct-4.jpeg" /><br/>
+
+- 2) 그 복제해온 o2.score는 이제 o1.score와 `별개`이기 때문에,<br/>
+    o2.score에는 push를 해도 원본은 변경되지 않음!
+
