@@ -338,5 +338,175 @@ OBJ2.prop2는 참조형 데이터이기 때문에,<br/>
 
 깊은 복사를 해야만 기존 데이터와는 **`별개의 데이터`**가 되기 때문에!
 
+## 4. for문에서의 주의사항
 
-### 3-2. Object.defineProperty()
+- **`for in`문과 `for of`의 경우**
+
+for in문에서 변수는 `const를 사용할 수 있다`
+
+```js
+	var obj = {
+	prop1:1,
+	prop2:2,
+	prop3:3
+	}
+	for (const prop in obj) {
+	console.log(prop)
+	}
+	// 결과 : prop1, prop2, prop3
+```
+for문이 반복되면서 const로 선언된 prop이<br/>
+prop1이었다가, prop2이었다가, prop3이 된다.<br/>
+const인데 이게 왜 되는걸까?<br/>
+
+이게 바로 따로 기억해야할 **for문의 특이점**
+
+위의 코드는 아래와 동일하게 실행된다.
+
+```js
+{
+let keys = Object.keys(obj);
+for(let i = 0; i < keys.lengh ; i ++) {
+    const prop = .obj[keys[i]];
+    console.log(prop);
+    }
+}
+// for문 반복의 결과는
+{
+	const prop = .obj[keys[0]];
+	console.log(prop);
+}
+{
+	const prop = .obj[keys[1]];
+	console.log(prop);
+}
+{
+	const prop = .obj[keys[2]];
+	console.log(prop);
+}
+
+```
+
+obj 오브젝트에 있는 key들을 배열로 가져와서 keys에 넣는다.<br/>
+반복을 하며 i하나마다 한개씩 열려서 <br/>
+for문의 block scope가 매번 생긴다.<br/>
+
+for in문의 상수변수 사용은 이런 방식으로 이해하면 됨.
+
+> 물론 let 변수도 사용 가능하다!<br/>
+
+```js
+	var obj = {
+	prop1:1,
+	prop2:2,
+	prop3:3
+	}
+	for (let prop in obj) {
+		prop = 10
+	console.log(prop)
+	}
+	// 결과 : 10, 10, 10
+```
+다만 이렇게 내부에서 변경이 가능한 문제가 있음. <br/>
+(이 문제를 const 변수를 쓰면 해결)
+
+- **`for`문의 경우**
+
+for문에서의 변수는 `const를 사용할 수 없다`.
+```js
+	var obj = {
+	prop1:1,
+	prop2:2,
+	prop3:3
+	}
+	for (const i = 0; i < obj.length; i ++) {
+	console.log(prop)
+	}// error! Assignment to constant variable.
+```
+
+=> **결론**<br/>
+> for문의 가장 기본적인 형태는 let!<br/>
+
+일반적인 `for문` 반복을 할때 변수는 `let`을 쓰면 되고,<br/>
+`for in문` 반복을 할때 변수는 `const`로 쓰면 된다.<br/>
+
+## 5. let과 const의 공통사항
+
+var와는 다르게,
+- let과 const는 `block scope`, 즉 `유효범위가 있다`
+- let과 const는 `TDZ에 걸린다`
+- `초기화되기 전 호출`이 `불가능`하다 (hoisting O, undefined 할당X이라 에러를 낸다는 뜻?)
+- `재선언(재정의)`이 `불가능`하다
+- `전역객체의 property` `불가능`하다
+
+
+### 5-1. 재선언
+
+- var의 경우
+
+```js
+var a = 0;
+var a = 1;
+
+console.log(a)
+```
+
+위의 코드는 자바스크립트가 아래처럼 처리한다.
+
+```js
+
+var a;
+// var a;
+
+a = 0;
+a = 1;
+
+console.log(a)
+```
+
+변수 a를 hoisting해서 끌어올리고,<br/>
+중첩됐으니까 마지막 것만 Cascading(위에서 아래로 흐르다) 함.<br/>
+
+=> 아무 문제없이 처리.
+
+- let과 const의 경우
+
+```js
+let a = 0;
+let a = 1;
+
+console.log(a) // error! Identifier 'a' has already been declared
+```
+
+=> **결론**, var는 잊어라
+
+
+### 5-2. 전역객체의 property가 불가능함
+
+- var의 경우
+```js
+var a = 10
+console.log(window.a)
+console.log(a)
+delete a
+console.log(window.a)
+console.log(a)
+```
+
+
+<img src="/assets/images/es6-var-window-1.jpeg" /><br/>
+<img src="/assets/images/es6-var-window-2.jpeg" /><br/>
+
+- let / const의 경우
+<img src="/assets/images/es6-2-let-window.jpeg" /><br/>
+
+## 6. let과 const의 차이점
+
+- let
+	- 값 자체의 변경이 필요한 `예외적인 경우`
+- const
+	- 기본으로 생각할 것. 프론트엔드 개발환경에서는 `객체`를 많이 다룬다. 이 객체를 바꿔치기할 일은 많지 않음.
+	- const로 선언해도 객체 내부의 property값 변경은 얼마든지 가능하고 훨씬 안전해짐.
+
+
+	
