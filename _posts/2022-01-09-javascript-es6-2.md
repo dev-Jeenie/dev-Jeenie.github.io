@@ -262,4 +262,81 @@ OBJ는 이 `공간을 참조`하고 있는 것 뿐.
 <img src="/assets/images/es6-2-object-const-arr.png" /><br/>
 
 이것처럼 배열에서도, 상수변수 그 자체 변경하는 것 빼고 다 된다<br/>
-(배열도 primitive 타입이 아닌, Object 타입이기 때문에)
+(배열도 primitive 타입이 아닌, Object 타입이기 때문에)<br/>
+
+🙋‍♀️ : 내부의 property도 상수로 만들수는 없나요?<br/>
+
+🅾️ 있습니다!
+
+
+## 3. 내부의 property도 상수로 만드는 방법
+
+**Object.freeze()**와 **Object.defineProperty()**가 있다.
+
+### 3-1. Object.freeze()
+property들을 얼려버린다🧊
+
+```js
+const OBJ2 = {
+	prop1 : 1
+}
+Object.freeze(OBJ2)
+OBJ2.prop1 = 10;
+// es5이기 때문에 친절한 오류는 안나오지만
+// 값이 바뀌지는 않음!!
+```
+
+단, 여전히 문제는 있다.
+
+
+```js
+const OBJ2 = {
+	prop1 : 1,
+	prop2 : [1,2,3]
+}
+Object.freeze(OBJ2)
+OBJ2.prop2 = 10; // 에러는 없지만 바뀌지않음
+OBJ2.prop2[0] = 10; // 값이 바뀜!
+```
+OBJ2.prop2는 참조형 데이터이기 때문에,<br/>
+이것이 참조하는 얼지 않았다.<br/>
+
+그래서 OBJ2.prop2 자체는 바꿀 수 없지만,<br/>
+그것이 참조하는 데이터는 바꿀 수 있는 것!<br/>
+
+그래서 Object.freeze로 property들을 얼리기 위해서는,
+- 1) Obj 자체를 얼린다.
+- 2) Obj 내부의 property들을 **순회**하면서 혹시 **참조형이면 1을 반복**하라고 `재귀`를 시킨다.(property 안에 property 안에 property가 있을 수 있으니까)
+
+=> 이것이 바로 `Deep Freezing`
+
+#### 3-1-1. Deep Freezing
+
+
+- Deep Copy `얕은복사`
+	- 객체의 property들을 복사 (`depth 1단계`까지만)
+- Deep Copy `깊은복사`
+	- 객체의 property들을 복사 (`모든 depth`에 대해서)
+	- 순서
+		- 1) property들을 복사
+		- 2) property 중 참조형이 있으면 1번 반복 => 재귀
+		
+**얕은 복사와 깊은 복사 예제**
+- 얕은 복사의 경우
+<img src="/assets/images/es6-2-light-copy.jpeg" /><br/>
+- 깊은 복사의 경우
+<img src="/assets/images/es6-2-deep-copy.jpeg" /><br/>
+
+#### 3-1-2. immutable이란?
+
+- mutable
+	- 가변하다
+- immutable
+	- 불변하다
+	- 불변하다는 것은 `매번 새로운 객체를 생성`한다
+	- 매번 새로운 객체를 생성하기 위해 늘 `깊은 복사`를 한다
+
+깊은 복사를 해야만 기존 데이터와는 **`별개의 데이터`**가 되기 때문에!
+
+
+### 3-2. Object.defineProperty()
