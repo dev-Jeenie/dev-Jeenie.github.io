@@ -186,3 +186,80 @@ i값이 block scope 내에 존재함!<br/>
 
 즉시실행함수 고민할 필요 없이 간단히 해결.<br/>
 closer 안에서 선언된 변수는 메모리에 영원히 있기 때문에, <br/>let을 사용하는 건 메모리 소모를 크게 덜어줌.
+
+
+## 2. const
+
+**constant variable(상수인 변수)**
+
+- 선언과 동시에 값을 할당해야한다.
+- 재할당이 되지 않는다.
+
+```js
+const A = 10;
+console.log(A)
+```
+A라는 변수는 상수로 할거야, 그런데 그 값은 10으로 할래.<br/>
+=> `선언`과 `값 할당`이 끝나야만 A라는 상수가 된다.
+
+```js
+const A;
+//error! Missing initializer in const decparation.
+```
+이렇게 선언만 하면 상수 변수로 사용할 수 없다!
+
+## 2-1. 참조타입 데이터의 경우엔?
+
+const에 객체를 할당한다면?
+
+- 1) 그 객체 자체를 바꾸려고 하는 경우
+
+```js
+const OBJ = {
+	prop1 : 1,
+	prop2 : 2,
+}
+OBJ = 10; // error! Assignment to constant variable.
+```
+
+상수변수에 값을 적용하려고 한다는 오류가 발생. 
+
+- 2) 그 객체의 property의 값을 바꾸려고 하는 경우
+
+```js
+const OBJ = {
+	prop1 : 1,
+	prop2 : 2,
+}
+OBJ.prop1 = 3; // 3으로 변경
+```
+
+에러 발생하지 않음! OBJ라는 `상수변수 자체에 접근한 게` ❌<br/>
+OBJ안에 있는 prop1이라는 **property에 접근**함.<br/>
+OBJ와 OBJ의 property들은 `다른 공간에 저장`되어있음!<br/>
+OBJ는 이 `공간을 참조`하고 있는 것 뿐.
+그럼 <strong style="color:black;background-color:yellow">그 객체 자체는 상수가 아니다</strong>
+
+<img src="/assets/images/es6-2-object-const.jpeg" /><br/>
+
+**심화 예제**
+
+<img src="/assets/images/es6-2-object-const-2.jpeg" /><br/>
+
+> 우리가 알고있는 모든 숫자들은 이미 **메모리 어딘가에 저장**되어 있다.<br/>
+계속 꺼내서 쓰기 때문에 이러한 **primitive 타입의 값**들이 `immutable`한 것이다!
+
+
+
+=> **결론** <br/>
+참조형 데이터를 상수변수에 할당할 경우, <br/>
+<strong style="color:black;background-color:aliceblue">참조형 데이터 내부에 있는 property들은 상수가 아니다.</strong> <br/>
+
+> 그럼 @30번에 남아있는 값은 언제 사라지지?<br/>
+그 값을 참조하는 애들이 사라지면, 그때 가비지 컬렉터의 대상이 되어서 사라진다. 이렇게 메모리 괸리가 이루어짐
+
+
+<img src="/assets/images/es6-2-object-const-arr.png" /><br/>
+
+이것처럼 배열에서도, 상수변수 그 자체 변경하는 것 빼고 다 된다<br/>
+(배열도 primitive 타입이 아닌, Object 타입이기 때문에)
