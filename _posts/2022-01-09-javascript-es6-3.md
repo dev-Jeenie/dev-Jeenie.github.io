@@ -235,9 +235,9 @@ a.forEach(function (v, i, arr) {
 }, [ 10, 11, 12 ])
 ```
 
-
-
-이미지
+<img src="/assets/images/es6-foreach.jpeg" /><br/>
+결과<br/>
+<img src="/assets/images/es6-foreach-2.jpeg" /><br/>
 
 
 근데 여기서 this를 뭐하러 넣어?<br/>
@@ -276,8 +276,10 @@ const b = a.map(function (v, i, arr) {
 }, [ 10 ])
 ```
 
+<img src="/assets/images/es6-map.jpeg" /><br/>
 
-이미지
+결과<br/>
+<img src="/assets/images/es6-map-2.jpeg" /><br/>
 
 
 
@@ -298,22 +300,6 @@ es5에서 등장.
 
 
 
-- 2) initial value 없을 경우
-```js
-const arr = [ 1, 2, 3 ]
-const res = arr.reduce(function (p, c, i, arr) {
-  console.log(p, c, i, arr)
-  return p + c
-})
-```
-
-
-
-이미지들
-
-
-
-
 
 #### 2-3-1. initial value 유무의 차이
 
@@ -327,8 +313,8 @@ const res = arr.reduce(function (p, c, i, arr) {
 }, 10)
 ```
 
+<img src="/assets/images/es6-reduce-initial.jpeg" /><br/>
 
-이미지들
 
 **예제**
 
@@ -360,7 +346,7 @@ const res = arr.reduce(function (p, c, i, arr) {
 ```
 
 
-이미지들
+<img src="/assets/images/es6-reduce-initial-2.jpeg" /><br/>
 
 
 
@@ -397,17 +383,51 @@ const str = arr.reduce(function (res, item, index, array) {
 console.log(str)
 // 결과 : abcd
 ```
-- 2) 객체 생성 가능
+- 2) `객체`를 만들 수 있음
 
 ```js
 const arr = [ 'a', 'b', 'c', 'd' ]
 const str = arr.reduce(function (res, item, index, array) {
-  return res[item] = item;
-}) //initial value 없음
+  res[item] = item;
+  return res;
+},{}) //initial value 없음
 console.log(str)
 
 // {a:'a', b:'b', c:'c', d:'d'}
 ```
+<img src="/assets/images/es6-reduce-object.jpeg" /><br/>
+
+
+근데 이해안됨....
+
+
+**예제**
+
+**𝑸. 1 ~ 10까지 더하라.**
+
+- for로 하면....
+
+```js
+const a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+let res = 0;
+for(let b = 0; b < a.length; b++) {
+  res += a[b];
+}
+
+// 결과 55
+```
+세상 오래걸림
+
+- reduce로 하면.....
+
+```js
+const a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+const res = a.reduce(a,c => a + c);
+```
+
+<img src="/assets/images/es6-reduce-add-numbers.jpeg" /><br/>
+
 
 
 ### 2-4. 이 모든 것들의 공통점!
@@ -436,3 +456,41 @@ console.log(str)
   - for문을 돌려서 최종적으로 다른 무언가를 만드는 목적
   - 그래서 반드시 return 필요!
 
+
+
+## 3. tag function
+
+```js
+const tag = function (strs, arg1, arg2) {
+  return {strs: strs, args: [arg1, arg2]}
+}
+const res = tag `순서가 ${1}이렇게 ${2}`
+console.log(res)
+```
+
+
+
+
+```js
+const tags = function (strings, ...expressions) {
+  console.log(strings, expressions)
+}
+const a = 'iu', b = 'Friday'
+const str = tags `Hello, ${a}! Today is ${b}!!`
+// ["Hello, ", "! Today is ", "!!"]
+// ["iu", "Friday"]
+```
+
+
+- strings와 expression을 조합한 예제
+
+
+```js
+const setDecimalSeperators = function (strs, ...args) {
+  return args.reduce(function (p, c, i) {
+    return p + strs[i] + (c + '').replace(/\d{1,3}(?=(\d{3})+(?!\d))/g, '$&,')
+  }, '') + strs[strs.length - 1]
+}
+const res = setDecimalSeperators `이 사과는 하나에 ${2000}원이고, 총 ${1234567}개를 구입하시면 총 ${2000 * 1234567}원 이에요.`
+console.log(res)
+```
