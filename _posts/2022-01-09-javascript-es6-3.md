@@ -338,11 +338,14 @@ result | '1234' | | |
 
 
 - 2) initial value 없을 경우
+
 ```js
 const arr = [ 1, 2, 3 ]
 const res = arr.reduce(function (p, c, i, arr) {
   console.log(p, c, i, arr)
-  
+  return p + c
+})
+console.log('res', res)
 ```
 
 
