@@ -1,6 +1,6 @@
 ---
 title: "Java script ES6💫 제대로 알아보기! ✍️ (6) spread operator"
-permalink: /cs/javascriptEs65
+permalink: /cs/javascriptEs66
 tags:
   - [CS]
 
@@ -8,8 +8,8 @@ navigation: true
 toc: true
 toc_sticky: true
 
-date: 2022-01-13
-last_modified_at: 2022-01-13
+date: 2022-01-14
+last_modified_at: 2022-01-14
 ---
 
 ![]()
@@ -78,3 +78,58 @@ sum을 실행하고 그 인자로써 **1, 2, value의 요소들, 9,10**을 넘�
 
 
 <img src="/assets/images/es6-spread-operator-5.png" /><br/>
+
+### 2-5. push, unshift, concat을 대체할 수 있다
+
+```js
+let originalArr = [2, 3]
+const preArr    = [-2, -1]
+const sufArr    = [6, 7]
+
+originalArr.unshift(1)
+originalArr.push(4)
+originalArr = [0, ...originalArr, 5] // 새로운 배열을 할당
+console.log(originalArr)
+
+const concatArr = preArr.concat(originalArr, sufArr)
+const restArr = [...preArr, ...originalArr, ...sufArr]
+console.log(concatArr, restArr)
+
+```
+<img src="/assets/images/es6-spread-operator-6.png" /><br/>
+
+🤷🏻‍♀️ : 왜 새로 만들어서 메모리를 낭비하지? ❌<br/>
+
+새로 생겼으니까, 이 새로 만든 값을 기존 변수에 대해서 `참조`를 시키면<br/>
+**참조를 하지 않는 위치**에 있는 값은 `자동으로 사라지니까`<br/>
+새로 만드는게 **전혀 문제가 되지 않는다!**<br/>
+
+오히려 배열의 앞에 값을 집어넣는 unshift가 비용이 더 든다.<br/>
+
+
+### 2-6. 얕은 복사만을 수행한다
+
+```js
+let originalArray = [{
+  first: 'Hello,',
+  second: 'World!'
+}, {
+  first: 'Welcome',
+  second: 'ES6!'
+}]
+let copiedArray = [...originalArray]
+console.log(originalArray[0].first)
+
+copiedArray[0].first = "Hi,"
+console.log(originalArray[0].first)
+```
+spread operator로 원본배열을 복사했지만,<br/>
+
+왜? 요소만 얕은 복사하고, **참조는 바뀌어있지 않기 때문**.<br/>
+
+그럼 깊은 복사는 어떻게 해?<br/>
+
+`spread operator`로는 **불가능**,<br/>
+각각의 객체를 찾아가서 그 안에 property들 다 복사해오고, 그걸 가지고 새 배열로 만들어야한다.
+
+
