@@ -333,7 +333,7 @@ console.log(Reflect.ownKeys(obj3))
 
 | 객체의 열거 순서 |
 | -- | -- | -- |
-| 숫자(asc) | 문자(입력순서) | Symbol |
+| 1. 숫자(asc) | 2. 문자(입력순서) | 3. Symbol |
 
 
 - 1) 열거순서는 다음 규칙을 따른다.
