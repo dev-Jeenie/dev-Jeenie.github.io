@@ -338,7 +338,7 @@ console.log(Reflect.ownKeys(obj3))
 
 - 1) 열거순서는 다음 규칙을 따른다.
 
-- **number &rarr string &rarr symbol** 의 순서로 정렬된다.
+- **number & string & symbol** 의 순서로 정렬된다.
 - `number` key는 프로퍼티들 중 가장 앞에 위치하며, `오름차순`이다.
 - `string` key는 객체에 `추가된 당시의 순서`를 유지하면서 숫자 뒤에 위치한다.
 - `Symbol` key는 객체에 `추가된 당시의 순서`를 유지하면서 제일 마지막에 위치한다.
