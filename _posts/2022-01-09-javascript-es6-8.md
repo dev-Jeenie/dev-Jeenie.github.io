@@ -1,6 +1,6 @@
 ---
 title: "Java script ES6💫 제대로 알아보기! ✍️ (8) Arrow Functions"
-permalink: /cs/javascriptEs67
+permalink: /cs/javascriptEs68
 tags:
   - [CS]
 
@@ -118,6 +118,8 @@ a를 받은 것을 실행한 결과를 가지고 다시 b로 보냄.<br/>
 
 ⭐️ 중요 ⭐️<br/>
 
+
+### 1-2. arrow function의 this 바인딩
 
 arrow 함수는,<br/>
 기존 함수의 기능을 문법적으로 보기 편하게, 직관적으로 표시하게끔 만든 것만은 ❌<br/>
@@ -242,12 +244,258 @@ arrow function는
 const obj = {
   grades: [80, 90, 100],
   getTotal: function () {
-    this.total = 0
-    this.grades.forEach(function(v) {
+    this.total = 0 // 여기서의 this는 obj
+    this.grades.forEach(function(v) {//여기도 obj
       this.total += v
+      // 여기는 forEach가 돌려주는 콜백함수.
+      // 콜백함수 안에서 this는, 그냥 함수 실행이기 때문에 window
+      // 그래서 window.total의 v가 증가
     })
   }
 }
 obj.getTotal()
 console.log(obj.total)
+console.log(total) // NaN. 처음에 아무것도 없었으니,
+// undefined + 80 + 90 + 100 이 됐으니 숫자가 아님
+```
+
+```js
+
+var total = 0;
+const obj = {
+  grades: [80, 90, 100],
+  getTotal: function () {
+    this.total = 0;
+    this.grades.forEach(function(v) {
+      this.total += v;
+    })
+  }
+}
+obj.getTotal();
+
+console.log(total) // 270
+
+obj.total // 0
+```
+여기서 obj.total가 0이 찍히는 이유?<br/>
+forEach 콜백함수 안에 this가 전달되지 않았기 때문.<br/>
+
+- 1) 직접 this를 지정해주는 방법
+(forEach argument의 뒤에는 `this argument 인자`가 들어옴.)
+
+```js
+
+var total = 0;
+const obj = {
+  grades: [80, 90, 100],
+  getTotal: function () {
+    this.total = 0;
+    this.grades.forEach(function(v) {
+      this.total += v;
+    },this)
+  }
+}
+obj.getTotal();
+
+obj.total // 270
+```
+
+- 2) arrow function을 사용하는 방법
+
+```js
+
+var total = 0;
+const obj = {
+  grades: [80, 90, 100],
+  getTotal: function () {
+    this.total = 0;
+    this.grades.forEach(function(v) {
+      this.total += v;
+    },this)
+  }
+}
+obj.getTotal();
+
+obj.total // 270
+```
+this 바인딩을 하지 않는 arrow function을 써버리면 간단.<br/>
+
+🙋‍♀️ : arrow function은 this 바인딩 안하니까 너무 좋은거구나!<br/>
+
+❌ 좋지만은 않다.<br/>
+#### 1-2-1. 단점
+
+- 1) this 변경 불가
+
+```js
+const a = () => {
+  console.log(this)
+}
+
+a()
+```
+
+이때의 this는 window.<br/>
+
+```js
+a.call( {} )
+```
+
+call의 첫번째 인자는 this니까, 새로운 this를 지정해줘도 ❌<br/>
+
+콜백이 아닌 일반 함수였다면?<br/>
+
+```js
+const c = function () {
+  console.log(this)
+}
+c()
+```
+이때의 this는 마찬가지로 window.<br/>
+
+```js
+c.call( {} )
+```
+undefined 출력.<br/>
+함수실행시에 this를 {} 인 채로 실행하라고 줬으니까!<br/>
+그래서 this 바인딩한 상태에서 실행하는 것.<br/>
+
+
+=> 그렇다고 arrow function에서의 call이 제 기능을 못하는 건 아님.<br/>
+
+> call 본연의 기능<br/>
+첫번째 인자로 this인자를 넘겨주고, 뒤에 실행할 argument들(인자들)을 넘겨줌.
+
+**call 비교 예제**
+
+```js
+function sum (...arg) {
+  console.log(this);
+  return arg.reduce((p,c) => p + c);
+}
+sum(1,2,3,4,5);
+sum.call({},1,2,3,4,5);
+```
+
+<img src="/assets/images/es6-arrow-function-this.png" /><br/>
+
+
+this 변경 O, call 전달 O
+
+
+```js
+const sum2 = (...arg) => {
+  console.log(this);
+  return arg.reduce((p,c) => p + c);
+}
+sum2(1,2,3,4,5);
+sum2.call({},1,2,3,4,5);
+```
+
+<img src="/assets/images/es6-arrow-function-this-2.png" /><br/>
+
+this 변경 X, call 전달 O
+
+
+=> **결론**<br/>
+this 바인딩만 안될 뿐, call은 제역할을 한다<br/>
+
+
+
+### 1-3. 생성자 함수
+
+
+- 기존 함수
+
+```js
+function sum (...arg) {
+  console.log(this);
+  return arg.reduce((p,c) => p + c);
+}
+console.dir(sum)
+```
+prototype이 존재 = `생성자함수`로 사용 **가능**
+
+- arrow function
+
+```js
+const sum2 = (...arg) => {
+  console.log(this);
+  return arg.reduce((p,c) => p + c);
+}
+console.dir(sum2)
+
+```
+prototype이 없음 = `생성자함수`로 사용 **불가능**
+
+
+```js
+
+const b = new sum()
+// sum { }
+
+const c = new sum2()
+//error! sum2 is not a constructor
+
+```
+
+> concise method와 arrow function
+- 공통점
+  - prototype 프로퍼티가 X => 생성자함수로 X
+  - arguments, callee => hidden. invoke해야만 값을 얻을 수 있다
+- 차이점
+  - concise method
+    - method는 method로만. 함수로 사용불가
+  - arrow function
+    - method는 함수로만.(내부함수로써는 method로 가능)
+
+
+```js
+
+const b = {
+  name: '하하',
+  bb () {
+    return this.name;
+  },
+  a: x => {
+    return this.name;
+  }
+}
+
+b.bb(); // '하하'
+b.a(); // ''
+
+```
+여기서 b.a는 왜 아무것도 나오지 않을까?<br/>
+b.a는 `arrow function`이라 this를 **바인딩하지 않기 때문**.<br/>
+근데 왜 빈문자열이 나오지?<br/>
+
+=> **window.name**이 이미 있기 때문에.<br/>
+
+```js
+window.name = '안뇽';
+
+b.a(); // '안뇽'
+```
+
+b.a는 메소드로써의 기능❌, 함수로써의 기능<br/>
+this가 객체를 가리키게 할 수 없다.<br/>
+
+
+🤷🏻‍♀️ : 그럼 arrow 함수를 언제 써야 method로써의 의미가 있지??<br/>
+
+메소드 안에서 같은 this를 가지고 써야할 때(내부함수로 쓸 때)<br/>
+아래처럼
+
+```js
+const b = {
+  name: '하하',
+  bb () {
+    const b = x => {
+      return this.name;
+    }
+    console.log(b());
+  },
+}
+b.bb(); // '하하'
 ```
