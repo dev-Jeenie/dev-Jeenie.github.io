@@ -1,5 +1,5 @@
 ---
-title: "브라우저 "
+title: "브라우저 저장소! Browser storage 🌏"
 permalink: /cs/browserStorage
 tags:
   - [CS]
@@ -61,6 +61,9 @@ clear()
 
 
 ## 4. Cookie 🍪
+
+쿠키란?<br/>
+브라우저에 저장되는 작은 크기의 문자열<br/>
 웹에서 가장 기본적이고 오랫동안 함께해온 저장소!<br/>
 
 - 저장가능 용량 `매우 적음`
