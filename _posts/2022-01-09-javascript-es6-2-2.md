@@ -302,19 +302,52 @@ const o = { a: 1, b: 2, c: 3 }
 for (let key in o) {
   console.log(key, o[key])
 }
+// a 1
+// b 2
+// c 3
+
 
 // (2)
 Object.prototype.method = function () { }
 for (let key in o) {
   console.log(key, o[key])
 }
+// a 1
+// b 2
+// c 3
+// method f() {}
+
 
 // (3)
 for (let key in o) {
   if(o.hasOwnProperty(key)) {
+    // 이 객체안에있는 key가 정말 내가 가진 고유 프로퍼티가 맞는지
     console.log(key, o[key])
   }
 }
+// a 1
+// b 2
+// c 3
+
+```
+
+for in 문을 돌리면 iterable한 것처럼 보이지만 iterable하지 ❌<br/>그렇게 보이도록 만든 것.<br/>
+실제로 모든 요소들을 돌면서 하나하나 진행하는 건 아님<br/>
+prototype까지 검사를 함. <br/>
+
+iterable하지 않고 그렇게 보이도록 따라한 것이기 때문에,<br/>
+**객체의 고유 property**인지, **prototype 체이닝 상에 있는 더 상위의 메소드**인지 판단하지 않고 무조건 가져와서 prototype도 출력되는 것.<br/>
+
+이걸 해결하기 위해서 3같은 짓을 또 해야함.<br/>
+이 객체안에있는 key가 정말 **내가 가진 고유 프로퍼티가 맞는지 체크**해야 제대로 동작.<br/>
+
+
+그래서 객체를 key와 value로 묶인 배열로 변환하는 방법은,<br/>
+property 판단을 하거나 key값만 반환하게 하는 수 밖에 없었다.
+
+```js
+const o = { a: 1, b: 2, c: 3 }
+
 
 // (4)
 const obj2Arr = obj => {
@@ -328,17 +361,19 @@ const obj2Arr = obj => {
 }
 const oArr = obj2Arr(o)
 oArr.forEach(v => console.log(v))
+// (2) ["a", 1]
+// (2) ["b", 2]
+// (2) ["c", 3]
+
 
 // (5)
 const oArr2 = Object.keys(o).map(k => [k, o[k]])
 oArr2.forEach(v => console.log(v))
 ```
 
-- (1)
+(4)처럼 객체의 property를 가지고 판단해서 배열로 푸시<br/>
 
-
-
-
+또는 (5)처럼 object.keys로 key값만 반환하게 해서 새로운 배열<br/>
 
 
 - 2. 키를 문자열로 취급한다.
@@ -354,7 +389,10 @@ for (let key in obj) {
   res += key
 }
 console.log(res)
+// 0123
 ```
+01을 문자열로 인식했듯이, key를 문자열로 인식해서,<br/>
+key를 모두 더하라고 해도 출력값이 문자열로 나옴
 
 - 3. 따라서 키값의 unique함을 완벽히 보장하지 못함.
 
@@ -365,13 +403,170 @@ const obj = {
   '01': 30
 }
 console.log(obj)
+// {1: 20, 01: 30}
+
 ```
+숫자 01과 문자 01을 똑같이 **문자 01로 취급**.<br/>
+=> 캐스캐이딩 되어서 하나만 남음
+
 
 - 4. 프로퍼티 개수를 직접 파악할 수 없다.
 
 ```js
 const obj = { a: 1, b: 2, c: 3 }
+console.log(obj.length)
+// undefined
+
 console.log(Object.keys(obj).length)
+// 2
+console.log(Object.values(obj).length)
+// 2
 ```
 
-#### 1-3-1-2. Map
+### 1-3-2. Map
+이런 `객체의 장점`만 가지고 새롭게 만들어낸 데이터 타입<br/>
+
+
+- 1. [ key, value ] 쌍(pair)으로 이루어진 요소들의 집합.
+  - 배열 묶음이 하나의 데이터 요소가 됨
+  - 0번째 인덱스엔 key, 1번째 인덱스엔 value
+
+- 2. 순서를 보장하며, iterable하다.
+
+- 3. 키에는 어떤 데이터타입도 저장할 수 있으며, 문자열로 취급하지 않는다.
+
+```js
+const map = new Map()
+map.set(1, 10)
+map.set(01, 20)
+map.set('01', 30)
+map.set({}, 40)
+map.set(function(){}, ()=>{})
+console.log(map)
+// Map(2) {1 => 20, "01" => 30}
+```
+> set 메소드<br/>
+map에는 set으로 추가 가능<br/>
+첫번째가 key, 두번째가 value
+
+객체의 경우엔 01과 "01"을 동일하게 간주했지만,<br/>
+map은 1과 01을 동일하게 간주!
+
+
+- 4. 추가 / 값 가져오기 / 삭제 / 초기화 / 요소의 총 개수 / 포함여부확인
+
+```js
+const map = new Map()
+map.set('name', '재남')
+map.set('age', 30)
+
+console.log(map.size)
+
+console.log(map.get('name'))
+console.log(map.get('age'))
+
+map.delete('name')
+console.log(map.has('name'))
+console.log(map.has('age'))
+console.log(map.size)
+
+map.clear()
+console.log(map.has('name'))
+console.log(map.has('age'))
+console.log(map.size)
+```
+
+- get
+객체는 obj.name 하면 나왔겠지만,<br/>
+map은 key를 알고있으면 그 key의 값을 가져올 때 `map.get('name')` 이렇게 가져옴.
+
+- delete
+객체는 delete obj.name으로 지웠겠지만,<br/>
+map은 `map.delete('name')` 이렇게 지움
+
+- has
+`map.has('name')` 로 있는지 확인할 수 있음
+
+
+#### 5. 초기값 지정  
+인자로 iterable한 개체를 지정할 수 있다.
+
+```js
+const map1 = new Map([[10, 10], ['10', '10'], [false, true]])
+console.log(map1)
+// Map(3) {10 => 10, "10" => "10", faluse => true}
+
+
+const map2 = new Map(map1)
+console.log(map2)
+// Map(3) {10 => 10, "10" => "10", faluse => true}
+
+map1.keys()
+// MapIterator {10, "10", false}
+
+map1.values()
+// MapIterator {10, "10",true}
+
+map1.entries()
+// MapIterator {10 => 10, "10" => "10", faluse => true}
+
+
+
+
+console.log(map1 === map2)
+
+const gen = function* () {
+	for (let i = 0; i < 5; i++) {
+		yield [i, i+1]
+  }
+}
+const map3 = new Map(gen())
+console.log(map3)
+```
+- 각 요소의 내용들이 `배열`로 이루어져있어야 함.<br/>
+- 각 배열 안에는 `key와 Value`라는 인덱스 2개가 있어야 함.
+
+
+#### 6. 기타 메소드 소개
+
+```js
+const map = new Map([[10, 10], ['10', '10'], [false, true], ['name', '재남']])
+const mapKeys = map.keys()
+const mapValues = map.values()
+const mapEntries = map.entries()
+
+map.forEach(function(value, key, ownerMap) {
+  console.log(`${key}: ${value}`)
+  console.log('ownerMap: ', ownerMap, 'this: ', this)
+}, [])
+```
+
+#### 7. 배열로 전환하기
+
+```js
+const map = new Map([[10, 10], ['10', '10'], [false, true], ['name', '재남']])
+const mapArray1 = [...map]
+const mapArray2 = [...map.keys()]
+const mapArray3 = [...map.values()]
+const mapArray4 = [...map.entries()]
+
+console.log(mapArray1, mapArray2, mapArray3, mapArray4)
+```
+
+#### 8. 객체로 전환하기
+
+```js
+const map1 = new Map([[10, 10], ['10', '10'], [false, true], ['name', '재남']])
+const map2 = new Map([[{}, 10], [function(){}, '10'], [[], true], [Symbol('심볼'), '재남']])
+const convertMapToObject = map => {
+  const resultObj = {}
+  [...map].forEach(([k, v]) => {
+    if(typeof k !== 'object') {
+      resultObj[k] = v
+    }
+  })
+  return resultObj
+}
+const obj1 = convertMapToObject(map1)
+const obj2 = convertMapToObject(map2)
+```
