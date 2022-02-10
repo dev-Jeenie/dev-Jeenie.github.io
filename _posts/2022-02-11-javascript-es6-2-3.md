@@ -1,5 +1,5 @@
 ---
-title: "Java script ES6💫 중급🔥 ✍️ (4) Iterable, Iterator, generator"
+title: "Java script ES6💫 중급🔥 ✍️ (3) Iterable, Iterator, generator"
 permalink: /cs/javascriptEs623
 tags:
   - [CS]
