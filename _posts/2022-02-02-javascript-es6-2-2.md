@@ -1,6 +1,6 @@
 ---
 title: "Java script ES6💫 중급🔥 ✍️ (2) 새로운 자료구조"
-permalink: /cs/javascriptEs610
+permalink: /cs/javascriptEs622
 tags:
   - [CS]
 
@@ -435,6 +435,17 @@ console.log(Object.values(obj).length)
 
 - 3. 키에는 어떤 데이터타입도 저장할 수 있으며, 문자열로 취급하지 않는다.
 
+- 4. 추가 / 값 가져오기 / 삭제 / 초기화 / 요소의 총 개수 / 포함여부확인
+
+- 5. 초기값 지정
+
+- 6. 배열로 전환하기
+
+- 7. 객체로 전환하기
+
+
+#### 상세 - 3. 어떤 데이터 타입도 저장가능
+
 ```js
 const map = new Map()
 map.set(1, 10)
@@ -452,8 +463,7 @@ map에는 set으로 추가 가능<br/>
 객체의 경우엔 01과 "01"을 동일하게 간주했지만,<br/>
 map은 1과 01을 동일하게 간주!
 
-
-- 4. 추가 / 값 가져오기 / 삭제 / 초기화 / 요소의 총 개수 / 포함여부확인
+#### 상세 - 4. 추가 / 값 가져오기 / 삭제 / 초기화 / 요소의 총 개수 / 포함여부확인
 
 ```js
 const map = new Map()
@@ -487,20 +497,28 @@ map은 `map.delete('name')` 이렇게 지움
 - has
 `map.has('name')` 로 있는지 확인할 수 있음
 
+#### 상세 - 5. 초기값 지정
 
-#### 5. 초기값 지정  
-인자로 iterable한 개체를 지정할 수 있다.
+
+map도 set처럼 인자로 iterable한 개체를 지정할 수 있다.<br/>
+
+- 각 요소의 내용들이 `배열`로 이루어져있어야 함.<br/>
+- 각 배열 안에는 `key와 Value`라는 인덱스 2개가 있어야 함.
 
 ```js
 const map1 = new Map([[10, 10], ['10', '10'], [false, true]])
 console.log(map1)
-// Map(3) {10 => 10, "10" => "10", faluse => true}
+// Map(3) {10 => 10, "10" => "10", false => true}
+const map2 = new Map([[10, 10, 10], ['10', '10', '10'], [false, true, false]])
+console.log(map1)
+// Map(3) {10 => 10, "10" => "10", false => true}
+```
+요소 3개를 넣으면 마지막 요소는 무시<br/>
+Set의 경우에는 Entries안에 화살표 없이 그냥 값만 출력이 되었는데,<br/>
+Map은 중괄호 묶음과 화살표가 있고 key => value로 이루어져있다.<br/>
 
 
-const map2 = new Map(map1)
-console.log(map2)
-// Map(3) {10 => 10, "10" => "10", faluse => true}
-
+```js
 map1.keys()
 // MapIterator {10, "10", false}
 
@@ -508,11 +526,48 @@ map1.values()
 // MapIterator {10, "10",true}
 
 map1.entries()
-// MapIterator {10 => 10, "10" => "10", faluse => true}
+// MapIterator {10 => 10, "10" => "10", false => true}
+```
+`MapIterator`로 출력이 되는데, `MapIterator`가 뭘까?
+
+```js
+
+const keys = map1.keys()
+// MapIterator {10, "10", false}
+
+keys.next().value
+// 10
+keys.next().value
+// "10"
+keys.next().value
+// "false"
+keys.next().value
+// undefined
+
+const values = map1.values()
+values.next()
+// {value: 10, done: false}
+values.next()
+// {value: "10", done: false}
+values.next()
+// {value: false, done: false}
+values.next()
+// {value: undefined, done: true}
+
+```
+
+`MapIterator`는 map iterating을 한다. <br/>
+그럼 `next`라는 method를 호출할 때, 그 안에 `value`와 `done`이라는 값을 준다.<br/>
+요소들을 다 꺼내서 하나하나 다 살펴본 뒤에 더이상 없다, 그럴 때 done을 true로 돌려줌<br/>
 
 
+`객체`는 원래 이런 것이 불가능하다.<br/>
+이렇게 하나하나 살펴볼 수 있게(`iterable하게`) 만들어주는 것이 바로 `map`이고,<br/>그럼 spread를 할 수 있다.<br/>
+그럼 이 map에 `keys`, `values`, `entries` 등을 쓰면 `next`라는 method를 사용할 수 있다.<br/>
+(`set`에도 마찬가지로 존재)
 
 
+```js
 console.log(map1 === map2)
 
 const gen = function* () {
@@ -523,37 +578,75 @@ const gen = function* () {
 const map3 = new Map(gen())
 console.log(map3)
 ```
-- 각 요소의 내용들이 `배열`로 이루어져있어야 함.<br/>
-- 각 배열 안에는 `key와 Value`라는 인덱스 2개가 있어야 함.
 
-
-#### 6. 기타 메소드 소개
-
-```js
-const map = new Map([[10, 10], ['10', '10'], [false, true], ['name', '재남']])
-const mapKeys = map.keys()
-const mapValues = map.values()
-const mapEntries = map.entries()
-
-map.forEach(function(value, key, ownerMap) {
-  console.log(`${key}: ${value}`)
-  console.log('ownerMap: ', ownerMap, 'this: ', this)
-}, [])
-```
-
-#### 7. 배열로 전환하기
+#### 6. 배열로 전환하기
 
 ```js
 const map = new Map([[10, 10], ['10', '10'], [false, true], ['name', '재남']])
 const mapArray1 = [...map]
-const mapArray2 = [...map.keys()]
-const mapArray3 = [...map.values()]
-const mapArray4 = [...map.entries()]
+// (4) [Array(2), Array(2), Array(2), Array(2)]
 
-console.log(mapArray1, mapArray2, mapArray3, mapArray4)
+const mapArray2 = [...map.keys()]
+// (4) [10, "10", false, "name"]
+
+const mapArray3 = [...map.values()]
+// (4) [10, "10", true, "재남"]
+
+const mapArray4 = [...map.entries()]
+// (4) [Array(2), Array(2), Array(2), Array(2)]
+
 ```
 
-#### 8. 객체로 전환하기
+```js
+
+// 여기서 set은
+// Set(5) {1,2,3,4,5}
+
+[...set.keys()]
+// (5) [1, 2, 3, 4, 5]
+
+[...set.values()]
+// (5) [1, 2, 3, 4, 5]
+
+[...set.entries()]
+// (5) [Array(2), Array(2), Array(2), Array(2), Array(2)]
+// key와 value로 묶인 쌍으로 나옴
+
+```
+
+주의할 점 ⭐️ <br/>
+
+- Object에서의 key, values, entries
+  - : 그냥 배열로 나옴
+
+```js
+const obj = {a: 1, b: 2, c: 3}
+Object.keys(obj)
+// (3) ["a", "b", "c"]
+Object.values(obj)
+// (3) [1, 2, 3]
+Object.entries(obj)
+// (3) [Array(2), Array(2), Array(2)]
+Object.entries(obj).next()
+// undefined
+```
+
+- set에서의 key, values, entries
+  - : MapIterator로 나옴
+```js
+const set = new Set([1,2,3,4,5,3,4,2])
+
+set.entries().next()
+// {value: Array(2), done: false}
+
+set.entries()
+// setIterator {1, 2, 3, 4, 5}
+```
+`Object.keys()`는 es5의 문법이기 때문에 MapIterator가 아닌 그냥 배열로 나온다!<br/>
+그에 맞춰서 values와 entries도 동일.<br/>
+당연히 next도 쓸 수 없음.<br/>
+
+#### 7. 객체로 전환하기
 
 ```js
 const map1 = new Map([[10, 10], ['10', '10'], [false, true], ['name', '재남']])
@@ -570,3 +663,11 @@ const convertMapToObject = map => {
 const obj1 = convertMapToObject(map1)
 const obj2 = convertMapToObject(map2)
 ```
+
+
+### 1-3-3. WeakMap
+
+
+
+
+
