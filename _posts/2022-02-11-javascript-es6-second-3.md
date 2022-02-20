@@ -350,3 +350,415 @@ console.log(a)
 ```
 
 WeakMap은 `Symbol.iterator`가 없기 때문에
+
+
+
+
+
+
+
+
+## 14-3. Generator
+
+### 14-3-1. 소개
+
+- 중간에서 멈췄다가 이어서 실행할 수 있는 함수.  
+- function 키워드 뒤에 `*`를 붙여 표현하며, 함수 내부에는 `yield` 키워드를 활용한다.  
+- 함수 실행 결과에 대해 `next()` 메소드를 호출할 때마다 순차적으로 제너레이터 함수 내부의 `yield` 키워드를 만나기 전까지 실행하고, `yield` 키워드에서 `일시정지`한다.
+- 다시 `next()` 메소드를 호출하면 그 다음 `yield` 키워드를 만날 때까지 함수 내부의 내용을 진행하는 식이다.
+
+```js
+function* gene () {
+  console.log(1)
+  yield 1
+  // gen.next()를 실행하면 console이 출력되고 yield를 만나서 여기서 멈춤
+  console.log(2)
+  yield 2
+  // 다시 gen.next()를 실행하면 console이 출력되고 yield를 만나서 여기서 멈춤
+  console.log(3)
+}
+const gen = gene()
+
+gen.next()
+// 1
+// {value: 1, done: false}
+
+gen.next()
+// 2
+// {value: 2, done: false}
+
+gen.next()
+// 3
+// {value: undefined, done: true}
+```
+
+iterable한 개체의 장점! <br/>
+이렇게 yield를 만나기 전에 할 일을 한 뒤에, <br/>
+외부에서 다른 필요한 동작을 하고 <br/>
+다시 next를 호출하면 다음 동작이 이루어지니까 <br/>
+next의 호출 순서를 이용해 개발자의 의지대로 동작 순서를 조절할 수 있다. <br/>
+
+```js
+
+function* gene () {
+// 동작 1
+yield 1
+// 동작 3
+yield 2
+// 동작 5
+}
+const gen = gene()
+
+gen.next()
+// 동작 2
+gen.next()
+// 동작 4
+gen.next()
+// 동작 6
+
+```
+
+- 선언 방식
+
+```js
+function* gene () { yield }
+// 함수 선언문일 경우
+
+const gene = function* () { yield }
+// 함수 표현식일 경우
+
+const obj = {
+  gene1: function* () { yield }
+// 기존 방식대로 함수 선언문을 객체의 key에 할당하는 방법
+  *gene2 () { yield }
+// 메소드 축약형일 땐 이렇게
+}
+// 객체의 메소드로 할당할 경우
+
+class A {
+  *gene () { yield }
+}
+// class에서도 마찬가지
+```
+
+### 14-3-2. 이터레이터로서의 제너레이터
+
+```js
+function* gene () {
+  console.log(1)
+  yield 1
+  console.log(2)
+  yield 2
+  console.log(3)
+}
+const gen = gene()
+console.log(...gen)
+```
+
+
+**다시한번 보는 `iterable한 객체` 만드는 방법 ⭐️**  <br/>
+
+1) 복잡한 방법
+
+- 그 객체의 prototype 상에 Symbol.iterator라는 메소드가 있어야하고,<br/>
+- 그 메소드는 객체를 반환해야하고<br/>
+- 반환한 객체는 next라는 메소드를 반환해야했고<br/>
+- 그 next메소드는 다시 done를 키로 가지고 있는 객체를 반환해야했다
+
+```js
+[Symbol.iterator] () {
+  return {
+    next () {
+      return {
+        done: false
+      }
+    }
+  }
+}
+```
+
+2) `generator`를 사용하는 방법
+
+generator를 쓰면 이렇게 복잡하게 구현하지 않아도 됨!<br/>
+객체안에 Symbol.iterator를 generator로 받을 수 있다<br/>
+그러기 위해서는 내부에서 신경써야할 것은 `yield`만 만들어주면 됨
+
+```js
+[Symbol.iterator] () {
+  yield 123123
+}
+```
+
+이럴 경우 이 자체가 Symbol.iterator로써의 기능을 수행함.<br/>
+왜? next를 실행할 때마다 yield에서 멈추고, value를 반환하고 done을 알아서 처리해주기 때문에.<br/>
+
+```js
+const obj = {
+  a: 1,
+  b: 2,
+  c: 3,
+  *[Symbol.iterator] () {
+    for (let prop in this) {
+      yield [prop, this[prop]]
+      // 여기서 prop안에는 a, b, c,가 담길 것이고
+      // this[prop]안에는 1,2,3이 담길 거니까
+      // 이 배열을 가지고 yield가 된다
+    }
+  }
+}
+console.log(...obj)
+// > (2) ["a",1] > (2) ["b",2] > (2) ["c",3]
+
+for (let p of obj) {
+  console.log(p)
+}
+//  > (2) ["a",1]
+//  > (2) ["b",2]
+//  > (2) ["c",3]
+
+```
+
+
+### 14-3-3. `yield* [iterable]`
+
+yield* 은 뒤에 iterable한 객체를 받아서, <br/>
+그 객체 **하나하나마다 멈춤**!
+
+```js
+function* gene () {
+  yield* [1, 2, 3, 4, 5]
+  yield
+  yield* 'abcde'
+}
+
+const gen = gene();
+
+gen.next()
+// {value: 1, done: false}
+gen.next()
+// {value: 2, done: false}
+gen.next()
+// {value: 3, done: false}
+gen.next()
+// {value: 4, done: false}
+gen.next()
+// {value: 5, done: false}
+gen.next()
+// {value: undefined, done: false}
+gen.next()
+// {value: 'a', done: false}
+gen.next()
+// {value: 'b', done: false}
+gen.next()
+// {value: 'c', done: false}
+gen.next()
+// {value: 'd', done: false}
+gen.next()
+// {value: 'e', done: false}
+gen.next()
+// {value: undefined, done: true}
+
+```
+
+💁🏻‍♀️ : generator로 만드니까 굉장히 간단하게 iterator를 만들 수 있게 됐구나! <br/>
+
+generator를 중첩해서 쓸 수도 있음.
+
+
+```js
+function* gene1 () {
+  yield [1, 10]
+  yield [2, 20]
+}
+function* gene2 () {
+  yield [3, 30]
+  yield [4, 40]
+}
+function* gene3 () {
+  console.log('yield gene1')
+  yield* gene1()
+  // gene1을 실행한 결과를 yield* 로 줬기 때문에 아래와 같다
+  // yield [1, 10]
+  // yield [2, 20]
+
+  console.log('yield gene2')
+  yield* gene2()
+  // gene2을 실행한 결과를 yield* 로 줬기 때문에 아래와 같다
+  // yield [3, 30]
+  // yield [4, 40]
+
+  console.log('yield* [[5, 50], [6, 60]]')
+  yield* [[5, 50], [6, 60]]
+  // [5, 50]
+  // [6, 60]
+
+  console.log('yield [7, 70]')
+  yield [7, 70]
+}
+const gen = gene3()
+
+gen.next()
+// yield gene1
+// {value: Array(2), done: false}
+
+gen.next().value
+// (2) [2, 20]
+
+gen.next().value
+// yield gene2
+// (2) [3, 30]
+
+gen.next().value
+// (2) [4, 40]
+
+gen.next().value
+// yield* [[5, 50], [6, 60]]
+// (2) [5, 50]
+
+gen.next().value
+// (2) [6, 60]
+
+gen.next().value
+// yield [7, 70]
+// (2) [7, 70]
+
+gen.next().value
+// undefined
+
+gen.next()
+// {value: undefined, done: true}
+
+```
+
+
+#### 14-3-4. 인자 전달하기
+
+```js
+function* gene () {
+  let first = yield 1
+  console.log(first)
+  let second = yield first + 2
+  console.log(second)
+  yield second + 3
+}
+const gen = gene()
+
+// 설명 (1)
+gen.next()
+// {value: 1, done: false}
+
+// 설명 (2)
+gen.next()
+// undefined
+// {value: NaN, done: false}
+
+
+```
+
+동작을 자세히 살펴보면<br/>
+
+**설명 (1)**<br/>
+
+- let first의 호이스팅 과정
+
+`let first`를 위로 끌어올리고<br/>
+`first = yield 1`
+yield 1는 first로 할당한다, 이런 순서이기 때문에<br/>
+first는 아직 선언만 되고 값이 할당되지 않아서 TDZ 영역에 갇힌 상태인데,<br/>
+yield에서 멈춰버린다! (다음 next를 만나기 전까지는)<br/>
+let first = yield 1 이게 완료(실행)가 되지 않은 상태로 끝나버림<br/>
+
+**설명 (2)**<br/>
+
+`let first = yield 1` 이제 끝났다.<br/>
+
+`let second`를 위로 끌어올리고<br/>
+`secont = yield first + 2` 할당하려는데 yield에서 멈춰버림.<br/>
+`let second = yield first + 2` 가
+완료(실행)이 되지 않았기 때문에 second에는 값이 들어가지 않았다.<br/>
+
+🤷🏻‍♀️ : 그런데 yield의 출력값은 3으로 잘 나와야할 텐데 NaN이 왜 나왔지??<br/>
+**=> first의 값이 `undeined`이기 때문에.**
+
+🤷🏻‍♀️ : 그럼 `undefined`는 왜 들어갔지??<br/>
+`let first`에 값을 할당하는 줄이 이제 끝나서 할당 되었지만,<br/>
+`yield 1` 은 아까 **밖으로 던져버려서 값이 없다**!<br/>
+넣어야할 **값이 없으니 first에는 undefined**가 들어간 것.<br/>
+
+🤷🏻‍♀️ 이상한데 안이상한 방법은 없어?<br/>
+
+=> `next()`의 **인자**로 **값**을 넣어주면 된다.<br/>
+
+```js
+
+gen.next(10)
+// {value: 12, done: false}
+
+```
+yield 구문 앞에 있는 변수에다가, 다음번에 넘겨준다<br/>
+그래서 first에 10이 들어가서 12가 출력된 것!
+
+```js
+
+gen.next(20)
+// {value: 23, done: false}
+
+```
+이젠 second에 20이 들어가서 23이 출력.<br/>
+
+이 함수는, **내가 넘겨준 값을 가지고 다음 yield 동작에 영향을 주게끔** *만든 함수.<br/>
+next의 인자로 넘겨준 덕분에 외부와 소통수단이 열린 것.<br/>
+이렇게 하지 않으면, gen 함수 scope안에 갇혀있는 변수들과 소통할 방법이 없다!<br/>
+
+#### 14-3-5. 비동기 작업 수행
+
+```js
+const ajaxCalls = () => {
+  const res1 = fetch.get('https://api.github.com/users?since=1000')
+  const res2 = fetch.get('https://api.github.com/user/1003')
+}
+const m = ajaxCalls()
+```
+
+```js
+const fetchWrapper = (gen, url) => fetch(url)
+  .then(res => res.json())
+  .then(res => gen.next(res));
+
+function* getNthUserInfo() {
+  const [gen, from, nth] = yield;
+  const req1 = yield fetchWrapper(gen, `https://api.github.com/users?since=${from || 0}`);
+  const userId = req1[nth - 1 || 0].id;
+  console.log(userId);
+  const req2 = yield fetchWrapper(gen, `https://api.github.com/user/${userId}`);
+  console.log(req2);
+}
+const runGenerator = (generator, ...rest) => {
+  const gen = generator();
+  gen.next();
+  gen.next([gen, ...rest]);
+}
+runGenerator(getNthUserInfo, 1000, 4);
+runGenerator(getNthUserInfo, 1000, 6);
+```
+
+```js
+const fetchWrapper = url => fetch(url).then(res => res.json());
+function* getNthUserInfo() {
+  const [from, nth] = yield;
+  const req1 = yield fetchWrapper(`https://api.github.com/users?since=${from || 0}`);
+  const userId = req1[nth - 1 || 0].id;
+  console.log(userId);
+  const req2 = yield fetchWrapper(`https://api.github.com/user/${userId}`);
+  console.log(req2);
+}
+const runGenerator = (generator, ...rest) => {
+  const gen = generator();
+  gen.next();
+  gen.next([...rest]).value
+    .then(res => gen.next(res).value)
+    .then(res => gen.next(res));
+}
+runGenerator(getNthUserInfo, 1000, 4);
+runGenerator(getNthUserInfo, 1000, 6);
+```
