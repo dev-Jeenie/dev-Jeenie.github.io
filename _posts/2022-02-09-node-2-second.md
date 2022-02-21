@@ -1,5 +1,5 @@
 ---
-title: "node_2_second"
+title: "두번째노드테스트"
 permalink: /cs/node2Second
 tags:
   - [CS]
