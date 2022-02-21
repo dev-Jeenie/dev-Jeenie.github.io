@@ -1,6 +1,6 @@
 ---
 title: "Java script ES6💫 중급🔥 ✍️ (3) Iterable, Iterator, generator"
-permalink: /cs/newJavascript
+permalink: /cs/newJavascript3
 tags:
   - [CS]
 
@@ -782,36 +782,45 @@ fetch.get는 원래 하나의 promise!<br/>
 
 ```js
 const fetchWrapper = (gen, url) => fetch(url)
+// (6) 이 promise의 과정을 거쳐서 서버에 갔다가
   .then(res => res.json())
+// (7) 결과가 오면 그 결과를 json으로 바꿔서
   .then(res => gen.next(res));
   // 여기서의 res는 json으로 바뀌어있는 채로 gen.next로 전달됨
+// (8) 그 json 받은걸 가지고 다시 들어온 gen의 next를 돌림. 이건 yield 앞에있는 req1에 들어간다
+// => 서버에 갔다가 응답이 온 데이터가 req1에 담기는 것이 확인됨!
 
 function* getNthUserInfo() {
   const [gen, from, nth] = yield;
+  // 처음에 그냥 yield만 실행하게 되어있다.
+  // (4) gen에는 getNthUserInfo, from엔 1000, nth엔 4가 들어간다
+// 다음번 next를 할 때 yield의 다음부터 실행되니까, 그때 그 값이 해체할당되어서 들어가는 것
   const req1 = yield fetchWrapper(gen, `https://api.github.com/users?since=${from || 0}`);
+  // (5) fetchWrapper를 실행해서 gen과 url을 넘겨준다
   const userId = req1[nth - 1 || 0].id;
+  // (9) req1에 들어있는 확실한 데이터를 바탕으로 유저정보를 빼냄
   console.log(userId);
   const req2 = yield fetchWrapper(gen, `https://api.github.com/user/${userId}`);
+  // (10),  fetchWrapper의 인자로 generator와 유저ID를 보내서 (6,7,8) 순서를 거친 뒤 req2에는 확실한 유저정보가 담김.
   console.log(req2);
 }
 const runGenerator = (generator, ...rest) => {
   const gen = generator();
   gen.next();
+  // 첫째 yield인  const [gen, from, nth] = yield; 에서 멈춤
   gen.next([gen, ...rest]);
+  // (3) 아래에서 받은 generator와 1000,4배열을 풀어헤쳐서 배열로 묶어 보냈다.
 }
 runGenerator(getNthUserInfo, 1000, 4);
 runGenerator(getNthUserInfo, 1000, 6);
+// (1) runGenerator를 실행해. generator는 getNthUserInfo이고, 
+// 1000과 4는 ...rest라고 하는 배열로 받아라.
+
 ```
 
-generator방식의 비동기 처리는 yield를 이용한다.<br/>
-
-- fetchWrapper는 `generator`와 `url`을 받아서 `fetch 메소드`를 사용한다<br/>
-이 fetch 메소드는 서버에 get 요청을 보낸다<br/>
-서버에서 응답이 오면, 그때 then 안에 있는, res를 json으로 바꿔주는 명령을 실행한다.<br/>
-그 실행이 끝나면 json으로 바뀌어있는 res를, 받아온 generator의 next를 호출해서 전달시킴
-
-
-
+generator방식의 비동기 처리는 이렇게 yield를 이용한다.<br/>
+분명 비동기 처리인데 동기처리하는 것처럼 순차적으로 같은 뎁스에 내려서 쓸 수 있게 됨.
+  
 
 ```js
 const fetchWrapper = url => fetch(url).then(res => res.json());
@@ -833,3 +842,15 @@ const runGenerator = (generator, ...rest) => {
 runGenerator(getNthUserInfo, 1000, 4);
 runGenerator(getNthUserInfo, 1000, 6);
 ```
+
+promise를 다른 위치에서 구현할 수도 있다.<br/>
+
+아까는 `fetchWrapper`에게 `generator`를 넘겨서 `fetchWrapper`가 `next`를 호출하는 방식이었지만,<br/>
+
+이번 방식은 `fetchWrapper`에겐 url만 넘기고,<br/>
+`runGenerator`가 `next`를 실행한 것을 바탕으로 `promise`를 여기서 구현<br/>
+
+
+=> 하지만 `async`와 `await`로 더욱 간단하게 구현할 수 있다. <br/>
+나온지 몇년 되지 않았고, 이게 없어서 generator로 비동기처리하려고 고군분투를 했음!<br/>
+
