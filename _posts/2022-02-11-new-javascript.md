@@ -712,18 +712,79 @@ next의 인자로 넘겨준 덕분에 외부와 소통수단이 열린 것.<br/>
 
 #### 14-3-5. 비동기 작업 수행
 
+userId가 1000번 이후인  데이터를 가져와서
+그 중에 4번째에 위치한 User정보를 보고싶다.
+
+우선 이 동작을 살펴보자.<br/>
+
 ```js
 const ajaxCalls = () => {
   const res1 = fetch.get('https://api.github.com/users?since=1000')
-  const res2 = fetch.get('https://api.github.com/user/1003')
 }
 const m = ajaxCalls()
 ```
+서버에 request 를 보내고, 서버에서 response가 온다.<br/>
+그런데 이 사이의 시간 갭이 있음. 네트워크에 따라서 응답시간은 천차만별이다.<br/>
+res1에는 내가 원하는 데이터가 담기지는 않음!<br/>
+res1은 요청해라~ 하는 선언일 뿐.<br/>
+**요청하자마자** 이 내용에 대한 분석은 끝났고 그 값이 그대로 res1에 담길 뿐이다.<br/>
+res1에는 request를 하자마자 바로 결과가 담긴다.<br/>
+즉, **response된 결과가 담기는게 아니라, `원하지 않는 불필요한 데이터`가 담기는 것**<br/>
+서버에 보내고 응답이 언제올 지 모르는데,<br/>
+응답이 오기도 전에 이 문장은 바로 순식간에 이뤄져서 무의미한 데이터가 담겨버린다.<br/>
+
+```js
+const ajaxCalls = () => {
+  const res1 = fetch.get('https://api.github.com/users?since=1000')
+  const res2 = fetch.get(`https://api.github.com/user/${res1[3]}`)
+}
+const m = ajaxCalls()
+```
+
+그래서 이렇게 res2로 res1의 3번째 데이터를 담아봤자<br/>
+애초에 res1 데이터가 들어있지 않으니 의미없다.<br/>
+
+**=> 이것이 바로 `동기 처리`**<br/>
+시간에 대한 고려없이, 그냥 이문장 먼저 실행하고, 다음 문장을 실행시키는 것 뿐.<br/>
+
+🤷🏻‍♀️ : 그럼, 한 문장이 **`실행된 다음에`** 실행을 시키기 위해서는 어떻게 해야해?<br/>
+
+**=> 바로 `비동기 처리`를 해야한다!**
+
+- 1) 콜백방식의 비동기처리(기존 JQuery에서 사용했던 방식)
+
+```js
+$.ajax({
+  method: 'GET',
+  url:'https://api.github.com/users?since=1000',
+  success: function (res) {
+  const res2 = fetch.get(`https://api.github.com/user/${res1[3]}`)
+  }
+});
+
+```
+서버에서 요청에 대한 결과가 success가 왔을 때에만 그 결과값으로 어떠한 처리를 하게함.
+
+
+- 2) Promise 방식의 비동기처리
+
+```js
+fetch.get('https://api.github.com/users?since=1000')
+.then(function (res) {
+  const res2 = fetch.get(`https://api.github.com/user/${res1[3]}`)
+  });
+```
+fetch.get는 원래 하나의 promise!<br/>
+그렇기 때문에 then을 붙여서 사용할 수 있따.
+
+
+- 3) Generator 방식의 비동기처리
 
 ```js
 const fetchWrapper = (gen, url) => fetch(url)
   .then(res => res.json())
   .then(res => gen.next(res));
+  // 여기서의 res는 json으로 바뀌어있는 채로 gen.next로 전달됨
 
 function* getNthUserInfo() {
   const [gen, from, nth] = yield;
@@ -741,6 +802,16 @@ const runGenerator = (generator, ...rest) => {
 runGenerator(getNthUserInfo, 1000, 4);
 runGenerator(getNthUserInfo, 1000, 6);
 ```
+
+generator방식의 비동기 처리는 yield를 이용한다.<br/>
+
+- fetchWrapper는 `generator`와 `url`을 받아서 `fetch 메소드`를 사용한다<br/>
+이 fetch 메소드는 서버에 get 요청을 보낸다<br/>
+서버에서 응답이 오면, 그때 then 안에 있는, res를 json으로 바꿔주는 명령을 실행한다.<br/>
+그 실행이 끝나면 json으로 바뀌어있는 res를, 받아온 generator의 next를 호출해서 전달시킴
+
+
+
 
 ```js
 const fetchWrapper = url => fetch(url).then(res => res.json());
