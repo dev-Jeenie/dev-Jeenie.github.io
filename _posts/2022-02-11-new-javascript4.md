@@ -48,8 +48,8 @@ Person1.isPerson = function (obj) {  // static method
 }
 
 const jn1 = new Person1('재남')
-console.log(jn1.getName())
-console.log(Person1.isPerson(jn1))
+console.log(jn1.getName()) // 재남
+console.log(Person1.isPerson(jn1)) // true
 
 // jn1은 
 
@@ -67,7 +67,7 @@ person.isPerson();
 - getName
 > Person1.prototype.getName<br/>
 
-  - prototype이 붙었으니 이건 prototype method.
+  - `prototype`이 붙었으니 이건 prototype method.
   - 생성자함수는 prototype method를 바로 호출할 수 없다.
 
 - isPerson
@@ -80,6 +80,14 @@ person.isPerson();
 
 > static method란?<br/>
 생성자 함수 본인이 직접 가지고 있는 method.(정적 메소드)
+
+
+
+
+
+
+
+
 
 
 - es5의 방식
@@ -97,6 +105,12 @@ const jn1 = new Person1('재남')
 console.log(jn1.getName())
 console.log(Person1.isPerson(jn1))
 ```
+
+
+
+아이패드 설명
+
+
 
 - es6의 방식
 ```js
@@ -119,6 +133,13 @@ class 내부영역은 method들만 정의해둘 수 있는 영역<br/>
 
 > method이름 (인자) { 내용 }<br/>
 class 내부에서는 오직 이렇게만 쓸 수 있다.<br/>
+
+
+
+
+
+
+
 
 
 
@@ -266,7 +287,7 @@ const aa = new A.prototype.a();
 (함수로도 쓸 수 있고 생성자 함수로도 쓸 수 있던 기존 방식)
 
 
-- 생성자로서만 동작한다.
+- Class는 `생성자로서만` 동작한다.
 
 ```js
 class A { }
@@ -297,7 +318,10 @@ class C {
 }
 const c = new C()
 ```
+클래스 선언문에 의해서 만든 변수는 `상수`이다.<br/>
 
+클래스 C 내부에서 comstructor로 해당 클래스명을 다른 것으로 바꾸려는 시도는 constant variable 막히지만, <br/>
+외부에서는 C라는 변수가 const가 아닌 let으로 선언된 것으로 보임.
 
 
 - 클래스 외부에서 클래스명 수정
@@ -316,12 +340,334 @@ C = 10;             // ok
 - 외부에서 prototype을 다른 객체로 덮어씌울 수 없다 (읽기전용)
 
 ```js
+
+function A { }
+A.prototype.~
+
 class A {
   a () { }
 }
-A.prototype = {
-  a () { console.log(1) }
-}
+
 const a = new A()
 a.a()
+// undefined 실행해봤자 아무것도 없음
+
+
+```
+
+function으로 만든건 나중에 prototype.메소드로 할당할 수 있었지만,<br/>
+class로 만들면 선언과 동시에 읽기전용으로 만들어버린다.<br/>
+
+
+```js
+A.prototype.a = {
+  function () { console.log(1) }
+}
+
+a.a() // 1
+```
+
+class A 안에 있는 a 메소드는 A.prototype.a()와 같다.<br/>
+
+
+```js
+A.prototype = {}
+// X
+```
+
+prototype을 통째로 바꿔치기하는 건 불가능하지만,<br/>
+메소드 하나하나는 바꿔치기가 가능하다.
+
+
+
+
+
+#### 3) '문'이 아닌 '값'이자 '식'이다.
+
+그렇기 때문에 class 자체를 다른 함수의 인자로 넘길 수 있다.
+
+```js
+const jn = new class {
+  constructor (name) { this.name = name }
+  sayName () { console.log(this.name) }
+}('재님')
+jn.sayName()
+```
+
+```js
+const instanceGenerator = (className, ...params) => new className(...params)
+class Person {
+  constructor (name) { this.name = name }
+  sayName () { console.log(this.name) }
+}
+
+const jn = instanceGenerator(Person, '재나')
+// === new Person('재나') 와 동일하다
+const sh = instanceGenerator(class {
+  constructor (name) { this.name = name }
+  sayName () { console.log(this.name) }
+}, '성후')
+
+jn.sayName()
+// Person {name: '재나'}
+sh.sayName()
+// {name: '성후'}
+// 익명클래스이기 때문에 앞에 클래스 네임이 붙지않음
+```
+className이라는 인자로 클래스를 전달받아서 새로운 인스턴스를 생성하는 방식이 가능함.
+
+
+
+
+#### 4) 접근자
+
+```js
+class CustomHTMLElement {
+  constructor (element) {
+    this._element = element
+  }
+  get html () {
+    return this._element.innerHTML
+  }
+  set html (value) {
+    this._element.innerHTML = value
+  }
+}
+console.log(Object.entries(CustomHTMLElement.prototype))
+//  [] 열거대상에서 재외
+console.log(Object.getOwnPropertyDescriptor(CustomHTMLElement.prototype, 'html'))
+// {get: f, set: f,enumerable: false, configuarable: false}
+
+```
+
+
+
+#### 5) computed property names
+
+```js
+const method1 = 'sayName'
+const fullNameGetter = 'fullname'
+class Person {
+  constructor (name) { this.name = name }
+  [method1] () { console.log(this.name) }
+  // 메소드를 대괄호 표기법으로 호출할 수 있다. 이름이 바뀌어도 호출이 가능하게끔
+  get [fullNameGetter] () { return this.name + ' 정' }
+}
+const jn = new Person('재나')
+jn.sayName()
+// 재나
+console.log(jn.fullname)
+// 재나 정
+```
+
+#### 6) 제너레이터
+
+```js
+
+const obj = {
+  *gene () {}
+}
+
+class A {
+  *generator () {
+    yield 1
+    yield 2
+  }
+}
+const a = new A() 
+const iter = a.generator()
+console.log(...iter)
+```
+
+객체에서 generator를 할당할 때와 동일하게 class에서도 할당 가능.
+
+
+
+#### 7) Symbol.iterator
+
+```js
+class Products {
+  constructor () {
+    this.items = new Set()
+  }
+  addItem (name) {
+    this.items.add(name)
+  }
+  [Symbol.iterator] () {
+    // 방식은 객체에서와 동일. 대괄호 표기법으로 접근해서 Symbol.iterator를 만들어줌.
+    let count = 0
+	  const items = [...this.items]
+    return {
+      next () {
+        return {
+          done: count >= items.length,
+          value: items[count++]
+        }
+      }
+    }
+  }
+}
+const a = new Products()
+a.addItem('밥')
+a.addItem('밥밥')
+a.addItem('밥밥밥')
+
+[...a]
+// (3) ['밥','밥밥','밥밥밥']
+
+const iter = a[Symbol.iterator()];
+
+iter.next()
+// { done: false, vale: '밥' }
+
+iter.next()
+// { done: false, vale: '밥밥' }
+
+iter.next()
+// { done: false, vale: '밥밥밥' }
+
+iter.next()
+// { done: true, vale: undefined }
+
+```
+
+```js
+class Products {
+  constructor () {
+    this.items = new Set()
+  }
+  addItem (name) {
+    this.items.add(name)
+  }
+  *[Symbol.iterator] () {
+    // generator로 iterator를 만들면 간단.
+    yield* this.items
+  }
+}
+const prods = new Products()
+prods.addItem('사과')
+prods.addItem('배')
+prods.addItem('포도')
+for (let x of prods) {
+  console.log(x)
+}
+```
+
+
+### 8) 정적 메소드 (static method)
+
+```js
+class Person {
+  static create (name) {
+    return new this(name)
+  }
+  constructor (name) {
+    this.name = name
+  }
+}
+const jn = Person.create('재난')
+console.log(jn)
+```
+
+class 본인을 위해서만 create 메소드를 호출할 수 있다.<br/>
+따라서 인스턴스에서 접근이 불가능하다.<br/>
+
+
+> 사실 접근은 가능하다. 하지만 의미가 없다<br/>
+
+jn.__proto__.constructor.create()<br/>
+이렇게 접근할 수는 있지만, 이때의 this는 `jn.__proto__.constructor`<br/>
+
+jn.create()이렇게 접근이 되어야 this가 변경이 되면서 인스턴스가 호출을 할 수 있는데,<br/>
+
+접근해봤자 this가 Person이 아니기때문에<br/>
+class만이 접근이 가능하다.
+
+
+## 15-3. 클래스 상속
+
+
+사각형  =>  직사각형  =>  정사각형<br/>
+(변4개)   (+각이90도)   (+변길이모두같음)<br/>
+
+
+이 집단 구성의 원칙은 프로그래밍에서도 동일함.<br/>
+
+
+```js
+class 사각형 {
+  constructor (a, b, c, d) {}
+}
+
+class 직사각형 {
+  constructor (가로, 세로) {}
+}
+
+class 정사각형 {
+  constructor (가로) {}
+}
+
+```
+
+
+
+### 15-3-1. 소개
+
+```js
+function Square (width) {
+  this.width = width
+}
+
+Square.prototype.getArea = function () {
+  return this.width * (this.height || this.width)
+}
+
+function Rectangle (width, height) {
+  Square.call(this, width)
+  this.height = height
+}
+
+function F() { }
+
+F.prototype = Square.prototype
+Rectangle.prototype = new F()
+Rectangle.prototype.constructor = Rectangle
+
+const square = Square(3)
+const rect = new Rectangle(3, 4)
+
+console.log(rect.getArea())
+console.log(rect instanceof Rectangle)
+console.log(rect instanceof Square)
+```
+
+            Squre .prototype
+Rectangle .prototype
+instance
+
+ 
+
+
+
+
+```js
+class Square {
+  constructor (width) {
+    this.width = width
+  }
+  getArea () {
+    return this.width * (this.height || this.width)
+  }
+}
+class Rectangle extends Square {
+  constructor (width, height) {
+    super(width)
+    this.height = height
+  }
+}
+
+const rect = new Rectangle(3, 4)
+console.log(rect.getArea())
+console.log(rect instanceof Rectangle)
+console.log(rect instanceof Square)
 ```
