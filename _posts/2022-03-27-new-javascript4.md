@@ -9,7 +9,7 @@ toc: true
 toc_sticky: true
 
 date: 2022-02-22
-last_modified_at: 2022-02-22
+last_modified_at: 2022-03-27
 ---
 
 ![]()
@@ -590,8 +590,9 @@ class만이 접근이 가능하다.
 사각형  =>  직사각형  =>  정사각형<br/>
 (변4개)   (+각이90도)   (+변길이모두같음)<br/>
 
-
 이 집단 구성의 원칙은 프로그래밍에서도 동일함.<br/>
+
+하지만 사각형이 최상위일지, 정사각형이 최상위일지는 정하기 나름.
 
 
 ```js
@@ -641,14 +642,372 @@ console.log(rect instanceof Rectangle)
 console.log(rect instanceof Square)
 ```
 
-            Squre .prototype
-Rectangle .prototype
-instance
 
- 
+이런 빈 함수를 만들어서 힘들게 처리했어야 했는데, <br/>
 
+이제는 아래처럼 extends 만 쓰면 된다.
 
 
+```js
+class Square {
+  constructor (width) {
+    this.width = width
+  }
+  getArea () {
+    return this.width * (this.height || this.width)
+  }
+}
+class Rectangle extends Square {
+  constructor (width, height) {
+    super(width)
+    //  prototype 체이닝 상에 다시 접근할 수 있는 접근자
+    this.height = height
+  }
+}
+
+const rect = new Rectangle(10, 20)
+console.log(rect.getArea())
+// 200
+console.log(rect instanceof Rectangle)
+console.log(rect instanceof Square)
+```
+
+> super <br/>
+prototype 체이닝 상에 다시 접근할 수 있는 접근자. <br/>
+
+super.gerArea(width) 이렇게 접근할 수 있지만, 지금은 그냥 함수로써 쓰였다. <br/>
+함수로 쓰일때는 , `상위에 있는 class의 constructor를 직접 접근`함. <br/>
+오직 constructor(생성자함수)안에서만 호출이 가능 <br/>
+
+그래서 상위의 클래스의  constructor가 호출됨.
+
+width가 넘어가고, 이때의 this는 Rectangle의 this <br/>
+그래서 this.width = width가 되는 것. <br/>
+
+
+```js
+console.log(rect.getArea())
+```
+200이 나오는 이유? <br/>
+넘겨준 값들에 의해서 Rectangle 클래스의 construtor가 호출이 된다. <br/>
+그럼 10, 20 이 넘어간채로 super에 10을 넘김 <br/>
+
+Squre의 constructor에 의해서 this.width가 10이 됨. <br/>
+그 다음 height는 20. <br/>
+
+
+Rectangle에는 메소드가 없다. 
+
+
+rect.(__proto__) // Rectangle.prototype <br/>
+rect.(__proto__).(__proto__) // Squre.prototype <br/>
+rect.(__proto__).(__proto__).getArea() <br/>
+
+(__proto__)는 생략가능! <br/>
+그래서 결국 rect.getArea() 이렇게 사용이 가능한 것 <br/>
+
+
+
+
+## 15-2. 상세
+
+#### 1) 선언방식
+
+```js
+// 클래스 리터럴
+class Person1 { }
+console.log(Person1.name)
+
+// 기명 클래스 표현식
+const Person2 = class Person22 { }
+console.log(Person2.name)
+
+// 익명 클래스 표현식
+let Person3 = class { }
+console.log(Person3.name)
+```
+
+#### 2) 기존 방식과의 차이점
+
+- let, const와 마찬가지로 TDZ가 존재하며, 블록스코프에 갇힌다.
+
+```js
+if(true) {
+  class A { }
+  const a = new A()
+  if(true) {
+    const b = new A()
+    class A { }
+  }
+}
+const c = new A()
+```
+
+- class 내부는 strict mode가 강제된다.
+
+- 모든 메소드를 열거할 수 없다. (콘솔에서 색상이 흐리게 표기됨)
+
+```js
+class A {
+  a () { }
+  b () { }
+  static c () { }
+}
+
+for (let p in A.prototype) {
+  console.log(p)
+}
+
+A.prototype.a = function () { }
+A.prototype.d = function () { }
+
+for (let p in A.prototype) {
+  console.log(p)
+}
+```
+
+- constructor를 제외한 모든 메소드는`new` 명령어로 호출할 수 없다.
+
+```js
+class A {
+  constructor () { }
+  a () { }
+  static b () { }
+}
+const a = new A.prototype.constructor()
+const b = new A.prototype.a()
+const c = new A.prototype.b()
+
+const d = new A()
+const e = new d.constructor()
+```
+
+- 생성자로서만 동작한다.
+
+```js
+class A { }
+A()
+```
+
+- 클래스 내부에서 클래스명 수정
+
+```js
+let A = class {
+  constructor () { A = 'A' }
+}
+const a = new A()
+console.log(A)
+
+const B = class {
+  constructor () { B = 'B' }
+}
+const b = new B()
+
+class C {
+  constructor () { C = 'C' }
+}
+const c = new C()
+```
+
+- 클래스 외부에서 클래스명 수정
+
+```js
+let A = class { }
+A = 10;             // ok
+
+const B = class { }
+B = 10;             // Uncaught Type Error: Assignment to constant variable
+
+class C { }
+C = 10;             // ok  
+```
+
+- 외부에서 prototype을 다른 객체로 덮어씌울 수 없다 (읽기전용)
+
+```js
+class A {
+  a () { }
+}
+A.prototype = {
+  a () { console.log(1) }
+}
+const a = new A()
+a.a()
+```
+
+#### 3) '문'이 아닌 '식'이다.
+
+```js
+const jn = new class {
+  constructor (name) { this.name = name }
+  sayName () { console.log(this.name) }
+}('재님')
+jn.sayName()
+```
+
+```js
+const instanceGenerator = (className, ...params) => new className(...params)
+class Person {
+  constructor (name) { this.name = name }
+  sayName () { console.log(this.name) }
+}
+
+const jn = instanceGenerator(Person, '재나')
+const sh = instanceGenerator(class {
+  constructor (name) { this.name = name }
+  sayName () { console.log(this.name) }
+}, '성후')
+
+jn.sayName()
+sh.sayName()
+```
+
+#### 4) 접근자
+
+```js
+class CustomHTMLElement {
+  constructor (element) {
+    this._element = element
+  }
+  get html () {
+    return this._element.innerHTML
+  }
+  set html (value) {
+    this._element.innerHTML = value
+  }
+}
+console.log(Object.entries(CustomHTMLElement.prototype))
+console.log(Object.getOwnPropertyDescriptor(CustomHTMLElement.prototype, 'html'))
+```
+
+#### 5) computed property names
+
+```js
+const method1 = 'sayName'
+const fullNameGetter = 'fullname'
+class Person {
+  constructor (name) { this.name = name }
+  [method1] () { console.log(this.name) }
+  get [fullNameGetter] () { return this.name + ' 정' }
+}
+const jn = new Person('재나')
+jn.sayName()
+console.log(jn.fullname)
+```
+
+#### 6) 제너레이터
+
+```js
+class A {
+  *generator () {
+    yield 1
+    yield 2
+  }
+}
+const a = new A()
+const iter = a.generator()
+console.log(...iter)
+```
+
+#### 7) Symbol.iterator
+
+```js
+class Products {
+  constructor () {
+    this.items = new Set()
+  }
+  addItem (name) {
+    this.items.add(name)
+  }
+  [Symbol.iterator] () {
+    let count = 0
+	  const items = [...this.items]
+    return {
+      next () {
+        return {
+          done: count >= items.length,
+          value: items[count++]
+        }
+      }
+    }
+  }
+}
+const prods = new Products()
+prods.addItem('사과')
+prods.addItem('배')
+prods.addItem('포도')
+for (let x of prods) {
+  console.log(x)
+}
+```
+
+```js
+class Products {
+  constructor () {
+    this.items = new Set()
+  }
+  addItem (name) {
+    this.items.add(name)
+  }
+  *[Symbol.iterator] () {
+    yield* this.items
+  }
+}
+const prods = new Products()
+prods.addItem('사과')
+prods.addItem('배')
+prods.addItem('포도')
+for (let x of prods) {
+  console.log(x)
+}
+```
+
+### 8) 정적 메소드 (static method)
+
+```js
+class Person {
+  static create (name) {
+    return new this(name)
+  }
+  constructor (name) {
+    this.name = name
+  }
+}
+const jn = Person.create('재난')
+console.log(jn)
+```
+
+## 15-3. 클래스 상속
+
+### 15-3-1. 소개
+
+```js
+function Square (width) {
+  this.width = width
+}
+
+Square.prototype.getArea = function () {
+  return this.width * (this.height || this.width)
+}
+
+function Rectangle (width, height) {
+  Square.call(this, width)
+  this.height = height
+}
+
+function F() { }
+
+F.prototype = Square.prototype
+Rectangle.prototype = new F()
+Rectangle.prototype.constructor = Rectangle
+
+const square = Square(3)
+const rect = new Rectangle(3, 4)
+
+console.log(rect.getArea())
+console.log(rect instanceof Rectangle)
+console.log(rect instanceof Square)
+```
 
 ```js
 class Square {
@@ -670,4 +1029,131 @@ const rect = new Rectangle(3, 4)
 console.log(rect.getArea())
 console.log(rect instanceof Rectangle)
 console.log(rect instanceof Square)
+```
+
+### 15-3-2. 상세
+
+1. `class [서브클래스명] extends [수퍼클래스명] { [서브클래스 본문] }`
+
+- 반드시 변수만 와야 하는 것이 아니라, 클래스 식이 와도 된다.
+```js
+class Employee extends class Person {
+  constructor (name) { this.name = name }
+} {
+  constructor (name, position) {
+    super(name)
+    this.position = position
+  }
+}
+const jn = new Employee('잰남', 'worker')
+```
+
+```js
+class Employee extends class {
+  constructor (name) { this.name = name }
+} {
+  constructor (name, position) {
+     (name)
+    this.position = position
+  }
+}
+const jn = new Employee('잰남', 'worker')
+console.log(jn.__proto__.__proto__.constructor.name)
+```
+
+- 함수도 상속 가능.
+
+```js
+function Person (name) { this.name = name }
+class Employee extends Person {
+  constructor (name, position) {
+    super(name)
+    this.position = position
+  }
+}
+const jn = new Employee('잰남', 'worker')
+```
+
+```js
+class Employee extends function (name) { this.name = name } {
+  constructor (name, position) {
+    super(name)
+    this.position = position
+  }
+}
+const jn = new Employee('잰남', 'worker')
+```
+
+- 내장 타입 상속 가능
+
+```js
+class NewArray extends Array {
+  toString () {
+    return `[${super.toString()}]`
+  }
+}
+const arr = new NewArray(1, 2, 3)
+console.log(arr)
+console.log(arr.toString())
+```
+
+2. super (내부키워드로써, 허용된 동작 외엔 활용 불가)
+
+- (1) constructor 내부에서
+  - 수퍼클래스의 constructor를 호출하는 함수 개념.
+  - 서브클래스의 constructor 내부에서 `this`에 접근하려 할 때는 **가장 먼저** super함수를 호출해야만 한다.
+  - 서브클래스에서 constructor를 사용하지 않는다면 무관. (이 경우 상위클래스의 constructor만 실행된다.)거나, 내부에서 `this`에 접근하지 않는다면 무관.
+
+- (2) - 메소드 내부에서
+  - 수퍼클래스의 프로토타입 객체 개념.
+  - 메소드 오버라이드 또는 상위 메소드 호출 목적으로 활용.
+
+```js
+class Rectangle {
+  constructor (width, height) {
+    this.width = width
+    this.height = height
+  }
+  getArea () {
+    return this.width * this.height
+  }
+}
+class Square extends Rectangle {
+  constructor (width) {
+    console.log(super)
+    super(width, width)
+  }
+  getArea () {
+    console.log('get area of square.')
+    console.dir(super)
+    return super.getArea()
+  }
+}
+const square = new Square(3)
+console.log(square.getArea())
+```
+
+3. `new.target`을 활용한 abstract class 흉내
+
+```js
+class Shape {
+  constructor () {
+    if(new.target === Shape) {
+      throw new Error('이 클래스는 직접 인스턴스화할 수 없는 추상클래스입니다.')
+    }
+  }
+  getSize () {}
+}
+class Rectangle extends Shape {
+  constructor (width, height) {
+    super()
+    this.width = width
+    this.height = height
+  }
+  getSize () {
+    return this.width * this.height
+  }
+}
+const s = new Shape()
+const r = new Rectangle(4, 5)
 ```
