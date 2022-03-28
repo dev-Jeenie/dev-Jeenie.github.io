@@ -344,7 +344,6 @@ const a = new WeakMap([
   [{a: 1}, 2]
 ]);
 console.log(a)
-// WeakMap {{...} => 1, {...} => 2}
 [...a]
 // error! a is not iterable
 ```
