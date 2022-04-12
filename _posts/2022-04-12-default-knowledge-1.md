@@ -176,19 +176,6 @@ Web API와 더불어 **웹 브라우저나 런타임**에서는 `Event loop`와 
 <img src="/assets/images/js_async_work_1.jpeg" /><br/>
 <img src="/assets/images/js_async_work_2.jpeg" /><br/>
 
-<!-- 
-
-
-JavaScript의 동작 원리
--https://asfirstalways.tistory.com/362
--함수 콜 스택과 이벤트 큐에 따른 실행 순서
--예로 같은 함수 안에서 호출 됬을때 호출 순서는 콜 스택 함수가 실행된 후에야 
-이벤트 함수가 실행된다는 것이다.
- -->
-
-
-
-
 
 
 
