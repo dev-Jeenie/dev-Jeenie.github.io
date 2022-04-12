@@ -130,6 +130,7 @@ Web API와 더불어 **웹 브라우저나 런타임**에서는 `Event loop`와 
 
 
 <img src="/assets/images/js_engine_work.png" /><br/>
+이미지 출처 https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf
 
 
 
