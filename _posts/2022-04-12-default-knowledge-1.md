@@ -267,12 +267,12 @@ DOM 은 구조화된 **`nodes`**와 **`property`** 와 **`method`** 를 갖고 �
 
 DOM은 트리 구조로 HTML 문서를 표현한다
 
-<img src="/assets/images/js_dom.jpeg" /><br/>
+<img src="/assets/images/js_dom.png" /><br/>
 
 기본적으로 HTML 구조를 따라가고, 이를 tree 형태로 표현한다.<br/>
 
-최상위 태그인 <html>이 DOM Tree의 가장 상위 요소인 것 처럼 보이지만,<br/>
-<html>태그와 더불어 최상단의 선언문인 <!doctype html>까지 포함하는
+최상위 태그인 html이 DOM Tree의 가장 상위 요소인 것 처럼 보이지만,<br/>
+html태그와 더불어 최상단의 선언문인 !doctype html까지 포함하는
 
 **`document 객체`**가 그 위에 있다.<br/>
 모든 html의 위에는 document가 있는 것이다.<br/>
