@@ -134,17 +134,58 @@ Web API와 더불어 **웹 브라우저나 런타임**에서는 `Event loop`와 
 
 
 
+- V8 엔진의 **`Memory heap`**, **`Call Stack`**
+- Web API에서 제공하는 API들 **`DOM`**, **`AJAX`**, **`TimeOut`**
+- 브라우저나 런타임이 제공하는 **`Event Loop`**, **`Callback Queue`**
+
+
 
 ### 2-3. 스택 프레임(Stack Frame)과 후입 선출(LIFO, Last-In-First-Out)
 
+자바스크립트의 **Call Stack(호출 스택)**은,<br/>
+한 줄씩 읽어가며 코드가 순서대로 돌아갈 수 있도록 보장해주는 데이터 구조 <br/>
 
-자바스크립트 엔진 이외에도 자바스크립트에 관여하는 다른 요소들이 많습니다. DOM, Ajax, setTimeout 과같이 브라우저에서 제공하는 API 들을 Web API라고 합니다. 그리고 아래쪽에 이벤트 루프와 콜백 큐도 있네요.
+Stack을 사용하기 때문에, 나중에 들어온 것이 먼저 나가는 **`후입 선출`**의 구조를 가진다.<br/>
 
-- V8 엔진의 **`Memory heap`**, **`Call Stack`**
-- Web API에서 제공하는 API들 **`DOM`**, **`AJAX`**, **`TimeOut`**
-- 
+이렇게 call stack에 쌓이는 하나의 사각형을 **`스택 프레임(stack frame)`**이라고 한다.<br/>
+
+호출 스택은 기본적으로 프로그램 상에서 **`어디 있는지`** 기록하는 자료구조이다.<br/>
+
+- 함수가 실행이 된다면(실행 커서가 함수 안에 있으면)<br/>
+  - 해당 함수 스택 프레임은 호출 스택의 가장 상단에 위치한다<br/>
+  - 따라서 스택의 맨 위에 있는 스택 프레임을 가리키고 있게 됨.<br/>
+- 함수의 실행이 끝날 때(리턴 값을 돌려줄 떄)<br/>
+  - 해당 함수 스택 프레임을 호출 스택에서 제거<br/>
+
+=> 이게 ***스택의 역할***!
 
 
+* 예제 (사각형의 넓이 구하기)
+
+```js
+function multiply(x, y) {
+    return x * y;
+}
+function printSquare(x) {
+    var s = multiply(x, x);
+    console.log(s);
+}
+printSquare(5);
+```
+
+처음 엔진이 이 코드를 실행하는 시점에서는 호출스택이 비어있다. <br/>
+
+하지만 코드가 실행되면 아래와 같이 변한다<br/>
+<img src="/assets/images/js_stack_frame.png" /><br/>
+
+코드가 실행되면 가장 먼저 printSqure가 호출됨<br/>
+- 1. printSqure를 Push해서 스택에 쌓고 읽음
+- 2. multiply를 Push해서 스택에 쌓고 읽음
+- 3. console.log(s)를 스택에 쌓고 읽음
+- 4. 더이상 읽어서 쌓을 함수가 존재하지 않으면, 맨 위에 있는 스택프레임부터 처리하며 출력
+
+중요! ⭐️ <br/>
+더이상 쌓을 함수가 존재하지 않으면, **맨 위에 있는** 스택 프레임부터 하나씩 처리하며 출력한다. <br/>
 
 
 
@@ -185,11 +226,31 @@ Web API와 더불어 **웹 브라우저나 런타임**에서는 `Event loop`와 
 
 
 ## 3. DOM API
+
+
+
+
+DOM API (Web API) and Concept
+-https://developer.mozilla.org/ko/docs/Web/API/Document_Object_Model/Introduction
+
+-DOM은 문서의 구조화된 표현(structured representation)을 제공하며 프로그래밍 언어가 DOM 구조에 
+접근할 수 있는 방법을 제공하여 그들이 문서 구조, 스타일, 내용 등을 변경할 수 있게 돕는다.
+
+-javascript 를 통해 웹 콘텐츠를 동적으로 제어할 수 있는 이유는 DOM 이 
+중간에서 interface 역할을 해주기 때문입니다.
+
+
+
 ## 4. ECMAScript2015(ES6)
 
 
 
 
+-2015년 자바스크립트가 새롭게 개편되어 const let 화살표 함수와 같은 ES5까지 그동안 문제가 
+많았던 문법들을 해결하는 새로운 문법들이 등장하게된 문법
+문제 예: this가 특정 객체 안의 메소드 함수 안에서 함수를 호출하면 자신을 감싸고 있는
+ 객체가 아닌 전역객체의 메소드가 되어 window나 global을 this로 불러오는 오류를 화살표
+ 함수로 바꾸면 따로 바인딩 하지 않아도 해결됨
 
 
 
