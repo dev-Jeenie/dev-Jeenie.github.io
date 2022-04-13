@@ -229,7 +229,7 @@ printSquare(5);
 
 
 
-
+<!-- 
 DOM API (Web API) and Concept
 -https://developer.mozilla.org/ko/docs/Web/API/Document_Object_Model/Introduction
 
@@ -237,8 +237,59 @@ DOM API (Web API) and Concept
 접근할 수 있는 방법을 제공하여 그들이 문서 구조, 스타일, 내용 등을 변경할 수 있게 돕는다.
 
 -javascript 를 통해 웹 콘텐츠를 동적으로 제어할 수 있는 이유는 DOM 이 
-중간에서 interface 역할을 해주기 때문입니다.
+중간에서 interface 역할을 해주기 때문입니다. -->
 
+
+### 3-1. DOM(The Document Object Model)이란?
+
+문서 객체 모델(The Document Object Model, 이하 DOM) 은 **HTML, XML 문서의 `프로그래밍 interface`** 이다.<br/>
+DOM은 문서의 **구조화된 표현**(structured representation)을 제공하며 <br/>
+프로그래밍 언어가 
+<strong style="color:black;background-color:yellow"> DOM 구조에 접근할 수 있는 방법을 제공</strong>하여
+<br/>
+
+그들이 **문서 구조, 스타일, 내용 등을 `변경할 수 있게`** 돕는다.
+
+<br/>
+
+DOM 은 구조화된 **`nodes`**와 **`property`** 와 **`method`** 를 갖고 있는 **`objects`**로 문서를 표현한다.<br/>
+이들은 웹 페이지를 스크립트 또는 프로그래밍 언어들에서 사용될 수 있게
+<strong style="color:black;background-color:yellow"> 연결시켜주는 역할</strong>을 담당한다.<br/>
+
+웹을 아주 기본적으로 나누자면<br/>
+**HTML(구조)**, **CSS(스타일링)**, **JS(기능)** 으로 나눌 수 있다.<br/>
+
+이 중 HTML을 바꾸는 것이 JS의 역할이라고 할 수 있는데, <br/>
+이 역할을 DOM과 연관지을 수 있다.<br/>
+
+
+### 3-2. DOM 구조, DOM 트리
+
+DOM은 트리 구조로 HTML 문서를 표현한다
+
+<img src="/assets/images/js_dom.jpeg" /><br/>
+
+기본적으로 HTML 구조를 따라가고, 이를 tree 형태로 표현한다.<br/>
+
+최상위 태그인 <html>이 DOM Tree의 가장 상위 요소인 것 처럼 보이지만,<br/>
+<html>태그와 더불어 최상단의 선언문인 <!doctype html>까지 포함하는
+
+**`document 객체`**가 그 위에 있다.<br/>
+모든 html의 위에는 document가 있는 것이다.<br/>
+
+### 3-3. 그럼 DOM API가 뭐야?
+
+**`DOM API`**(Document Object Model Application Programming Interface)<br/>
+
+> 다시한번 요약 정리
+
+- DOM(Document Object Model)
+  - HTML에서 제어하는 div, span, input 등의 요소들
+- API(Application Programming Interface)
+  - 프로그램을 사용하기 위한 명령들의 집합
+
+=> 결론!<br/>
+DOM API는, HTML의 요소들을 JS에서 제어하기 위한 **`명령들의 집합`**을 뜻한다.
 
 
 ## 4. ECMAScript2015(ES6)
@@ -301,3 +352,7 @@ https://joshua1988.github.io/web-development/translation/javascript/how-js-works
 https://tristy.tistory.com/51
 <br/>
 https://velog.io/@code-bebop/JS-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EB%A3%A8%ED%94%84-%EC%BD%9C%EB%B0%B1-%ED%81%90
+<br/>
+https://developer.mozilla.org/ko/docs/Web/API/Document_Object_Model/Introduction
+<br/>
+https://from2020.tistory.com/23
