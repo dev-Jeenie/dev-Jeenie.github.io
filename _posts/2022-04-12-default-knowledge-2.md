@@ -46,6 +46,8 @@ JavaScript 기반으로 구성된 서버 사이드 서비스를 JavaScript로 �
 
 ### 1-2. 그럼 npm은?
 
+**Node.js로 만들어진 pakage(module)을 관리해주는 툴.** <br/>
+
 node.js 기반의 모듈을 모아둔 집합 저장소이다. <br/>
 Node Package Manager 또는 Node Package Modules라고도 한다.<br/>
 자바스크립트 런타임 환경 Node.js의 기본 패키지 관리자이다.<br/>
@@ -85,6 +87,11 @@ https://kdydesign.github.io/2017/07/15/nodejs-npm-tutorial/
 https://poiemaweb.com/nodejs-npm
 
 
+> npm run eject<br/>
+  react 프로젝트에서 해당 명령어를 입력하면 webpack 설정이 열린다.<br/>
+  하지만 한번 열린 것을 다시 되돌릴 수는 없으니 조심하자.(깃으로 되돌리는 방법 뿐)<br/>
+
+
 ## 2. Webpack, Babel
 
 자바스크립트 es5 버전에서는 모듈을 지원하지 않아서, `CommonJS` 모듈과 `AMD(Asynchronous Module Definition)`를 사용했다.<br/>
@@ -113,6 +120,18 @@ es6 버전은 일부 브라우저에서만 지원한다.<br/>
 html 파일에 들어가는 자바스크립트 파일들을 하나로 만들어주는 방식 <br/>
 
 따라서 웹팩은, 필요한 다수의 자바스크립트 파일을 하나의 자바 스크립트 파일로 만들어 주는 것을 말함. <br/>
+리액트 프로젝트에는 이미 웹팩이 설정이 되어 있어 처음부터 커스텀 세팅할 일이 많지는 않지만<br/>
+기능 추가를 위해 웹팩 설정이 있다<br/>
+
+🤷🏻‍♀️ ?? : 이렇게 중요한 웹팩을 왜 설정해 본 적이 없을까??? <br/>
+***=> react가 알아서 척척 다 해줬기 때문이지!***<br/>
+
+create-react-app으로 프로젝트를 생성하면,<br/>
+react가 웹팩 세팅을 다 해주니까 기본적인건 다 완료 되어있는 상태로 개발을 시작한다.<br/>
+그래서 create-react-app 이 편하다는 거야!<br/>
+
+
+
 
 entry파일을 지정해서, entry 파일이 **의존성을 띄고 있는 모듈들을 모두 `하나로`** 묶어내는 라이브러리.<br/>
 
@@ -212,6 +231,7 @@ module.exports = {
 
 최신 문법을 모르는 브라우저를 위해 es6, es7 문법의 자바스크립트를 es5로 바꿔주는 컴파일러.<br/>
 
+자바스크립트 언어의 환경을 전반적으로 바꿔주는 역할을 한다.<br/>
 간단히 말해 자바스크립트 es6 문법을 이해하지 못하는 구 브라우저들을 위한 `번역기`!<br/>
 
 
@@ -230,7 +250,65 @@ babel 은 문법을 변환하여 javascript 로 변환하는 transpiler 역할�
   개발자가 특정 기능이 지원되지 않는 브라우저를 위해 사용할 수 있는 코드 조각이나 플러그인
 
 
-즉, `babel`은 **컴파일시에 실행**되고 `babel-polyfill` 은 **런타임에 실행**되는 것.
+즉, `babel`은 **컴파일시에 실행**되고 `babel-polyfill` 은 **런타임에 실행**되는 것.<br/>
+
+```java
+$npm i @babel/preset-env
+``` 
+
+로 초기설정을 마치면 따로 polyfill을 설정할 필요 없이 세팅이 완료된다.<br/>
+(현재 polyfill은 deprecated 상태)
+
+
+
+https://velog.io/@pop8682/%EB%B2%88%EC%97%AD-%EC%99%9C-babel-preset%EC%9D%B4-%ED%95%84%EC%9A%94%ED%95%98%EA%B3%A0-%EC%99%9C-%ED%95%84%EC%9A%94%ED%95%9C%EA%B0%80-yhk03drm7q
+
+https://velog.io/@kwonh/Babel-%ED%8F%B4%EB%A6%AC%ED%95%84polyfill-babelpreset-env
+
+
+
+
+- 바벨 프리셋(초기 설정)이 완료된 경우
+  - 절대경로 설정 되어있음
+  <img src="/assets/images/babel_alias.png" /><br/>
+  
+  - 절대경로 설정은 안되어있음
+  <img src="/assets/images/babel_no_alias.png" /><br/>
+
+alias는 따로 npm으로 설치할 필요 없이 내가 원하는 절대경로를 입력하면 된다.
+
+
+#### 2-2-1. 바벨 설치
+
+- 바벨의 기본 모듈 설치
+
+```java
+$npm i -D @babel/core @babel/cli @babel/preset-env
+``` 
+
+```java
+$npm i @babel/preset-env
+``` 
+바벨의 초기설정을 마치면 babel.config.js 파일이 생성된다.
+
+
+- 각 모듈의 역할
+
+@babel/core: 바벨의 핵심 기능들을 포함.
+@babel/cli: 터미널에서 바벨 명령어를 사용할 수 있게 도와준다
+@babel/preset-env: 코드 구문 변환 설정을 도와줌 (지원 브라우저 점유율, 호환성 설정 등)
+ 
+ 
+```java
+$npm i -D @babel/plugin-proposal-optional-chaining
+```
+
+
+옵셔널 체이닝과 같은 플러그인 또한 설치 가능.
+
+
+
+
 
 
 
