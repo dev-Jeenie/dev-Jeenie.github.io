@@ -1,7 +1,7 @@
 ---
 published: true
 title: "👩🏻‍💻 배경지식 쌓기 Step (2) - npm, Webpack, Babel, HTML/CSS, CSS Media Query"
-permalink: /cs/defaultKnowledge1
+permalink: /cs/defaultKnowledge2
 tags:
   - [CS]
 
