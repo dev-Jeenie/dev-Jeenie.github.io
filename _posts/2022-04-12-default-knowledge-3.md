@@ -58,9 +58,9 @@ AJAX가 등장하기 이전에는, 웹 브라우저가 데이터를 요청하면
 AJAX를 통해 서버에 데이터를 요청을 한 뒤에도 멈추지 않고 프로그램은 계속 돌아간다.<br/>
 
 동기방식과 비동기방식
-  <img src="/assets/images/default_3_async_2.png" /><br/>
+  <img src="/assets/images/default_3_async_2.jpeg" /><br/>
 예제 )
-  <img src="/assets/images/default_3_async_1.png" /><br/>
+  <img src="/assets/images/default_3_async_1.jpeg" /><br/>
 
 
 
@@ -78,7 +78,8 @@ AJAX를 통해 서버에 데이터를 요청을 한 뒤에도 멈추지 않고 �
 ## 2. CORS(Cross Origin Resource Sharing)
 
 
-  <img src="/assets/images/cors.png" /><br/>
+  <img src="/assets/images/cors.jpeg" /><br/>
+  <img src="/assets/images/cors_1.png" /><br/>
 
 
 
