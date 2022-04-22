@@ -222,9 +222,33 @@ printSquare(5);
 
 
 
+> 첨언
+자스의 엔진의 싱글쓰레드로써의 노력 + Web API의 오래걸리는 일 처리능력 + 이벤트 루프의 콜스택이 비었는지 검사하고 비었으면 큐에서 스택으로 올려보내는 노력
+
+setTimeout이나 AJAX나 DOM 변경하는건 오래걸리자나여 그래서 자스 자체로는 처리능력이 없고
+
+그걸 쓰는 것 자체가 Web API가 주는 걸 가져다 ㄱ쓰는거라서
+
+씀과 동시에 자기꺼니까 저기 멀리 가서 처리한 뒤에 콜백큐에 넣어버리는거져
+
+
+- 콜백 함수는 말 그대로 나중에 실행되는 함수를 말하고
+- 콜백 큐는 비동기 처리를 위해 동작하고 있는 함수들이
+- 대기시간이 종료되면 (예: setTimeout의 3초지남 ) 콜백 큐로 차근차근 들어오고
+- 이벤트 루프는 그 콜백 큐와 호출스택을 보고있다가
+- 호출스택이 비었을 경우에만 콜백 큐에서 하나씩 빼서 올립니다
+- 그래서 콜백큐는 선입선출
+결론 => Web API가 콜백함수를 콜백큐로 밀어넣는다
 
 
 
+setTImeout DOM AJAX를 사용하는 것
+= Web API를 사용하는 것
+= 콜백함수이고 대기시간이 종료되면 콜백큐로 넘어가서 콜스택이 비어있으면 올라감
+
+- 비동기 함수가 실행된다면, Web API가 호출된다.
+
+- Web API는 비동기함수의 콜백함수를 Callback Queue에 밀어넣는다.
 ## 3. DOM API
 
 
@@ -262,6 +286,8 @@ DOM 은 구조화된 **`nodes`**와 **`property`** 와 **`method`** 를 갖고 �
 이 중 HTML을 바꾸는 것이 JS의 역할이라고 할 수 있는데, <br/>
 이 역할을 DOM과 연관지을 수 있다.<br/>
 
+javascript 를 통해 웹 콘텐츠를 동적으로 제어할 수 있는 이유는<br/>
+DOM 이 중간에서 interface 역할을 해주기 때문.
 
 ### 3-2. DOM 구조, DOM 트리
 
@@ -277,6 +303,8 @@ html태그와 더불어 최상단의 선언문인 !doctype html까지 포함하�
 **`document 객체`**가 그 위에 있다.<br/>
 모든 html의 위에는 document가 있는 것이다.<br/>
 
+div, input 과 같은 태그들로 쌓여있는 마크업 한 구조들이 나무처럼 보여서 돔트리라고 한다.
+
 ### 3-3. 그럼 DOM API가 뭐야?
 
 **`DOM API`**(Document Object Model Application Programming Interface)<br/>
@@ -290,7 +318,6 @@ html태그와 더불어 최상단의 선언문인 !doctype html까지 포함하�
 
 => 결론!<br/>
 DOM API는, HTML의 요소들을 JS에서 제어하기 위한 **`명령들의 집합`**을 뜻한다.
-
 
 ## 4. ECMAScript2015(ES6)
 
@@ -373,3 +400,7 @@ https://velog.io/@code-bebop/JS-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EB%A3%A8%ED%94%84-%
 https://developer.mozilla.org/ko/docs/Web/API/Document_Object_Model/Introduction
 <br/>
 https://from2020.tistory.com/23
+
+<br/>
+
+https://velog.io/@gil0127/JS-%EB%B9%84%EB%8F%99%EA%B8%B0-%ED%95%B5%EC%8B%AC-Event-Loop
