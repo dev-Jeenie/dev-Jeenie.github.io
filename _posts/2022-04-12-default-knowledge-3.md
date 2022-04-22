@@ -201,10 +201,50 @@ XMLHttpRequest, Fetch API 등 script 태그 내 → 기본적으로 Same-Origin 
 
 ## 3. 웹 브라우저 작동 원리
 
-### 3-1. 
+### 3-1. 브라우저란?
+
+웹 브라우저는 동기적(Synchronous)적으로 (HTML + CSS), Javascript 언어를 해석해서 내용을 화면에 보여주는 응용 소프트웨어이다.<br/>
+크롬, 인터넷 익스플로러 등 인터넷 프로그램을 예로 들 수 있다.<br/>
+
+#### 3-1-1. 웹 브라우저가 동기적인 이유
+
+- script 태그를 body 태그 하단에 위치시킨다. 왜?
+  - script 로딩지연으로 인해 HTML 요소들이 렌더링에 지장을 받는 일이 생기지 않아 페이지 로딩 시간이 단축된다
+  - DOM이 완성되기 전에 script 가 DOM을 조작한다면 에러가 발생한다
+  - 자바스크립트는 렌더링 엔진이 아닌 자바스크립트 엔진이 처리한다
 
 
+> 렌더링 엔진과 자바스크립트 엔진이 뭐가 다르지? <br/>
+- `자바스크립트 엔진`
+  - ***자바스크립트 코드를 실행***하는 인터프리터 또는 프로그램
+  - 주로 웹 브라우저를 위해 사용된다
+  - 대중적으로 알려진 자바스크립트 엔진은 구글의 V8 엔진
+  - 자바스크립트 엔진이 반드시 V8 엔진이 아니고 엔진은 많이 존재한다. V8이 구글의 엔진이자 Node.js의 엔진일 뿐
+  - 엔진의 종류
+    - Rhino - 모질라
+    - SpiderMonkey - 파이어폭스
+    - V8 - 구글, 오페라
+    - JavascriptCore - 사파리
+    - Chakra - 익스플로러, 마이크로소프트 엣지
 
+- `렌더링 엔진`
+  - 웹 렌더링 엔진(Web Rendering Engine), 웹 브라우저 엔진(Web Browser Engine), 웹 레이아웃 엔진(Web Layout Engine)
+  - 웹 페이지에 대한 ***컨텐츠 및 데이터를 위해 동작***하는 엔진
+  - 렌더링 역할을 하는 엔진이 ***브라우저마다 달라서*** 같은 페이지가 다르게 보인다
+  - 엔진의 종류
+    - Gecko - 모질라, 파이어폭스
+    - Blink - 구글, 오페라
+    - Webkit - 사파리
+    - Trident - 익스플로러
+    - EdgeHTML - 마이크로소프트 엣지
+
+### 3-2. 브라우저의 주요 기능
+
+- 사용자가 참조하고 싶은 웹페이지를 `서버에 요청`하고, `서버의 응답`을 받아 브라우저에 **보여주는 것**
+
+이때 `서버의 응답`은 주소를 통해 요청하는데, 이 주소를 **`URI(Uniform Resource Identifier)`**라고 한다.<br/>
+
+#### 3-2-1. URI(Uniform Resource Identifier)이란?
 
 
 
@@ -231,3 +271,5 @@ https://webplatform.github.io/docs/apis/xhr/XMLHttpRequest/
 https://inpa.tistory.com/entry/WEB-%F0%9F%93%9A-CORS-%F0%9F%92%AF-%EC%A0%95%EB%A6%AC-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95-%F0%9F%91%8F#thankYou
 <br/>
 https://evan-moon.github.io/2020/05/21/about-cors/
+<br/>
+https://mygumi.tistory.com/173
