@@ -13,7 +13,7 @@ toc_sticky: true
 date: 2022-04-21
 last_modified_at: 2022-04-21
 ---
-
+****
 ![]()
 
 > 들어가기 전 <br/>
@@ -197,6 +197,29 @@ XMLHttpRequest, Fetch API 등 script 태그 내 → 기본적으로 Same-Origin 
 
 
  -->
+
+
+
+## 3. 웹 브라우저 작동 원리
+
+### 3-1. 
+
+
+
+
+
+
+
+
+
+
+
+
+## 4. 웹 접근성
+
+
+
+
 
 
 
