@@ -195,7 +195,6 @@ XMLHttpRequest, Fetch API 등 script 태그 내 → 기본적으로 Same-Origin 
 이 정책을 Same-Origin-Policy라고 한다.
 
 
-
  -->
 
 
