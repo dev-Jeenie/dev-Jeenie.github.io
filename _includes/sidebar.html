@@ -39,16 +39,19 @@
         <span class="contact-info p-name">{{ site.tag_dir | escape }}</span>
       </li>
     {%- endif %}
-    {% if site.email -%}
+    {% if site.tag_dir -%}
       <li>
-        <i class="sidebar-icon fas fa-envelope"></i>
-        <a class="contact-info u-email" href="https://dev-jeenie.github.io/tags/#cs">{{ site.tags }} cs태그로 이동하기</a>
+        <a class="contact-info p-name" href="https://dev-jeenie.github.io/tags/#cs">배경지식 (CS)</a>
       </li>
     {%- endif %}
-    {% if site.location -%}
+    {% if site.tag_dir -%}
       <li>
-        <i class="sidebar-icon fas fa-location-arrow"></i>
-        <a class="contact-info u-location" href="https://www.google.com/maps/search/{{ site.location }}">{{ site.location }}</a>
+        <a class="contact-info p-name" href="https://dev-jeenie.github.io/tags/#js">Java Script 기초</a>
+      </li>
+    {%- endif %}
+    {% if site.tag_dir -%}
+      <li>
+        <a class="contact-info p-name" href="https://dev-jeenie.github.io/tags/#cs">Java Script 중급</a>
       </li>
     {%- endif %}
   </ul>
