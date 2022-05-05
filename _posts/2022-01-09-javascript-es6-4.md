@@ -1,6 +1,6 @@
 ---
 title: "Java script ES6💫 제대로 알아보기! ✍️ (4) Default parameter"
-permalink: /js2/javascriptEs64
+permalink: /es6/javascriptEs64
 tags:
   - [es6]
 

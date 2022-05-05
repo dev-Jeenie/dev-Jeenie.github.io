@@ -1,6 +1,6 @@
 ---
 title: "Java script ES6💫 제대로 알아보기! ✍️ (5) rest parameter"
-permalink: /js2/javascriptEs65
+permalink: /es6/javascriptEs65
 tags:
   - [es6]
 

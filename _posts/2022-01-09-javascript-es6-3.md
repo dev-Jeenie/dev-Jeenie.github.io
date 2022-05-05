@@ -1,6 +1,6 @@
 ---
 title: "Java script ES6💫 제대로 알아보기! ✍️ (3) Template literal"
-permalink: /js2/javascriptEs63
+permalink: /es6/javascriptEs63
 tags:
   - [es6]
 

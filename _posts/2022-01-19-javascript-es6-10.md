@@ -1,6 +1,6 @@
 ---
 title: "Java script ES6💫 제대로 알아보기! ✍️ (10) Function"
-permalink: /js2/javascriptEs610
+permalink: /es6/javascriptEs610
 tags:
   - [es6]
 
