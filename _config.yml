@@ -40,3 +40,13 @@ lang: ko
 future: true
 category_dir: category/
 tag_dir: cs/
+collections:
+  featured_categories:
+    permalink:       /category/:name/
+    output:          true
+  featured_tags:
+    permalink:       /tag/:name/
+    output:          true
+  projects:
+    permalink:       /projects/:path/
+    output:          true
