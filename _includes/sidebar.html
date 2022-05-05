@@ -1,23 +1,4 @@
 
-{{ content }}
-
-{% comment %} Check the type of archive {% endcomment %}
-{%- if page.type == 'categories' -%}
-  {%- assign taxonomies = site.categories -%}
-{%- elsif page.type == 'tags' -%}
-  {%- assign taxonomies = site.tags -%}
-{%- else -%}
-  {%- assign taxonomies = none -%}
-{%- endif -%}
-
-{% comment %} Calculate the max count of taxonomies {% endcomment %}
-{%- assign max_count = 0 -%}
-{%- for taxonomy in taxonomies -%}
-  {%- assign posts = taxonomy[1] -%}
-  {%- if posts.size > max_count -%}
-    {%- assign max_count = posts.size -%}
-  {%- endif -%}
-{%- endfor -%}
 
 {% if site.avatar -%}
   <div class="sidebar-section">
@@ -53,7 +34,6 @@
   </ul>
 </div>
 <div class="sidebar-section tag-list">
-  <span class="taxonomy-count">{{ posts.size }}</span>
   <ul class="contact-list">
     {% if site.author -%}
       <li>
