@@ -246,8 +246,22 @@ ul.contact-list {
   li {
     overflow: hidden; 
     white-space: nowrap; 
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
   }
+}
+
+
+ul.contact-list.tag-list li > a {
+  font-size: 18px;
+  font-weight: 600;
+  color: #006f8e;
+}
+ul.contact-list.tag-list li > span {
+  
+}
+
+ul.contact-list.tag-list li > a:hover {
+  color: #9be7f6;
 }
 
 ul.social-icons {

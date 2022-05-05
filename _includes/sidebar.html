@@ -32,11 +32,17 @@
   </ul>
 </div>
 <div class="sidebar-section">
-  <ul class="contact-list">
+  <ul class="contact-list tag-list">
     {% if site.author -%}
       <li>
         <i class="sidebar-icon fas fa-at"></i>
-        <span class="contact-info p-name">{{ site.tag_dir | escape }}</span>
+        <!-- <span class="contact-info p-name">{{ site.tag_dir | escape }}</span> -->
+        <span class="contact-info p-name">메뉴 목록</span>
+      </li>
+    {%- endif %}
+    {% if site.tag_dir -%}
+      <li>
+        <a class="contact-info p-name" href="https://dev-jeenie.github.io/tags/">카테고리 전체보기</a>
       </li>
     {%- endif %}
     {% if site.tag_dir -%}
