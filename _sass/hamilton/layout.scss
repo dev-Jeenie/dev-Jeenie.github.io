@@ -250,19 +250,31 @@ ul.contact-list {
   }
 }
 
+div.sidebar-section.tag-list {
+  border-bottom: none;
+}
 
-ul.contact-list.tag-list li > a {
+div.tag-list > ul.contact-list > li {
+  /* background-color: #1e1e1e; */
+  padding: 5px 0 5px 0;
+  border-bottom: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #3f3f3f;
+}
+
+div.tag-list > ul.contact-list li > a {
   font-size: 18px;
   font-weight: 600;
   color: #77dffc;
 }
-ul.contact-list.tag-list li > span {
+div.tag-list > ul.contact-list li > span {
   font-size: 16px;
 }
 
-ul.contact-list.tag-list li > a:hover {
+div.tag-list > ul.contact-list li > a:hover {
   color: #9be7f6;
 }
+
 
 ul.social-icons {
   list-style: none;
