@@ -38,3 +38,5 @@ social:
 # google_site_verification:
 lang: ko
 future: true
+category_dir: category/
+tag_dir: tag/
