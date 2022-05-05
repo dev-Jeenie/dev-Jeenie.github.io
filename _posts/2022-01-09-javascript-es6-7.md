@@ -1,8 +1,8 @@
 ---
 title: "Java script ES6💫 제대로 알아보기! ✍️ (7) enhanced object functionallities"
-permalink: /cs/javascriptEs67
+permalink: /js2/javascriptEs67
 tags:
-  - [CS]
+  - [es6]
 
 navigation: true
 toc: true

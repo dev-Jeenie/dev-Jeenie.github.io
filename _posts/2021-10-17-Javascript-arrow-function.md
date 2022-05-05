@@ -1,8 +1,8 @@
 ---
 title: "# 05.Arrow Function 🍿"
-permalink: /cs/JavascriptArrowFunction
+permalink: /js1/JavascriptArrowFunction
 tags:
-  - [CS]
+  - [js1]
 
 navigation: true
 toc: true

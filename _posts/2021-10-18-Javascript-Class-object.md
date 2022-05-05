@@ -1,8 +1,8 @@
 ---
 title: "# 06.Class vs Object ☕️"
-permalink: /cs/JavascriptClassObject
+permalink: /js1/JavascriptClassObject
 tags:
-  - [CS]
+  - [js1]
 
 navigation: true
 toc: true

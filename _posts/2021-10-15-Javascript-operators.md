@@ -1,8 +1,8 @@
 ---
 title: "# 04. Operator,if,for loop 🎹"
-permalink: /cs/JavascriptOperators
+permalink: /js1/JavascriptOperators
 tags:
-  - [CS]
+  - [js1]
 
 navigation: true
 toc: true

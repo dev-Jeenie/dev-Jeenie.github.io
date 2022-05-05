@@ -1,8 +1,8 @@
 ---
 title: "# 07. Object 🍱"
-permalink: /cs/JavascriptObject
+permalink: /js1/JavascriptObject
 tags:
-  - [CS]
+  - [js1]
 
 navigation: true
 toc: true

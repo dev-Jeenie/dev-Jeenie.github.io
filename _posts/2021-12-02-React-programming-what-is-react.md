@@ -1,8 +1,8 @@
 ---
 title: "React란? #1 리액트 프로젝트 시작하기 ⭐️"
-permalink: /cs/ReactProgrammingWhatIsReact
+permalink: /react/ReactProgrammingWhatIsReact
 tags:
-  - [CS]
+  - [react]
 
 navigation: true
 toc: true

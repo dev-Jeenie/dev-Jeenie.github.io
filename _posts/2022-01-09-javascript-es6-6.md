@@ -1,8 +1,8 @@
 ---
 title: "Java script ES6💫 제대로 알아보기! ✍️ (6) spread operator"
-permalink: /cs/javascriptEs66
+permalink: /js2/javascriptEs66
 tags:
-  - [CS]
+  - [es6]
 
 navigation: true
 toc: true

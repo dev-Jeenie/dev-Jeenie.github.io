@@ -1,8 +1,8 @@
 ---
 title: "React란? #2 리액트 개발환경, 바벨, 웹팩의 이해 ⭐️"
-permalink: /cs/ReactProgrammingBabelWebpack
+permalink: /react/ReactProgrammingBabelWebpack
 tags:
-  - [CS]
+  - [react]
 
 navigation: true
 toc: true

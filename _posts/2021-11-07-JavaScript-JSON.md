@@ -1,8 +1,8 @@
 ---
 title: "#10. JSON 🍫"
-permalink: /cs/JavaScriptJSON
+permalink: /js1/JavaScriptJSON
 tags:
-  - [CS]
+  - [js1]
 
 navigation: true
 toc: true

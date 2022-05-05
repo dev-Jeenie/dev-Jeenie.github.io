@@ -1,8 +1,8 @@
 ---
 title: "✨Immutability 불변성 ✂️❌ - (1) 불변성이란?"
-permalink: /cs/immutability
+permalink: /js1/immutability
 tags:
-  - [CS]
+  - [js1]
 
 navigation: true
 toc: true

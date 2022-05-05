@@ -1,8 +1,8 @@
 ---
 title: "#12. Promise 🤙"
-permalink: /cs/Promise
+permalink: /js1/Promise
 tags:
-  - [CS]
+  - [js1]
 
 navigation: true
 toc: true

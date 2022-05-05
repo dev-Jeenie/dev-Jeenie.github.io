@@ -1,8 +1,8 @@
 ---
 title: "Java script ES6💫 중급🔥 ✍️ (4) Class"
-permalink: /cs/javascriptEs6Second4
+permalink: /es62/javascriptEs6Second4
 tags:
-  - [CS]
+  - [es62]
 
 navigation: true
 toc: true

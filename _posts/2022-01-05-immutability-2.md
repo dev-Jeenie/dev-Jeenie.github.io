@@ -1,8 +1,8 @@
 ---
 title: "✨Immutability 불변성 ✂️❌ - (2) 이름에 대한 불변함"
-permalink: /cs/immutability2
+permalink: /js1/immutability2
 tags:
-  - [CS]
+  - [js1]
 
 navigation: true
 toc: true

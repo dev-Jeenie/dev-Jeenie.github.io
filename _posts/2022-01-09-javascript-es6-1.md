@@ -1,8 +1,8 @@
 ---
 title: "Java script ES6💫 제대로 알아보기! ✍️ (1) Block Scope"
-permalink: /cs/javascriptEs61
+permalink: /js2/javascriptEs61
 tags:
-  - [CS]
+  - [es6]
 
 navigation: true
 toc: true

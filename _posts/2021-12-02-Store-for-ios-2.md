@@ -1,8 +1,8 @@
 ---
 title: "앱 만들기 끝판왕! 스토어 등록 💜 2. ios(2)"
-permalink: /cs/StoreForIos2
+permalink: /store/StoreForIos2
 tags:
-  - [CS]
+  - [store]
 
 navigation: true
 toc: true

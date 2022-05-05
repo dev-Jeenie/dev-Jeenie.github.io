@@ -1,8 +1,8 @@
 ---
 title: "#13. async & await 🍭"
-permalink: /cs/asyncawait
+permalink: /js1/asyncawait
 tags:
-  - [CS]
+  - [js1]
 
 navigation: true
 toc: true

@@ -1,8 +1,8 @@
 ---
 title: "Java script ES6💫 중급🔥 ✍️ (2) 새로운 자료구조"
-permalink: /cs/javascriptEs622
+permalink: /es62/javascriptEs622
 tags:
-  - [CS]
+  - [es62]
 
 navigation: true
 toc: true

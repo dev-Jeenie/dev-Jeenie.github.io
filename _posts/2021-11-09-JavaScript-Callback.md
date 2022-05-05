@@ -1,8 +1,8 @@
 ---
 title: "#11. Callback (feat.콜백지옥 🔥)"
-permalink: /cs/Callback
+permalink: /js1/Callback
 tags:
-  - [CS]
+  - [js1]
 
 navigation: true
 toc: true

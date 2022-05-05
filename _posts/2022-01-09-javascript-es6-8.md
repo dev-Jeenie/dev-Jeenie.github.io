@@ -1,8 +1,8 @@
 ---
 title: "Java script ES6💫 제대로 알아보기! ✍️ (8) Arrow Functions"
-permalink: /cs/javascriptEs68
+permalink: /js2/javascriptEs68
 tags:
-  - [CS]
+  - [es6]
 
 navigation: true
 toc: true

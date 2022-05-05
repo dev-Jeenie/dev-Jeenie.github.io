@@ -1,8 +1,8 @@
 ---
 title: "# 03. Data Types 🌈"
-permalink: /cs/JavascriptDataTypes
+permalink: /js1/JavascriptDataTypes
 tags:
-  - [CS]
+  - [js1]
 
 navigation: true
 toc: true

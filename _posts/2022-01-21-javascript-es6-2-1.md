@@ -1,8 +1,8 @@
 ---
 title: "Java script ES6💫 중급🔥 ✍️ (1) Symbol"
-permalink: /cs/javascriptEs621
+permalink: /es62/javascriptEs621
 tags:
-  - [CS]
+  - [es62]
 
 navigation: true
 toc: true

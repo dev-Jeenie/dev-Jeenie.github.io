@@ -1,8 +1,8 @@
 ---
 title: "React란? 리덕스!"
-permalink: /cs/ReactProgrammingRedux
+permalink: /react/ReactProgrammingRedux
 tags:
-  - [CS]
+  - [react]
 
 navigation: true
 toc: true

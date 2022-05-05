@@ -1,8 +1,8 @@
 ---
 title: "#09. Array APIs 🍋"
-permalink: /cs/JavaScriptArrayAPIs
+permalink: /js1/JavaScriptArrayAPIs
 tags:
-  - [CS]
+  - [js1]
 
 navigation: true
 toc: true

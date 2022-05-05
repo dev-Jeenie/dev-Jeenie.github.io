@@ -1,8 +1,8 @@
 ---
 title: "Java script ES6💫 제대로 알아보기! ✍️ (4) Default parameter"
-permalink: /cs/javascriptEs64
+permalink: /js2/javascriptEs64
 tags:
-  - [CS]
+  - [es6]
 
 navigation: true
 toc: true

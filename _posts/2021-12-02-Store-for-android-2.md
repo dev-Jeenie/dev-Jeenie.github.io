@@ -1,8 +1,8 @@
 ---
 title: "앱 만들기 끝판왕! 스토어 등록 💛 1. Android(2)"
-permalink: /cs/StoreForAndroid2
+permalink: /store/StoreForAndroid2
 tags:
-  - [CS]
+  - [store]
 
 navigation: true
 toc: true

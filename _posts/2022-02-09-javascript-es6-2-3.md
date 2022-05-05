@@ -1,8 +1,8 @@
 ---
 title: "Java script ES6💫 중급🔥 ✍️ (3) Iterable, Iterator, generator"
-permalink: /cs/javascriptEs623
+permalink: /es62/javascriptEs623
 tags:
-  - [CS]
+  - [es62]
 
 navigation: true
 toc: true
