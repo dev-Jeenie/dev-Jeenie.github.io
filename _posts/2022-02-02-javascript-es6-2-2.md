@@ -1,5 +1,5 @@
 ---
-title: "Java script ES6💫 중급🔥 ✍️ (2) 새로운 자료구조"
+title: "(2) 새로운 자료구조"
 permalink: /es62/javascriptEs622
 tags:
   - [es62]

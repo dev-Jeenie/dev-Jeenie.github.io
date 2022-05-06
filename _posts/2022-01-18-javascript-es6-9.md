@@ -1,5 +1,5 @@
 ---
-title: "Java script ES6💫 제대로 알아보기! ✍️ (9) Function"
+title: (9) Function"
 permalink: /es6/javascriptEs69
 tags:
   - [es6]

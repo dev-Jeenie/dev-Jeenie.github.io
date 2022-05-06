@@ -1,6 +1,5 @@
 ---
-title: "✨Immutability 불변성 ✂️❌ - (3) 변수 할당에 대한 불변함"
-# title: "✨Immutability 불변성 ✂️❌ - (3) 변수 할당에 대한 불변함(1. 변수 할당방식의 비교)"
+title: "(3) 변수 할당에 대한 불변함"
 permalink: /js1/immutability3
 tags:
   - [js1]

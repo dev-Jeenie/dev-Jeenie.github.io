@@ -1,5 +1,5 @@
 ---
-title: "Java script ES6💫 중급🔥 ✍️ (1) Symbol"
+title: "(1) Symbol"
 permalink: /es62/javascriptEs621
 tags:
   - [es62]

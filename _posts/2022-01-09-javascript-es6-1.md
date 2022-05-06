@@ -1,5 +1,5 @@
 ---
-title: "Java script ES6💫 제대로 알아보기! ✍️ (1) Block Scope"
+title: (1) Block Scope"
 permalink: /es6/javascriptEs61
 tags:
   - [es6]

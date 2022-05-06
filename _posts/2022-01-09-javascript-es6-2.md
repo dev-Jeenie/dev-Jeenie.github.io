@@ -1,5 +1,5 @@
 ---
-title: "Java script ES6💫 제대로 알아보기! ✍️ (2) Block Scoped variables"
+title: (2) Block Scoped variables"
 permalink: /es6/javascriptEs62
 tags:
   - [es6]

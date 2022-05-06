@@ -1,5 +1,5 @@
 ---
-title: "Java script ES6💫 제대로 알아보기! ✍️ (7) enhanced object functionallities"
+title: (7) enhanced object functionallities"
 permalink: /es6/javascriptEs67
 tags:
   - [es6]

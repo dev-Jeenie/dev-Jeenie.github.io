@@ -1,5 +1,5 @@
 ---
-title: "✨Immutability 불변성 ✂️❌ - (1) 불변성이란?"
+title: "(1) 불변성이란?"
 permalink: /js1/immutability
 tags:
   - [js1]

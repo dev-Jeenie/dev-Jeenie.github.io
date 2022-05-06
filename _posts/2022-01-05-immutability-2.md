@@ -1,5 +1,5 @@
 ---
-title: "✨Immutability 불변성 ✂️❌ - (2) 이름에 대한 불변함"
+title: "(2) 이름에 대한 불변함"
 permalink: /js1/immutability2
 tags:
   - [js1]

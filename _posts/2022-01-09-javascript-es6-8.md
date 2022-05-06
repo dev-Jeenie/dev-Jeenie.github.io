@@ -1,5 +1,5 @@
 ---
-title: "Java script ES6💫 제대로 알아보기! ✍️ (8) Arrow Functions"
+title: (8) Arrow Functions"
 permalink: /es6/javascriptEs68
 tags:
   - [es6]

@@ -1,5 +1,5 @@
 ---
-title: "Java script ES6💫 제대로 알아보기! ✍️ (3) Template literal"
+title: (3) Template literal"
 permalink: /es6/javascriptEs63
 tags:
   - [es6]

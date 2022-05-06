@@ -1,5 +1,5 @@
 ---
-title: "Java script ES6💫 중급🔥 ✍️ (4) Class"
+title: "(4) Class"
 permalink: /es62/javascriptEs6Second4
 tags:
   - [es62]

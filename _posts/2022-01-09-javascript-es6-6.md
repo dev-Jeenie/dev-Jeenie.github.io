@@ -1,5 +1,5 @@
 ---
-title: "Java script ES6💫 제대로 알아보기! ✍️ (6) spread operator"
+title: (6) spread operator"
 permalink: /es6/javascriptEs66
 tags:
   - [es6]
