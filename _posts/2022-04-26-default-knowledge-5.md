@@ -201,7 +201,7 @@ callback에서
 
 
 ## 6. 클래스 (Class)
-> 이전에 정리해둔 글 참고 (https://dev-jeenie.github.io/es62/newJavascript4)
+> <a href="https://dev-jeenie.github.io/es62/newJavascript4"> 이전에 정리해둔 글 참고</a>
 
 
 ### 6-1. 클래스란?
