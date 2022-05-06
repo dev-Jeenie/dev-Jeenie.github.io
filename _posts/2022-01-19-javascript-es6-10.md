@@ -1,5 +1,5 @@
 ---
-title: (10) Function"
+title: (10) 해체할당(destructuring assignment)"
 permalink: /es6/javascriptEs610
 tags:
   - [es6]
