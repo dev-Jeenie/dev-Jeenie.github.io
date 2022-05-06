@@ -505,7 +505,7 @@ CSS Pre-Processor의 함수, 연산 등의 기능들을 활용하면 작성되�
 
 ## 2. 서버사이드 렌더링과 클라이언트 사이드 렌더링
 
-> 이전에 정리한 내용 (https://dev-jeenie.github.io/cs/serversideRendering)
+> <a href="https://dev-jeenie.github.io/cs/serversideRendering">이전에 정리한 내용</a>
 
 ## 3. 함수형 프로그래밍과 객체지향 프로그래밍
 
