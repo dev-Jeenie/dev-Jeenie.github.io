@@ -1,6 +1,6 @@
 ---
 published: true
-title: "👩🏻‍💻 배경지식 쌓기 Step (1) - Git, JS동작원리, DOM, ECMAScript"
+title: "Git, JS동작원리, DOM, ECMAScript"
 permalink: /cs/defaultKnowledge1
 tags:
   - [CS]

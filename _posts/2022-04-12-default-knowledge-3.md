@@ -1,6 +1,6 @@
 ---
 published: true
-title: "👩🏻‍💻 배경지식 쌓기 Step (3) - AJAX, CORS, 브라우저 동작 원리, 웹 접근성"
+title: "AJAX, CORS, 브라우저 동작 원리, 웹 접근성"
 
 permalink: /cs/defaultKnowledge3
 tags:
