@@ -33,9 +33,9 @@ last_modified_at: 2022-05-12
 - MVC 패턴
 - CI/CD
 - HTTP Method
-    - GET, POST의 차이
-- React를 배우면서 어려웠던 점
-- 웹 퍼블리싱과 React Native 퍼블리싱? 퍼블리싱이 있나?
+    - 그 중 대표적으로 GET, POST의 차이
+- React를 배우면서 어려웠던 점?
+- 웹 퍼블리싱과 React Native 퍼블리싱?
 - React / React Native에 대한 공부를 하는가?
 - Android와 IOS 개발에 대해서는 간접적으로라도 배운 적이 있는가?
 - 자바스크립트로 정렬을 해본 적이 있는가?
@@ -53,8 +53,10 @@ last_modified_at: 2022-05-12
 - Arrow function과 일반 function의 차이
 - immutable과 mutable
 - CS적인 스터디를 한다고 했는데, 어떤 부분을 공부하고 있나?
-- 호이스팅
+- 호이스팅은?
 - 리엑트에서의 불변성
+- 어떤 노력을 해서 프론트엔드 개발자가 되었는지?
+- 스터디 등을 진행하고 있는지?
 
 
 
