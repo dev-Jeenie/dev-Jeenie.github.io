@@ -38,6 +38,7 @@ last_modified_at: 2022-05-12
 - 웹 퍼블리싱과 React Native 퍼블리싱?
 - React / React Native에 대한 공부를 하는가?
 - Android와 IOS 개발에 대해서는 간접적으로라도 배운 적이 있는가?
+- Java Script와 비교했을 때, Type Script를 사용하며 느낀 장점은?
 - 자바스크립트로 정렬을 해본 적이 있는가?
 - lodash를 써본 적이 있나?
 - 그럼 lodash 없이 배열의 요소에서 중복을 제거하는 방법은?
