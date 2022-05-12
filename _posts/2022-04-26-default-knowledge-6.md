@@ -51,15 +51,19 @@ REpresentational State Transfer의 약자로<br/>
 
 
 HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시하고,<br/>
-HTTP Method(POST, GET, PUT, DELETE)를 통해 해당 자원에 대한 CRUD Operation을 적용하는 것을 의미한다.
-즉, REST는 자원 기반의 구조(ROA, Resource Oriented Architecture) 설계의 중심에 Resource가 있고 HTTP Method를 통해 Resource를 처리하도록 설계된 아키텍쳐를 의미한다.
-웹 사이트의 이미지, 텍스트, DB 내용 등의 모든 자원에 고유한 ID인 HTTP URI를 부여한다.
-CRUD Operation
-Create : 생성(POST)
-Read : 조회(GET)
-Update : 수정(PUT)
-Delete : 삭제(DELETE)
-HEAD: header 정보 조회(HEAD)
+HTTP Method(POST, GET, PUT, DELETE)를 통해 해당 자원에 대한 CRUD Operation을 적용하는 것을 의미한다.<br/>
+즉, REST는 자원 기반의 구조(ROA, Resource Oriented Architecture) 설계의 중심에 Resource가 있고<br/>
+HTTP Method를 통해 Resource를 처리하도록 설계된 아키텍쳐를 의미한다.<br/>
+
+웹 사이트의 이미지, 텍스트, DB 내용 등의 모든 자원에 고유한 ID인 HTTP URI를 부여한다.<br/>
+
+CRUD Operation<br/>
+
+- Create : 생성(POST)
+- Read : 조회(GET)
+- Update : 수정(PUT)
+- Delete : 삭제(DELETE)
+- HEAD: header 정보 조회(HEAD)
 
 
 
@@ -72,8 +76,13 @@ REST API는 URI로 접근가능하고 내용이 JSON,XML 등으로 표현된 자
 RESTful하다라는 것은 REST API의 **설계의도를 명확하게 지켜주는 것**이다.
 (슬래시를 통해 계층관계를 표시한다던가 숫자는 id를 나타낸다든가 동사보단 명사를 위주로 쓴다든가 하는.)
 
+### 1-3. REST API가 무엇이고, 언제 사용하나요?
 
+REST API란 자원의 상태를 주고받는 모든 것을 의미하는 REST의 원리를 따르는 API입니다. <br/>
+업무에서는 의도하는 바가 명확하게 보이도록 자원을 요청하고 받을 때에 REST API를 사용합니다. <br/>
 
+### 1-4. PATCH와 PUT의 차이
+https://programmer93.tistory.com/39
 
 
 

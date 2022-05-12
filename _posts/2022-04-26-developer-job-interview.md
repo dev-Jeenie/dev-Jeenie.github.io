@@ -42,6 +42,7 @@ last_modified_at: 2022-05-12
 - lodash를 써본 적이 있나?
 - 그럼 lodash 없이 배열의 요소에서 중복을 제거하는 방법은?
 - 쿠키와 세션의 차이
+  - 그럼 세션 ID는 언제 사용하나?
 - Promise all?
 - Spread operator를 써본 적이 있나?
 - M1칩과 기존 맥북칩의 차이를 아는가?
