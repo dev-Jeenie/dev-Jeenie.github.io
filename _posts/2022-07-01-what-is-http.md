@@ -47,7 +47,7 @@ stateful과 stateless의 차이는? <br/>
 
 승객과 매표 직원의 대화 <br/>
 
-> ### Stateful
+> **Stateful**<br/>
 승객: 서울에서 전주 가는 KTX는 얼마인가요?<br/>
 직원: 25,000원입니다.<br/>
 승객: 2장 주세요.<br/>
@@ -61,7 +61,7 @@ stateful과 stateless의 차이는? <br/>
 
 
 
-> ### stateless
+> **stateless**<br/>
 승객: 서울에서 전주 가는 KTX는 얼마인가요?<br/>
 직원: 25,000원입니다.<br/>
 승객: 2장 주세요.<br/>
@@ -123,7 +123,7 @@ stateful과 stateless의 차이는? <br/>
 
 
 
-> ### KeppAlive <br/>
+> **KeppAlive** <br/>
 이에 대한 해결책으로 오버헤드를 줄이기 위해 HTTP의 KeepAlive 속성을 사용할 수 있다. <br/>
 지정된 시간동안 서버와 클라이언트 사이에서 패킷 교환이 없을 경우, 상대방의 안부를 묻기위해 패킷을 주기적으로 보내는 것을 말한다.  <br/>
 이 때 패킷에 반응이 없으면 접속을 끊는다. <br/>
