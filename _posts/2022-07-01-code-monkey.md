@@ -111,12 +111,10 @@ intermediate 레벨에서 "이정도면 괜찮다"는 평가를 받는 개발자
 
 
 
-# 코드 몽키의 미래
-
-
-
 > 실패보다 안좋은 것은 애매한 성공 <br/>
 
 자주 애매한 성공을 하는 나는 성공을 경계해야한다
 
+# 코드 몽키의 미래
+<a href="https://www.youtube.com/watch?v=aLyi0SkuKmY&list=WL&index=15">해당 영상도 정리 예정...</a>
 
