@@ -144,4 +144,53 @@ fetchUserEntity를 호출해서<br/>￼
 # 예제 (2) - 개선 
 
 <img src="/assets/images/async_handling_4.png" /><br/>
-￼
+
+async - await를 사용한 경우. <br/>
+
+- 코드가 간결하다
+- 비동기 요청이 "성공한 경우"만 다루고, "실패한 경우"는 catch 절에서 분리한다
+- "실패한 경우"에 대한 처리를 외부에 위임할 수 있다
+
+성공 경우만 모아져 있어서 함수의 역할이 명확하게 드러난다<br/>
+이 함수는 ***성공하는 부분만 책임***지고, 다른 경우는 외부에 더 ***잘할 수 있는 부분에 위임***한 것!<br/>
+
+=> 좋은 코드의 징조 <br/>
+
+### 3-3. 좋은 코드의 특징
+
+- 성공, 실패의 경우를 분리해서 처리할 수 있다
+- 따라서 비즈니스 로직을 한눈에 파악할 수 있다
+
+<strong style="color:black;background-color:white;font-weight:bold">함수의 책임이 명확하게 드러나는 것 ! </strong> <br/>
+
+
+### 3-4. 나쁜 코드의 특징
+
+- 성공, 실패의 경우가 섞여서 처리된다
+- 따라서 비즈니스 로직을 파악하기 어렵다
+
+함수의 크기가 커지고, <br/>
+<strong style="color:black;background-color:white;font-weight:bold">함수가 하는 역할이 명시적으로 드러나지 않는다 </strong> <br/>
+
+
+## 4. 지금까지 비동기 처리를 어떻게 했는가?
+
+
+<img src="/assets/images/async_handling_5.png" /><br/>
+
+promise를 반환하는 함수를 React hook의 인자로 넘기고, <br/>
+ promise의 상태 변화에 따라 hookd이 반환하는 data, error 의 값을 적절히 채워주는 것 <br/>
+
+<img src="/assets/images/async_handling_5.png" /><br/>
+
+비동기인 foo를 가져오는데<br/>
+foo가 에러라면 실패 메시지,<br/>
+foo가 없으면 로딩 중,<br/>
+foo가 있으면 안녕하세요 메시지.<br/>
+
+***문제점***
+
+- 성공, 실패가 섞여서 처리된다
+- 실패의 처리를 외부에 위임하게 어렵다
+
+# 비동기 작업이 여러개라면 더 심각해진다
