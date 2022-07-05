@@ -181,7 +181,7 @@ async - await를 사용한 경우. <br/>
 promise를 반환하는 함수를 React hook의 인자로 넘기고, <br/>
  promise의 상태 변화에 따라 hookd이 반환하는 data, error 의 값을 적절히 채워주는 것 <br/>
 
-<img src="/assets/images/async_handling_5.png" /><br/>
+<img src="/assets/images/async_handling_6.png" /><br/>
 
 비동기인 foo를 가져오는데<br/>
 foo가 에러라면 실패 메시지,<br/>
@@ -194,3 +194,32 @@ foo가 있으면 안녕하세요 메시지.<br/>
 - 실패의 처리를 외부에 위임하게 어렵다
 
 # 비동기 작업이 여러개라면 더 심각해진다
+
+<img src="/assets/images/async_handling_7.png" /><br/>
+
+foo와 bar 값을 비동기로 가져오고, bar를 가져오려면 foo가 있어야하는 상황. <br/> 
+
+bar는 foo의 로딩까지 기다리고, if문은 복잡해진다. <br/>
+
+<img src="/assets/images/async_handling_7.png" /><br/>
+
+# 비동기 작업의 일반적인 상태는
+
+***한개일 경우***
+- 로딩 중
+- 에러
+- 완료됨
+
+> 그럼 두개일 경우의 상태는, 9가지 경우의 수를 가지게 된다. <br/>
+***비동기 호출이 많아질 수록 더욱 복잡해진다!*** <br/>
+
+
+
+
+# ***React에서의 비동기 처리는 매우 어렵다***
+
+- 성공하는 경우에만 집중해서 컴포넌트를 구성하기 어렵다
+- 2개 이상의 비동기 로직이 개입할 때, 비즈니스 로직을 파악하기 점점 어려워진다
+
+# 만약 컴포넌트가 아닌 함수였다면?
+
