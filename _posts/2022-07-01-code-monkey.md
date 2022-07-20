@@ -1,6 +1,6 @@
 ---
 published: true
-title: "나는 주니어니까 괜찮아 👧🏻🍼"
+title: "나는 주니어니까 괜찮아 🍼"
 permalink: /life/codeMonkey
 tags:
   - [life]
