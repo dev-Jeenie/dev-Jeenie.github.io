@@ -1,6 +1,6 @@
 ---
 published: true
-title: “암호화페 :달러:, 블록체인 :체인: 용어사전”
+title: “암호화페 💵, 블록체인 🧱⛓, 스마트 컨트렉트 💲”
 permalink: /CS/blockchainDictionary
 tags:
   - [CS]
