@@ -221,5 +221,219 @@ bar는 foo의 로딩까지 기다리고, if문은 복잡해진다. <br/>
 - 성공하는 경우에만 집중해서 컴포넌트를 구성하기 어렵다
 - 2개 이상의 비동기 로직이 개입할 때, 비즈니스 로직을 파악하기 점점 어려워진다
 
-# 만약 컴포넌트가 아닌 함수였다면?
+- 만약 컴포넌트가 아닌 함수였다면?
 
+<img src="/assets/images/async_handling_9.png" /><br/>
+
+성공하는 경우만 집중해 복잡도 낮춤
+일반적으로 작성하는 동기 로직과 큰 차이 없다
+
+
+리액트에서, 지금까지 했던 것처럼
+hook이나 state를 사용하는 방식으로는 이것처럼 간단하게 비동기 처리를 할 수 없다 
+
+=> 그래서 어렵다 
+
+2개 이상의 로직이 개입해서 복잡해질 때 더욱 어려워진다 
+
+이 문제를 우아하게 해결해주는 도구가 있다. 
+
+바로 React Suspense for Data fetching
+
+
+React Suspense 
+
+데이터를 가져오기 위한 suspense
+아직 리액트 실험버전에서만 사용 가능
+
+
+## suspense의 목표 
+
+async await 같이 비동기를 처리하면서
+"간단하고 읽기 편한 React 컴포넌트를 만들겠다 "
+
+### 예제
+
+<img src="/assets/images/async_handling_10.png" /><br/>
+비동기적 동작을 하는 useAsyncValue를
+동기적인 동작을 하는 useMemo로 치환을 한 예제. 
+
+완벽히 똑같은 구조를 가진다. 
+
+- 성공한 경우에만 집중
+- 로딩 상태와 에러 상태가 분리
+- 동기와 거의 같게 사용할 수 있다 
+
+컴포넌트는 성공한 상태만 다루고
+에러 상태와 로딩 상태는 외부에 위임하면서
+동기적 코드와 큰 차이가 없는 코드를 만드는 것 
+
+React Suspense for Data fetching는 
+hook을 만들 수 있는 Low level API를 제공
+
+
+## 에러 상태와 로딩 상태는 어떻게 분리하는가? 
+
+만약 비동기 작업을 이렇게 처리한다면, 에러와 로딩은 어떻게 처리할까?
+
+<img src="/assets/images/async_handling_11.png" /><br/>
+
+매우 간단하다!
+(함수 에러처리를 감싸는 catch문에서 하는 것과 유사) 
+
+- 컴포넌트를 쓰는 쪽에서 로딩 처리와 에러 처리를 한다
+- 로딩 상태는 가장 가까운 'Suspense'의 'Fallback'으로 그려진다
+- 에러 상태는 가장 가까운 'ErrorBoundary'가 componentDidCatch()로 처리한다 
+
+## try-catch 문과의 유사성
+
+<img src="/assets/images/async_handling_12.png" /><br/>
+
+
+async-await의 try/catch 문과
+ErrorBoundary/Suspense는 거의 유사한 구조 
+
+비동기 콜하는 함수나 컴포넌트가 가운데에 있고
+실패하는 경우를 처리하는 부분이 그 부분을 감싸고 있다 
+
+모든 실패할 수 있는 부분에 try catch를 감싸지 않는 것처럼
+Suspense를 일으키는 모든 컴포넌트에
+Suspense나 ErrorBoundary를 붙이는게 X 
+
+<img src="/assets/images/async_handling_13.png" /><br/>
+
+
+앱 전체에서 로딩 상태와 에러 상태를 처리해주는 핸들러를 선언한 예제. 
+
+=> 이것처럼 적당한 부분 단위로 에러와 로딩 상태를 한 번에 처리한다! 
+
+## 어떻게 사용하는가? 
+
+비동기를 동기적으로 바꿔주는 Suspense의 사용방법은 간단하다.
+사용하는 라이브러리에서 Suspense를 사용한다고 선언하기만 하면 된다. 
+
+<img src="/assets/images/async_handling_14.png" /><br/>
+
+- 1) Recoil의 async selector 기능
+- 2) SWR, React Query의 { suspense: true } 옵션 사용 
+
+이런 옵션을 사용한 이후에는 자동으로 컴포넌트의 Suspense 상태가 관리된다 
+
+이렇게 React Query를 사용하면
+로딩과 에러 처리를 바깥으로 위임하며 비동기 작업을 동기와 똑같이 처리 가능
+
+
+## 어떻게 구현되는가? 
+ㅈㄹㄴ롱ㅎㅇㅊ옿ㅇ퐇ㄱㅇㅎ
+
+<img src="/assets/images/async_handling_15.png" /><br/>
+￼
+> React Team의 Sebastian Markbage의 Proof-of-concept
+'runPureTask'를 실행시키면, 비동기 함수도 동기적으로 작성할 수 있다 
+
+fetchTextSync는 원래 API호출로 비동기 작업이지만 동기처럼 사용되고 있다. 
+
+이것을 가능하게 하는 건 runPureTask라는 런타임. 
+
+### 토스팀의 예시 
+
+TUBA 메신저의 메시지 상세화면 
+
+<img src="/assets/images/async_handling_16.png" /><br/>
+
+
+API를 호출해야하는 내용이 다양해서, 상당히 복잡한 비동기 처리가 필요 
+
+=> 비동기 셀렉터 적용!
+비동기 리소스를 selector 또는 selectorFamily로 정의할 수 있다 
+
+<img src="/assets/images/async_handling_17.png" /><br/>
+
+￼
+templateSetSelector가 no라는 번호를 인자로 받음
+=> fetchTemplateSet 비동기 호출을 보냄 
+
+<img src="/assets/images/async_handling_18.png" /><br/>
+
+
+위에서 정의한 비동기 리소스를 useRecoilValue를 이용해서 가져오려고 하면 Suspense 발생 
+
+useRecoilValue 밑에는 templateSet을 가져왔다는 것을 타입적으로 완전히 보장할 수 있다! 
+
+=> 이렇게 비동기 호출하는 컴포넌트를 적절하게 Suspense로 감싸주기만 하면 된다. 
+
+redux나 다른 도구로 처리했다면 매우 복잡했을 것. 
+
+# 좋은 사용자 경험 
+
+데이터가 준비되는 대로 하나씩 자연스럽게 보여줄 수 있다. 
+
+React suspense 덕분에 많은 비동기 처리를 깔끔하고 우아하게 처리할 수 있고, 코드의 복잡도 또한 줄일 수 있게 되었다. 
+
+# React hooks와의 유사성 
+
+react hooks 또한 비슷한 역할을 한다 
+
+웹서비스의 코드 복잡도를 줄이고,
+상태, 이펙트와 메모이제이션과 같이 자주 발생하는 작업들을 매우 쉽게 사용할 수 있게 해줌.
+
+
+
+< 웹 서비스 코드 복잡도를 낮춘 방법 > 
+
+react hooks와 Suspense를 비교해보자. 
+
+1. React Hooks 
+
+<img src="/assets/images/async_handling_19.png" /><br/>
+
+
+react hooks는 어떻게 코드 복잡도를 줄였을까?
+선언적인 API의 역할이 크다. 
+
+이전의 Class component에서는 다양한 작업을 명령형으로 해줘야했다.
+하지만 hooks로는 
+
+- useState 상태를 사용한다고 선언
+- useMemo 메모이제이션 한다고 선언
+- useEffect 효과를 발생시킨다고 선언 
+
+이렇게 선언만 하면 React 프레임워크가 실제 작업을 대신 해줬다. 
+
+2. Suspense
+
+<img src="/assets/images/async_handling_20.png" /><br/>
+
+
+컴포넌트에서는 비동기적 리소스 선언
+그 값을 읽어온다고 선언하기만 함.
+그럼 실제 에러상태나 로딩상태 처리는 부모컴포넌트가 대신 한다.
+
+
+
+에러처리의 복잡도를 낮춘 방법 이미지 
+
+실패할 수 있는 함수는 throw문으로 에러를 발생시키고,
+실제 에러처리는 컴포넌트를 감싸는 부모 함수가 대신 수행함 
+
+대수적효과 이미지 
+
+어떤 코드 조각을 감싸는 맥락으로 책임을 분리하는 방식을 대수적효과라고 한다. 
+
+객체지향의 의존성 주입(DI), 의존성 역전(IoC)와 유사 
+
+대수적 효과를 지원하는 언어에서
+함수는 필요한 코드조각을 선언적으로 사용한다 
+
+(메모이제이션이 필요하면 useMemo를 호출하는 방식) 
+
+그럼 실제로 관련된 처리는 함수를 감싸는 부모 함수나, 런타임이 대신 처리하는 방식이다
+
+
+# 추가적인 사용자 경험 향상의 방법 
+
+추가적인 이미지 
+
+React에서 컴포넌트의 렌더 트리를 부분적으로만 완성함으로써 사용자 경험을 크게 향상시킬 수 있다. 
+
+=> 비동기작업 뿐만 아니라, 기존에 debounce 등으로 처리하던 무거운 동기적 작업에도 적용가능!
